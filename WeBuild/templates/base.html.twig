@@ -2,15 +2,76 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}WeBuild!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+            <!-- Google Web Fonts -->
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira:wght@500;600;700&display=swap" rel="stylesheet">
+
+            <!-- Icon Font Stylesheet -->
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+            <!-- Libraries Stylesheet -->
+            <link href="{{ asset('front/lib/animate/animate.min.css') }}" rel="stylesheet">
+            <link href="{{ asset('front/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+
+
+            <!-- Customized Bootstrap Stylesheet -->
+            <link href="{{ asset('front/css/bootstrap.min.css') }}" rel="stylesheet">
+
+            <!--fontawsome-->
+            <script src="https://kit.fontawesome.com/4786297a53.js" crossorigin="anonymous"></script>
+
+            <!-- Template Stylesheet -->
+            <link href="{{ asset('front/css/style.css') }}" rel="stylesheet">
+           {#  {{ encore_entry_link_tags('app') }}  #}
         {% endblock %}
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            <script>
+                function openLoginModal() {
+                    document.getElementById('loginModal').style.display = 'block';
+                    document.getElementById('overlaylx').style.display = 'block';
+                }
+
+                function openRegisterModal() {
+                    document.getElementById('registerModal').style.display = 'block';
+                    document.getElementById('overlaylx').style.display = 'block';
+                }
+
+                function closeModal() {
+                    document.getElementById('loginModal').style.display = 'none';
+                    document.getElementById('registerModal').style.display = 'none';
+                    document.getElementById('overlaylx').style.display = 'none';
+                }
+
+                function switchModal() {
+                    document.getElementById('loginModal').style.display = 'none';
+                    document.getElementById('registerModal').style.display = 'none';
+                    document.getElementById('overlaylx').style.display = 'none';
+
+                    if (event.target === document.getElementById('loginModal')) {
+                        openRegisterModal();
+                    } else  {
+                        openLoginModal();
+                    }
+                }
+            </script>
+            <!-- JavaScript Libraries -->
+            <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js')}}"></script>
+            <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js') }}"></script>
+            <script src="{{ asset('front/lib/wow/wow.min.js') }}"></script>
+            <script src="{{ asset('front/lib/easing/easing.min.js') }}"></script>
+            <script src="{{ asset('front/lib/waypoints/waypoints.min.js') }}"></script>
+            <script src="{{ asset('front/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+
+            <!-- Template Javascript -->
+            <script src="{{ asset('front/js/main.js') }}"></script>
+            {#  {{ encore_entry_script_tags('app') }}#}
         {% endblock %}
     </head>
     <body>
