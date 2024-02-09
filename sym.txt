@@ -1,0 +1,43 @@
+symfony new Aid23 --version=5.4 –webapp
+
+cd -> FirstProject 
+
+composer require doctrine/annotations
+composer require symfony/orm-pack
+composer require --dev symfony/maker-bundle
+
+symfony server:start
+
+symfony server:stop
+
+symfony server:status
+
+ symfony console make:migration
+
+ symfony console doctrine:migrations:migrate
+
+	DATABASE_URL="mysql://root@127.0.0.1:3306/espritdql"
+
+
+	//Then creating the databse in xampp
+symfony console doctrine:database:create
+
+	//First migration command
+symfony console make:migration
+
+	//Updating the database command
+symfony console doctrine:migrations:migrate
+
+	//Canceling the last update
+symfony console doctrine:migrations:migrate prev
+
+	//Entity
+//Creating & Updating Entity
+symfony console make:entity
+/*The entity Repository will be generated automatically
+in src/Repository*/
+
+	//Form
+//Creating a form
+symfony console make:form FormName
+//More about the form down bellow
