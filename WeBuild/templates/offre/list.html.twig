@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WeBuild {% endblock %}
+
+
+
+{% block body %}
+
+  <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                   
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Offres</h6>
+                            <table class="table">
+                                <thead>
+                               
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Salary </th>
+                                      
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                     {% for offre in offres %}
+                                        <th scope="row">{{offre.id}}</th>
+                                        <td>{{offre.title}}</td>
+                                        <td>{{offre.description}} </td>
+                                        <td>{{offre.salary}} </td>
+                                        <td><button type="button" class="btn btn-outline-danger m-2" onclick="window.location.href='{{  path('app_deleteOffre', {'id': offre.id}) }}'">Supprimer</button> </td>
+                                        <td><button type="button" class="btn btn-outline-warning m-2" onclick="window.location.href='{{ path('app_EditOffre', {'id': offre.id}) }}'">Modifier</button> </td>
+                                              
+                             
+                                    </tr>
+                                    {% endfor %}
+                                   
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn btn-outline-success m-2" onclick="window.location.href='{{ path('app_AddOffre') }}'">Ajouter</button> 
+                        </div>
+                 
+                
+
+
+
+
+{% endblock %}
