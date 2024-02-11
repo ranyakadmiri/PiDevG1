@@ -1,0 +1,10 @@
+{% extends 'base_back.html.twig' %}
+{% block title %}WeBuild - Assurance{% endblock %}
+
+{% block body %}
+
+
+   <button type="button" class="btn btn-lg btn-lg-square btn-outline-primary m-2" onclick="window.location.href='{{ path('app_show') }}'"><i class="fa fa-home"></i></button>
+    <h6  class="mb-4">Modifier assurance</h6> 
+  {{form(form)}}
+</div>{% endblock %}

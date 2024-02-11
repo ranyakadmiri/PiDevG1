@@ -15,4 +15,12 @@ class FrontController extends AbstractController
             'controller_name' => 'FrontController',
         ]);
     }
+
+    #[Route('/project', name: 'app_front2')]
+    public function Affich_project(): Response
+    {
+        return $this->render('front/home_project.html.twig', [
+            'controller_name' => 'FrontController',
+        ]);
+    }
 }

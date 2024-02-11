@@ -32,9 +32,9 @@
                                         <td>{{assurance.nom}}</td>
                                         <td>{{assurance.description}} </td>
                                         <td>{{assurance.franchise}} </td>
-                                        <td><button type="button" class="btn btn-outline-danger m-2">Supprimer</button> </td>
-                                        <td><button type="button" class="btn btn-outline-warning m-2">Modifier</button> </td>
-                                              
+                                        <td><button type="button" class="btn btn-outline-danger m-2" onclick="window.location.href= '{{path('del_ass',{'id':assurance.id})}}' ">Supprimer</button> </td>
+                                        <td><button type="button" class="btn btn-outline-warning m-2" onclick="window.location.href='{{ path('app_Edit', {'id': assurance.id}) }}'" >Modifier</button> </td>
+                                            
                                 
                                 
                                     </tr>
