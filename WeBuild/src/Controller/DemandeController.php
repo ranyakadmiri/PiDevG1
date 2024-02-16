@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Demande;
 use App\Form\DemandeType;
+use App\Repository\DemandeRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -23,7 +24,7 @@ class DemandeController extends AbstractController
 
 
     #[Route('/demande/list', name: 'list_Demande')]
-    public function listbook(ManagerRegistry $doctrine): Response
+    public function listDemande(ManagerRegistry $doctrine): Response
     {
         $DemRepo = $doctrine->getRepository(Demande::class);
         $demandes = $DemRepo->findAll();
@@ -32,13 +33,13 @@ class DemandeController extends AbstractController
 
 
     #[Route('/demande/add', name: 'addDemande')]
-    public function addAuthor(ManagerRegistry $d, Request $request): Response
+    public function addDemande(ManagerRegistry $d, Request $request): Response
     {
 
         $Demande = new Demande();
         $em = $d->getManager();
         $form = $this->createForm(DemandeType::class, $Demande);
-        $form->add('ajouter', SubmitType::class);
+        $form->add('ajouter', SubmitType::class, ['attr' => ['class' => 'btn btn-outline-success m-2']]);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             $assurance = $Demande->getAssurance();
@@ -50,5 +51,44 @@ class DemandeController extends AbstractController
             return $this->redirectToRoute('list_Demande');
         }
         return $this->render('demande/addDemande.html.twig', ['formdemande' => $form->createView()]);
+    }
+    #[Route('/demandes/edit/{id}', name: 'edit_Demande')]
+
+    public function editDemande(DemandeRepository $repository, $id, Request $request)
+    {
+        $assurance = $repository->find($id);
+        $form = $this->createForm(DemandeType::class, $assurance);
+        $form->add('Edit', SubmitType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            return $this->redirectToRoute("list_Demande");
+        }
+
+        return $this->render('demande/edit.html.twig', [
+            "formdemande" => $form->createView(),
+        ]);
+    }
+
+
+
+
+
+
+
+
+
+
+    #[Route('/deletedemande/{id}', name: 'del_Demande')]
+    public function deleteDemande($id, ManagerRegistry $doctrine): Response
+    {
+        $repo = $doctrine->getRepository(Demande::class);
+        $em = $doctrine->getManager();
+        $demande = $repo->find($id);
+        $em->remove($demande);
+        $em->flush();
+        return $this->redirectToRoute('list_Demande');
     }
 }

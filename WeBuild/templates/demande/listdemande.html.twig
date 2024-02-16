@@ -13,6 +13,8 @@
  <td>{{demande.idD}} </td>
  <td>{{demande.Montant}} </td>
   <td>{{demande.Assurance.nom}} </td>
+  <td><a href="{{path('del_Demande',{'id':demande.idD})}}">Delete</td>
+  <td><a href="{{ path('edit_Demande', {'id': demande.idD}) }}">Edit</a></td>
     
  </tr>
 {% endfor %}
