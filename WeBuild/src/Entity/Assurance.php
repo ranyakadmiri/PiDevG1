@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AssuranceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -40,6 +42,22 @@ class Assurance
 
     #[ORM\Column]
     private ?float $prime = null;
+
+    #[ORM\OneToMany(targetEntity: Demande::class, mappedBy: 'Assurance')]
+    private Collection $demandes;
+
+    #[ORM\OneToMany(targetEntity: Demande::class, mappedBy: 'Assurance')]
+    private Collection $Demandes;
+
+    #[ORM\OneToMany(targetEntity: Demande::class, mappedBy: 'Assurance')]
+    private Collection $Demandess;
+
+    public function __construct()
+    {
+        $this->demandes = new ArrayCollection();
+        $this->Demandes = new ArrayCollection();
+        $this->Demandess = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -150,6 +168,36 @@ class Assurance
     public function setPrime(float $prime): static
     {
         $this->prime = $prime;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Demande>
+     */
+    public function getDemandess(): Collection
+    {
+        return $this->Demandess;
+    }
+
+    public function addDemandess(Demande $demandess): static
+    {
+        if (!$this->Demandess->contains($demandess)) {
+            $this->Demandess->add($demandess);
+            $demandess->setAssurance($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDemandess(Demande $demandess): static
+    {
+        if ($this->Demandess->removeElement($demandess)) {
+            // set the owning side to null (unless already changed)
+            if ($demandess->getAssurance() === $this) {
+                $demandess->setAssurance(null);
+            }
+        }
 
         return $this;
     }

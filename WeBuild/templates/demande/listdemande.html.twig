@@ -1,0 +1,19 @@
+{% extends 'base_back.html.twig' %}
+{% block title %}WeBuild - Assurance{% endblock %}
+
+
+
+{% block body %}
+<table border="1">
+<tr>
+<td>id</td><td>Montant</td> <td>type assurance </td>
+<tr>
+{% for demande in demandes %}
+<tr>
+ <td>{{demande.idD}} </td>
+ <td>{{demande.Montant}} </td>
+  <td>{{demande.Assurance.nom}} </td>
+    
+ </tr>
+{% endfor %}
+{% endblock %}

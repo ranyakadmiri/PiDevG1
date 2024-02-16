@@ -1,0 +1,11 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}WeBuild - Demande Assurance{% endblock %}
+
+
+
+{% block body %}
+   <button type="button" class="btn btn-lg btn-lg-square btn-outline-primary m-2" onclick="window.location.href='{{ path('list_Demande') }}'"><i class="fa fa-home"></i></button>
+    <h6  class="mb-4">Ajouter</h6> 
+    {{form(formdemande)}}
+{% endblock %}
