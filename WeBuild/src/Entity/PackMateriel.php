@@ -14,9 +14,9 @@ class PackMateriel
     private ?int $id = null;
 
     #[ORM\Column(length: 30)]
-    private ?string $livelle_pack = null;
+    private ?string $libelle_pack = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 800)]
     private ?string $description_pack = null;
 
     #[ORM\Column]
@@ -30,14 +30,14 @@ class PackMateriel
         return $this->id;
     }
 
-    public function getLivellePack(): ?string
+    public function getLibellePack(): ?string
     {
-        return $this->livelle_pack;
+        return $this->libelle_pack;
     }
 
-    public function setLivellePack(string $livelle_pack): static
+    public function setLibellePack(string $libelle_pack): static
     {
-        $this->livelle_pack = $livelle_pack;
+        $this->libelle_pack = $libelle_pack;
 
         return $this;
     }
