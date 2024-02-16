@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PackMaterielRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PackMaterielRepository::class)]
@@ -14,66 +16,104 @@ class PackMateriel
     private ?int $id = null;
 
     #[ORM\Column(length: 30)]
-    private ?string $libelle_pack = null;
+    private ?string $libelle = null;
 
     #[ORM\Column(length: 800)]
-    private ?string $description_pack = null;
+    private ?string $description = null;
 
     #[ORM\Column]
-    private ?int $prix_pack = null;
+    private ?int $prix = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $image_pack = null;
+    private ?string $image = null;
+
+    #[ORM\OneToMany(targetEntity: Location::class, mappedBy: 'PackMateriel')]
+    private Collection $locations;
+
+    public function __construct()
+    {
+        $this->locations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getLibellePack(): ?string
+    public function getLibelle(): ?string
     {
-        return $this->libelle_pack;
+        return $this->libelle;
     }
 
-    public function setLibellePack(string $libelle_pack): static
+    public function setLibelle(string $libelle): static
     {
-        $this->libelle_pack = $libelle_pack;
+        $this->libelle = $libelle;
 
         return $this;
     }
 
-    public function getDescriptionPack(): ?string
+    public function getDescription(): ?string
     {
-        return $this->description_pack;
+        return $this->description;
     }
 
-    public function setDescriptionPack(string $description_pack): static
+    public function setDescription(string $description): static
     {
-        $this->description_pack = $description_pack;
+        $this->description = $description;
 
         return $this;
     }
 
-    public function getPrixPack(): ?int
+    public function getPrix(): ?int
     {
-        return $this->prix_pack;
+        return $this->prix;
     }
 
-    public function setPrixPack(int $prix_pack): static
+    public function setPrix(int $prix): static
     {
-        $this->prix_pack = $prix_pack;
+        $this->prix = $prix;
 
         return $this;
     }
 
-    public function getImagePack(): ?string
+    public function getImage(): ?string
     {
-        return $this->image_pack;
+        return $this->image;
     }
 
-    public function setImagePack(string $image_pack): static
+    public function setImage(string $image): static
     {
-        $this->image_pack = $image_pack;
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Location>
+     */
+    public function getLocations(): Collection
+    {
+        return $this->locations;
+    }
+
+    public function addLocation(Location $location): static
+    {
+        if (!$this->locations->contains($location)) {
+            $this->locations->add($location);
+            $location->setPackMateriel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLocation(Location $location): static
+    {
+        if ($this->locations->removeElement($location)) {
+            // set the owning side to null (unless already changed)
+            if ($location->getPackMateriel() === $this) {
+                $location->setPackMateriel(null);
+            }
+        }
 
         return $this;
     }

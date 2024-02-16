@@ -17,7 +17,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "2.4",
-            "ref": "191046a1fdd1a58fcca48d8bf2f58c45a93b1d00"
+            "ref": "cc62b7e9470998c640ee99d284a013a676f1fc5e"
         },
         "files": [
             "./config/packages/doctrine.yaml",
@@ -245,7 +245,7 @@
         ]
     },
     "symfony/ux-turbo": {
-        "version": "v2.14.0"
+        "version": "v2.14.2"
     },
     "symfony/validator": {
         "version": "5.4",

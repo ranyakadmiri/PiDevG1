@@ -12,11 +12,10 @@ class PackMaterielType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('libelle_pack')
-            ->add('description_pack')
-            ->add('prix_pack')
-            ->add('image_pack')
-            ->add('ajouter', SubmitType::class)
+            ->add('libelle')
+            ->add('description')
+            ->add('prix')
+            ->add('image')
             
         ;
     }
