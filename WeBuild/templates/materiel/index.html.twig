@@ -26,7 +26,7 @@
                                         <td>{{PackMateriel.libelle}}</td>
                                         <td>{{PackMateriel.description}} </td>
                                         <td>{{PackMateriel.prix}} </td>
-					                    <td>{{PackMateriel.image}} </td>
+					                    <td>{{asset(PackMateriel.image)}} </td>
                                         <td>
                                         <button type="button" class="btn btn-outline-danger m-2" onclick="window.location.href= '{{path('supprimermateriel',{'id':PackMateriel.id})}}' ">Supprimer</button>
                                         <button type="button" class="btn btn-outline-warning m-2" onclick="window.location.href='{{ path('modifierMateriel', {'id': PackMateriel.id}) }}'" >Modifier</button>

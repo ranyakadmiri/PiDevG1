@@ -6,6 +6,7 @@ use App\Entity\PackMateriel;
 use App\Form\PackMaterielType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,6 +30,7 @@ class PackMaterielController extends AbstractController
         $form = $this->createForm(PackMaterielType::class,$PackMateriel);
 
         $form->handleRequest($request);
+        
 
         if($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();

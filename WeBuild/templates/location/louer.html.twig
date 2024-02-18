@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Louer un pack matériel{% endblock %}
+
+{% block body %}
+<div class="container-fluid py-5 px-4 d-flex align-items-center justify-content-center min-vh-100">
+  <div class="col-md-8 col-lg-6 border rounded p-4 shadow-sm bg-light">
+    <h2 class="mb-4 text-center">Louer le pack</h2>
+    <form method="POST" class="row g-3">
+
+      <div class="col-md-12 mb-3">
+        {{ form_label(form.idUser, 'ID utilisateur:') }}
+        {{ form_widget(form.idUser, {'attr': {'class': 'form-control'}}) }}
+      </div>
+
+      <div class="col-md-12 mb-3">
+        {{ form_label(form.dateD, 'Date début:') }}
+        {{ form_widget(form.dateD, {'attr': {'class': 'form-control'}}) }}
+      </div>
+
+      <div class="col-md-12 mb-3">
+        {{ form_label(form.dateF, 'Date fin:') }}
+        {{ form_widget(form.dateF, {'attr': {'class': 'form-control'}}) }}
+      </div>
+
+      <div class="col-12 text-center">
+        <button type="submit" class="btn btn-primary">Valider</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
