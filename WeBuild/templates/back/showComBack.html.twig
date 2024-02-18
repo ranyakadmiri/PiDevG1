@@ -1,0 +1,23 @@
+{% extends 'base_back.html.twig' %}
+
+{% block body %}
+              {#list commentaire#}  
+              {% for c in commentaires %}
+                <ul class="comments-list">
+                    <li class="comment">
+                        <a class="pull-left" href="#">
+                            <img class="avatar" src="https://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+                        </a>
+                        <div class="comment-body">
+                            <div class="comment-heading">
+                                <h4 class="user">{{ c.nom }}</h4>
+                                <h5 class="time">{{ c.datecreation |date('Y-M-D')}}</h5>
+                            </div>
+                            <p>{{ c.contenu }}</p>
+                        </div>
+                        <td><a class="btn btn-sm btn-primary" href="{{ path('deleteCommentaireBack',{'id': c.Id}) }}">Delete</a></td>
+                      </tr>  
+                    </li>
+                </ul>
+                {% endfor %}
+{% endblock %}

@@ -5,11 +5,10 @@ namespace App\Entity;
 use App\Repository\PostRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\UX\Turbo\Attribute\Broadcast;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
-#[Broadcast]
 class Post
 {
     #[ORM\Id]
@@ -26,18 +25,16 @@ class Post
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $auteur = null;
 
-    #[ORM\ManyToOne(inversedBy: 'posts')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Commentaire $Commentaire = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $date = null;
 
-   
+    #[ORM\OneToMany(targetEntity: Commentaire::class, mappedBy: 'Post')]
+    private Collection $commentaires;
 
-   
-
-   
-    
-
-    
+    public function __construct()
+    {
+        $this->commentaires = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -80,27 +77,47 @@ class Post
         return $this;
     }
 
-    public function getCommentaire(): ?Commentaire
+    public function getDate(): ?\DateTimeInterface
     {
-        return $this->Commentaire;
+        return $this->date;
     }
 
-    public function setCommentaire(?Commentaire $Commentaire): static
+    public function setDate(?\DateTimeInterface $date): static
     {
-        $this->Commentaire = $Commentaire;
+        $this->date = $date;
 
         return $this;
     }
 
-    
+    /**
+     * @return Collection<int, Commentaire>
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
 
-   
+    public function addCommentaire(Commentaire $commentaire): static
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires->add($commentaire);
+            $commentaire->setPost($this);
+        }
 
-    
-    
+        return $this;
+    }
 
-    
+    public function removeCommentaire(Commentaire $commentaire): static
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getPost() === $this) {
+                $commentaire->setPost(null);
+            }
+        }
 
-    
+        return $this;
+    }
+
 
 }

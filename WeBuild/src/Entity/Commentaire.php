@@ -3,14 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\CommentaireRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\UX\Turbo\Attribute\Broadcast;
+use Symfony\component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CommentaireRepository::class)]
-#[Broadcast]
 class Commentaire
 {
     #[ORM\Id]
@@ -19,9 +16,14 @@ class Commentaire
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'le contenu de commentaire ne peut pas etre vide')   ]
+    #[Assert\Length(
+        min:3,
+        minMessage: ' le contenu doit faire au moins 3 caractères'
+    )]
     private ?string $contenu = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $datecreation = null;
 
     #[ORM\Column(nullable: true)]
@@ -30,20 +32,11 @@ class Commentaire
     #[ORM\Column(nullable: true)]
     private ?int $nbrdislikes = null;
 
-    #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'Commentaire', orphanRemoval: true)]
-    private Collection $posts;
+    #[ORM\ManyToOne(inversedBy: 'commentaires')]
+    private ?Post $Post = null;
 
-    public function __construct()
-    {
-        $this->posts = new ArrayCollection();
-    }
-
-   
- 
-
-    
-   
-   
+    #[ORM\Column(length: 255)]
+    private ?string $nom = null;
 
     public function getId(): ?int
     {
@@ -67,7 +60,7 @@ class Commentaire
         return $this->datecreation;
     }
 
-    public function setDatecreation(\DateTimeInterface $datecreation): static
+    public function setDatecreation(?\DateTimeInterface $datecreation): static
     {
         $this->datecreation = $datecreation;
 
@@ -98,38 +91,28 @@ class Commentaire
         return $this;
     }
 
-    /**
-     * @return Collection<int, Post>
-     */
-    public function getPosts(): Collection
+    public function getPost(): ?Post
     {
-        return $this->posts;
+        return $this->Post;
     }
 
-    public function addPost(Post $post): static
+    public function setPost(?Post $Post): static
     {
-        if (!$this->posts->contains($post)) {
-            $this->posts->add($post);
-            $post->setCommentaire($this);
-        }
+        $this->Post = $Post;
 
         return $this;
     }
 
-    public function removePost(Post $post): static
+    public function getNom(): ?string
     {
-        if ($this->posts->removeElement($post)) {
-            // set the owning side to null (unless already changed)
-            if ($post->getCommentaire() === $this) {
-                $post->setCommentaire(null);
-            }
-        }
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): static
+    {
+        $this->nom = $nom;
 
         return $this;
     }
 
-    
-    
-
-   
 }
