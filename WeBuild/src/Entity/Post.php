@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
@@ -16,16 +17,56 @@ class Post
     #[ORM\Column]
     private ?int $id = null;
 
+   
+    #[Assert\NotBlank(message: 'Le titre ne peut pas être vide')]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Le titre doit avoir au moins 3 caractères'
+    )]
+    #[Assert\Regex(
+        pattern: '/\d/',
+        match: false,
+        message: 'Le titre ne peut pas contenir de numéros'
+    )]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $titre = null;
 
+    #[Assert\NotBlank(message: 'La description ne peut pas être vide')]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'La description doit avoir au moins 3 caractères'
+    )]
+    #[Assert\Regex(
+        pattern: '/\d/',
+        match: false,
+        message: 'La description ne peut pas contenir de numéros'
+    )]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
+
+    #[Assert\NotBlank(message: "L'auteur ne peut pas être vide")]
+    #[Assert\Length(
+        min: 3,
+        minMessage: "L'auteur doit avoir au moins 3 caractères"
+    )]
+    #[Assert\Regex(
+        pattern: '/\d/',
+        match: false,
+        message: "L'auteur ne peut pas contenir de numéros"
+    )]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $auteur = null;
 
+    #[Assert\NotBlank(message: 'La date ne peut pas être vide')]
+    #[Assert\Range(
+        min: 'today',
+        minMessage: 'La date ne peut pas être dans le passé',
+        max: 'today',
+        maxMessage: 'La date ne peut pas être dans le futur'
+    )]
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+   
     private ?\DateTimeInterface $date = null;
 
     #[ORM\OneToMany(targetEntity: Commentaire::class, mappedBy: 'Post')]

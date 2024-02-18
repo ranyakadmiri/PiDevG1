@@ -23,18 +23,34 @@ class Commentaire
     )]
     private ?string $contenu = null;
 
+
+    #[Assert\NotBlank(message: 'La date ne peut pas être vide')]
+    #[Assert\Range(
+        min: 'today',
+        minMessage: 'La date ne peut pas être dans le passé',
+        max: 'today',
+        maxMessage: 'La date ne peut pas être dans le futur'
+    )]
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $datecreation = null;
 
+    #[Assert\PositiveOrZero(message: 'Le nombre de likes doit être un entier positif ou zéro')]
+    #[Assert\NotBlank(message: 'Le nombre de likes ne peut pas être vide')]
     #[ORM\Column(nullable: true)]
     private ?int $nbrlikes = null;
 
+  
+    #[Assert\PositiveOrZero(message: 'Le nombre de dislikes doit être un entier positif ou zéro')]
+    #[Assert\NotBlank(message: 'Le nombre de dislikes ne peut pas être vide')]
     #[ORM\Column(nullable: true)]
     private ?int $nbrdislikes = null;
 
     #[ORM\ManyToOne(inversedBy: 'commentaires')]
     private ?Post $Post = null;
 
+    #[Assert\NotBlank(message: 'le nom doit être renseingé ')]
+    #[Assert\Length(min:3, max:8, minMessage:"le nom doit être minimum 3 ",maxMessage:" le nom est trés long")]
+    #[Assert\Regex(pattern: '/^[a-zA-Z]+$/' , message: 'le nom ne peut contenir que des lettres')]
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
