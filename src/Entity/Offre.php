@@ -18,10 +18,7 @@ class Offre
 
     #[ORM\Column(length: 255)]
     #[Assert\Type('String')]
-    #[Assert\Length(
-        min:8,
-        minMessage: ' le titre doit contenir au moins 3 caractères'
-    )]
+    #[Assert\Length(min:3, max:15, minMessage:"le titre doit être minimum 3 ",maxMessage:" le titre est trés long")]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
@@ -38,7 +35,8 @@ class Offre
         type: 'float',
         message: 'The value {{ value }} is not a valid {{ type }}.',
     )]
-   
+    #[Assert\PositiveOrZero(message: 'Le salaire doit être un entier positif ou zéro')]
+    #[Assert\NotBlank(message: 'Le salaire ne peut pas être vide')]
     private ?float $salary = null;
 
     

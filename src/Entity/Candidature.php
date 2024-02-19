@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CandidatureRepository;
+use Symfony\component\Validator\Constraints as Assert;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CandidatureRepository::class)]
@@ -17,6 +19,11 @@ class Candidature
     private ?int $id_client = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'le contenu ne peut pas etre vide')   ]
+    #[Assert\Length(
+        min:3,
+        minMessage: ' le contenu doit faire au moins 10 caractères'
+    )]
     private ?string $Description = null;
 
     #[ORM\Column(length: 255)]
@@ -26,6 +33,7 @@ class Candidature
     private ?Offre $offre = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Email(message: 'l email ne peut pas etre vide') ]
     private ?string $email = null;
 
 

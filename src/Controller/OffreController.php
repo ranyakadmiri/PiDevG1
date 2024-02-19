@@ -133,7 +133,7 @@ class OffreController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-    #[Route('/delete/{id}', name: 'app_deleteOffreBack')]
+    #[Route('/back/delete/{id}', name: 'app_deleteOffreBack')]
     public function deleteBack($id, OffreRepository $repository)
     {
         $offre= $repository->find($id);
@@ -151,7 +151,6 @@ class OffreController extends AbstractController
         $em->remove($offre);
         $em->flush();
 
-        
-        return $this->redirectToRoute('app_showOffreBack');
+        return $this->redirectToRoute("app_showOffreBack");
     }
 }

@@ -29,17 +29,18 @@
                                         <td>{{offre.title}}</td>
                                         <td>{{offre.description}} </td>
                                         <td>{{offre.salary}} </td>
-                                        <td><button type="button" class="btn btn-outline-success m-2" onclick="window.location.href='{{  path('app_AddCanBack')}}'" >Postuler</button> 
+                                  
                                         <td><button type="button" class="btn btn-outline-danger m-2" onclick="window.location.href='{{  path('app_deleteOffreBack', {'id': offre.id}) }}'">Supprimer</button> </td>
                                         <td><button type="button" class="btn btn-outline-warning m-2" onclick="window.location.href='{{ path('app_EditOffreBack', {'id': offre.id}) }}'">Modifier</button> </td>
-                                          
-                             
+                                        
                                     </tr>
+                                      
                                     {% endfor %}
+                                    <button type="button" class="btn btn-outline-success m-2" onclick="window.location.href='{{ path('app_AddOffreBack') }}'">Ajouter</button> 
                                    
                                 </tbody>
                             </table>
-                            <button type="button" class="btn btn-outline-success m-2" onclick="window.location.href='{{ path('app_AddOffreBack') }}'">Ajouter</button> 
+                          
                         </div>
                  
                 
