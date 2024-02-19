@@ -1,0 +1,40 @@
+ {% extends 'base.html.twig' %}
+
+{% block title %}Adding Candidature{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<style>
+  /* Center the content vertically and horizontally */
+  .center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure full viewport height */
+  }
+  
+  /* Center the form horizontally */
+  .form-container {
+    display: flex;
+    justify-content: center;
+  }
+
+</style>
+
+
+<div class="center-content">
+  <div class="container-fluid py-5 px-4">
+    <div class="col-md-8 col-lg-6 border rounded p-4 shadow-sm bg-light">
+      <h2 class="mb-4 text-center">Ajouter Votre Candidature</h2>
+  
+      <div class="col-md-12 mb-3">
+        {{ form(f) }}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

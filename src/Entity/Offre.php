@@ -1,0 +1,114 @@
+<?php
+
+namespace App\Entity;
+
+use App\Repository\OffreRepository;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Types;
+use Symfony\component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+#[ORM\Entity(repositoryClass: OffreRepository::class)]
+class Offre
+{
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\Type('String')]
+    #[Assert\Length(
+        min:8,
+        minMessage: ' le titre doit contenir au moins 3 caractères'
+    )]
+    private ?string $title = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\Type('String')]
+    #[Assert\NotBlank(message: 'la description ne peut pas etre vide')   ]
+    #[Assert\Length(
+        min:8,
+        minMessage: ' le titre doit contenir au moins 3 caractères'
+    )]
+    private ?string $description = null;
+
+    #[ORM\Column]
+    #[Assert\Type(
+        type: 'float',
+        message: 'The value {{ value }} is not a valid {{ type }}.',
+    )]
+   
+    private ?float $salary = null;
+
+    
+    #[ORM\OneToMany(targetEntity:Candidature::class, mappedBy:"offre" ,  )]
+    private Collection $candidatures;
+
+    public function __construct()
+    {
+        $this->candidatures = new ArrayCollection();
+    }
+
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): static
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getSalary(): ?float
+    {
+        return $this->salary;
+    }
+
+    public function setSalary(float $salary): static
+    {
+        $this->salary = $salary;
+
+        return $this;
+    }
+
+     /**
+     * @return Collection|Candidature[]
+     */
+    public function getCandidatures(): Collection
+    {
+        return $this->candidatures;
+    }
+
+    public function removeCandidature(Candidature $candidature): static
+    {
+        if ($this->candidatures->removeElement($candidature)) {
+            // set the owning side to null (unless already changed)
+            if ($candidature->getOffre() === $this) {
+                $candidature->setOffre(null);
+            }
+        }
+
+        return $this;
+    }
+}

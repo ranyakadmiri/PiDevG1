@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WeBuild {% endblock %}
+
+
+
+{% block body %}
+
+  <div class="container mt-5">
+  <h1 class="text-center mb-4">Nos Offres d'emploi </h1>
+  <div class="row row-gap-2">
+                           
+                                <tbody>
+                                    <tr>
+                                     {% for offre in offres %}
+                                    
+                                      <div class="col-md-4">
+                                      <div class="card border-radius: 10px shadow-sm h-100">
+                                     
+                                      <div class="card-body p-4">
+                                     <h5 class="card-title text-center mb-3">{{ offre.title}}</h5>
+                                      <p class="card-text text-center">{{ offre.description| slice(0, 60) }}</p>
+                                      <p class="card-text text-center mb-3">Salary:{{ offre.salary }} DT</p>
+                                      <div class="text-center">
+                                      <td><button type="button" class="btn btn-outline-success m-2" onclick="window.location.href='{{  path('app_AddCan')}}'" >Postuler</button> 
+                  </div>                       
+          </div>
+        </div>
+      </div>
+                                    {% endfor %}
+                                   
+                                </tbody>
+                        </div>
+                 
+                
+
+
+
+
+{% endblock %}
