@@ -38,7 +38,7 @@ class Equipe
     #[Assert\NotBlank(message: 'le nombre doit être renseingé ')]
     private ?int $nombre_empl = null;
 
-    #[ORM\OneToMany(targetEntity: Utilisateur::class, mappedBy: 'equipe')]
+    #[ORM\OneToMany(targetEntity: Utilisateur::class, mappedBy: 'equipe',cascade: ['persist', 'remove'])]
     private Collection $liste;
 
     public function __construct()
