@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_back.html.twig' %}
 
 {% block title %}Task{% endblock %}
 
@@ -31,12 +31,16 @@
                 <th>Due</th>
                 <td>{{ task.Due ? task.Due|date('Y-m-d') : '' }}</td>
             </tr>
+            <tr>
+                <th>REf_chantier</th>
+                <td>{{ task.getIdChantier() }}</td>
+            </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('Task_index') }}">back to list</a>
+    <a href="{{ path('Admin_task_index') }}">back to list</a>
 
-    <a href="{{ path('Task_Update', {'id': task.id}) }}">edit</a>
+    <a href="{{ path('Admin_Update_Task', {'id': task.id}) }}">edit</a>
 
-    {{ include('task_crud/_delete_form.html.twig') }}
+    {{ include('back_crud_task/_delete_form.html.twig') }}
 {% endblock %}

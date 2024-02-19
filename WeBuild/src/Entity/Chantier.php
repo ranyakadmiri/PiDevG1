@@ -7,6 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+
 
 #[ORM\Entity(repositoryClass: ChantierRepository::class)]
 class Chantier
@@ -15,16 +18,26 @@ class Chantier
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
+    #[Assert\NotBlank (message: "ne doit pas être  vide ")]
+    #[Assert\Length(
+        min: 5,
+        max: 25,
+        minMessage: 'Le nom doit avoir au moins 5 caractères',
+        maxMessage: 'Le nom doit avoir au max 25 caractères'
+    )]
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
-
+    #[Assert\NotBlank (message: "ne doit pas être  vide ")]
     #[ORM\Column(length: 255)]
     private ?string $Description = null;
-
+    #[Assert\NotNull(message:"The remuneration value must not be Null")]
+    #[Assert\Positive(message:"The remuneration value must be positive")]
+    #[Assert\Type(type:"numeric", message:"The remuneration must be a numeric value")]
     #[ORM\Column]
     private ?float $remuneration = null;
-
+    /**
+     * @Assert\GreaterThan("today", message="The date should be greater than today.")
+     */
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $Start_date = null;
 

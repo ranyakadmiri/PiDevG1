@@ -114,10 +114,20 @@
                         </button>
                         <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
                             <div class="navbar-nav ms-auto mx-xl-auto p-0">
-                                <a href="index.html" class="nav-item nav-link active text-secondary">Home</a>
+                                <a href="{{ path('app_front') }}" class="nav-item nav-link active text-secondary">Home</a>
                                 <a href="about.html" class="nav-item nav-link">About</a>
                                 <a href="service.html" class="nav-item nav-link">Services</a>
-                                <a href="project.html" class="nav-item nav-link">Projects</a>
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Projects</a>
+                                    <div class="dropdown-menu rounded">
+
+                                        <a href="{{ path('chantier_index') }}" class="dropdown-item">Chantiers</a>
+                                        <a href="{{ path('Task_index') }}" class="dropdown-item">Tasks</a>
+
+
+                                    </div>
+                                </div>
+
                                 <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Find job</a>
                                     <div class="dropdown-menu rounded">

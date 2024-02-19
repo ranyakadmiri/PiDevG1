@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_back.html.twig' %}
 
 {% block title %}Chantier{% endblock %}
 
@@ -7,7 +7,10 @@
 
     <table class="table">
         <tbody>
-
+            <tr>
+                <th>Id</th>
+                <td>{{ chantier.id }}</td>
+            </tr>
             <tr>
                 <th>Nom</th>
                 <td>{{ chantier.nom }}</td>
@@ -27,10 +30,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('chantier_index') }}">back to list</a>
-    <br>
+    <a href="{{ path('admin_project_index') }}">back to list</a>
 
-    <a href="{{ path('update_chantier', {'id': chantier.id}) }}">edit</a>
+    <a href="{{ path('Admin_Update_Chantier', {'id': chantier.id}) }}">edit</a>
 
-    {{ include('chantier_crud/_delete_form.html.twig') }}
+    {{ include('back_crud_chantier/_delete_form.html.twig') }}
 {% endblock %}

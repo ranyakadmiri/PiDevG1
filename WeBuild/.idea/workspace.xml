@@ -1,16 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="MessDetectorOptionsConfiguration">
-    <option name="transferred" value="true" />
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
   </component>
-  <component name="PHPCSFixerOptionsConfiguration">
-    <option name="transferred" value="true" />
+  <component name="ChangeListManager">
+    <list default="true" id="30e464a3-461c-4239-a117-841f32b411e7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/WeBuild.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WeBuild.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/commandlinetools/Symfony_08_02_2024_11_49_AM.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/phpspec.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpspec.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ChantierCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ChantierCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TaskCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TaskCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Chantier.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Chantier.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Task.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Task.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base_back.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base_back.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/chantier_crud/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chantier_crud/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/chantier_crud/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chantier_crud/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/chantier_crud/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chantier_crud/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/chantier_crud/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chantier_crud/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/chantier_crud/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chantier_crud/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/chantier_crud/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chantier_crud/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/front/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/task_crud/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/task_crud/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/task_crud/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/task_crud/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/task_crud/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/task_crud/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/task_crud/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/task_crud/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/task_crud/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/task_crud/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/task_crud/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/task_crud/show.html.twig" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="PHPCodeSnifferOptionsConfiguration">
-    <option name="highlightLevel" value="WARNING" />
-    <option name="transferred" value="true" />
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution />
   </component>
-  <component name="PhpIncludePathManager">
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\Program Files\php-8.1.23-Win32-vs16-x64\php.exe">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
       <path value="$PROJECT_DIR$/vendor/phar-io/version" />
@@ -148,18 +188,55 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/common" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="8.0">
-    <option name="suggestChangeDefaultLanguageLevel" value="false" />
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2cEIqxK6TUUXQiuq394Ji02x9y4" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PhpStanOptionsConfiguration">
-    <option name="transferred" value="true" />
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Gestion__Project&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lemsi/Desktop/project-pidev/proj-pidev/PiDevG1/WeBuild&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="30e464a3-461c-4239-a117-841f32b411e7" name="Changes" comment="" />
+      <created>1707670507472</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1707670507472</updated>
+      <workItem from="1707670510043" duration="425000" />
+      <workItem from="1707670957224" duration="29000" />
+      <workItem from="1707671419235" duration="91000" />
+      <workItem from="1707671531053" duration="661000" />
+      <workItem from="1707672282839" duration="75000" />
+      <workItem from="1707672460186" duration="32000" />
+      <workItem from="1707673687301" duration="5999000" />
+      <workItem from="1707727417217" duration="8520000" />
+      <workItem from="1707835202803" duration="1279000" />
+      <workItem from="1708002781830" duration="7574000" />
+      <workItem from="1708254398425" duration="15910000" />
+      <workItem from="1708296495382" duration="4239000" />
+    </task>
+    <servers />
   </component>
-  <component name="PhpUnit">
-    <phpunit_settings>
-      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/phpunit.xml.dist" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" use_configuration_file="true" />
-    </phpunit_settings>
-  </component>
-  <component name="PsalmOptionsConfiguration">
-    <option name="transferred" value="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

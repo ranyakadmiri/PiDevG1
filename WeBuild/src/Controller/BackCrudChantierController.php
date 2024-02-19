@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Chantier;
-use App\Form\ChantierType;
+use App\Form\Chantier1Type;
 use App\Repository\ChantierRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,64 +11,64 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/project/index')]
-class ChantierCrudController extends AbstractController
+#[Route('/back/crud/chantier')]
+class BackCrudChantierController extends AbstractController
 {
-    #[Route('/', name: 'chantier_index', methods: ['GET'])]
+    #[Route('/', name: 'admin_project_index', methods: ['GET'])]
     public function index(ChantierRepository $chantierRepository): Response
     {
-        return $this->render('chantier_crud/index.html.twig', [
+        return $this->render('back_crud_chantier/index.html.twig', [
             'chantiers' => $chantierRepository->findAll(),
         ]);
     }
 
-    #[Route('/new', name: 'new_chantier', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'admin_new_chantier', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $chantier = new Chantier();
-        $form = $this->createForm(ChantierType::class, $chantier);
+        $form = $this->createForm(Chantier1Type::class, $chantier);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($chantier);
             $entityManager->flush();
 
-            return $this->redirectToRoute('chantier_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_project_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('chantier_crud/new.html.twig', [
+        return $this->renderForm('back_crud_chantier/new.html.twig', [
             'chantier' => $chantier,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'show_chantier', methods: ['GET'])]
+    #[Route('/{id}', name: 'Admin_Show_Chantier', methods: ['GET'])]
     public function show(Chantier $chantier): Response
     {
-        return $this->render('chantier_crud/show.html.twig', [
+        return $this->render('back_crud_chantier/show.html.twig', [
             'chantier' => $chantier,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'update_chantier', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'Admin_Update_Chantier', methods: ['GET', 'POST'])]
     public function edit(Request $request, Chantier $chantier, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(ChantierType::class, $chantier);
+        $form = $this->createForm(Chantier1Type::class, $chantier);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('chantier_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_project_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('chantier_crud/edit.html.twig', [
+        return $this->renderForm('back_crud_chantier/edit.html.twig', [
             'chantier' => $chantier,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'delete_chantier', methods: ['POST'])]
+    #[Route('/{id}', name: 'Admin_Delete_Chantier', methods: ['POST'])]
     public function delete(Request $request, Chantier $chantier, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$chantier->getId(), $request->request->get('_token'))) {
@@ -76,6 +76,6 @@ class ChantierCrudController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('chantier_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('admin_project_index', [], Response::HTTP_SEE_OTHER);
     }
 }

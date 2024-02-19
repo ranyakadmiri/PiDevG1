@@ -1,14 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_back.html.twig' %}
 
 {% block title %}Chantier index{% endblock %}
 
 {% block body %}
-    <h1>Projects</h1>
+    <h1>Chantier index</h1>
 
     <table class="table">
         <thead>
             <tr>
-
+                <th>Id</th>
                 <th>Nom</th>
                 <th>Description</th>
                 <th>Remuneration</th>
@@ -19,14 +19,14 @@
         <tbody>
         {% for chantier in chantiers %}
             <tr>
-
+                <td>{{ chantier.id }}</td>
                 <td>{{ chantier.nom }}</td>
                 <td>{{ chantier.Description }}</td>
                 <td>{{ chantier.remuneration }}</td>
                 <td>{{ chantier.StartDate ? chantier.StartDate|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('show_chantier', {'id': chantier.id}) }}">show</a>
-                    <a href="{{ path('update_chantier', {'id': chantier.id}) }}">edit</a>
+                    <a href="{{ path('Admin_Show_Chantier', {'id': chantier.id}) }}">show</a>
+                    <a href="{{ path('Admin_Update_Chantier', {'id': chantier.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +37,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('new_chantier') }}">Create new</a>
+    <a href="{{ path('admin_new_chantier') }}">Create new</a>
 {% endblock %}
