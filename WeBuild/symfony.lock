@@ -38,6 +38,7 @@
             "./migrations/.gitignore"
         ]
     },
+    
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {

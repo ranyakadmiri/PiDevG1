@@ -48,7 +48,7 @@ class PostType extends AbstractType
                     'minMessage' => 'L\'auteur doit contenir au moins {{ limit }} lettres',
                 ]),
                 new Regex([
-                    'pattern' => '/^[a-zA-Z]+$/',
+                    'pattern' => '/^[a-zA-Z\s]+$/',
                     'message' => 'L\'auteur doit contenir uniquement des lettres',
                 ]),
             ],

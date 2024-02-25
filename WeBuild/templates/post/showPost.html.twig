@@ -154,18 +154,105 @@ a {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
-}                 
+}   
+body{
+background:#ddd;
+}
+              
 </style>
-<div class="inner-sidebar-header justify-content-center">
+{#<div class="inner-sidebar-header justify-content-center">
 
 
   <div class="d-grid gap-2">
     <a href="addPost" class="btn btn-primary" role="button">ADD NEW POST</a>
   </div>
-  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <div class="container">
+      <br/>
+      <div class="row justify-content-center">
+                         col-10 col-md-10 c <div class="ol-lg-8">
+                              <form  action="{{ path('searchPost') }}" method="GET">
+                                  <div class="card-body row no-gutters align-items-center">
+                                      <div class="col-auto">
+                                          <i class="fas fa-search h4 text-body"></i>
+                                      </div>
+                                      <!--end of col-->
+                                      <div class="col">
+                                          <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search the post">
+                                      </div>
+                                      <!--end of col-->
+                                      <div class="col-auto">
+                                          <button class="btn btn-lg btn-success" type="submit">Search</button>
+                                      </div>
+                                      <!--end of col-->
+                                  </div>
+                              </form>
+                          </div>
+                          <!--end of col-->
+                      </div>
+  </div>#}
+ {# <div class="input-group">
+ 
+      <br/>
+      
+  <form action="{{ path('searchPost') }}" method="GET">
+    <input type="text" name="keyword" class="form-control" placeholder="Chercher le post...">
+    <span class="input-group-btn">
+    <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+</span>
+</form>
+</div>
+
+  <!-- END SEARCH INPUT -->
+  <p>Showing all results matching "Post de WeBuild"</p>
+
+
 <div class="container bootstrap snippets bootdey">
-<div class="container testimonials">
-    <div class="row">
+    <div class="container testimonials">
+        <div class="row">
+            {% if post is empty %}
+                <p>Aucun post trouvé.</p>
+            {% else %}
+                {% for p in post %}
+                    <!-- Affichage des détails du post -->
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>#}
+<div class="d-grid gap-2">
+    <a href="addPost" class="btn btn-primary" role="button">ADD NEW POST</a>
+  </div>
+<div class="input-group">
+    <form action="{{ path('searchPost') }}" method="GET" class="form-inline">
+        <div class="form-group">
+            <input type="text" name="keyword" class="form-control" placeholder="Chercher le post...">
+        
+        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+        <a  href="{{ path ('showPost') }}" class="btn btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Detail">
+            <i class="fa fa-backward" aria-hidden="true"></i>
+        </a>
+    
+    </form>
+    
+</div>
+
+
+
+<div class="container bootstrap snippets bootdey">
+    <div class="container testimonials">
+        <div class="row">
+            {% if post is empty %}
+            <p style="color: red;">Aucun post trouvé!</p>
+            {% else %}
+                {% for p in post %}
+                    <!-- Affichage des détails du post -->
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
         
         {% for p in post  %}
         <div class="col-md-4 testimonial">
@@ -210,6 +297,7 @@ a {
     </div>
     
 </div>  
+
 {#   
 <br>
 <center>

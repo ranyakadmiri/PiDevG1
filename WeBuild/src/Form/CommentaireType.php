@@ -49,15 +49,19 @@ class CommentaireType extends AbstractType
               ],
           ])
           
-            ->add('nom', null, [
-                'constraints' => [
-                    new NotBlank(['message' => 'Le nom ne peut pas être vide']),
-                    new Regex([
-                        'pattern' => '/^\pL+$/u',
-                        'message' => 'Le nom ne peut contenir que des lettres'
-                    ])
-                ]
-            ])
+          ->add('nom', null, [
+            'constraints' => [
+                new NotBlank(['message' => 'Le nom ne peut pas être vide']),
+                new Length([ // Contrainte pour valider la longueur minimale
+                    'min' => 2,
+                    'minMessage' => 'Le nom doit avoir au moins 2 caractères.',
+                ]),
+                new Regex([ // Contrainte pour valider le format du nom
+                    'pattern' => '/^[a-zA-Z\s]+$/',
+                    'message' => 'Le nom ne peut contenir que des lettres et des espaces.'
+                ])
+            ]
+        ])
             ->add('nbrlikes', IntegerType::class, [
                 'constraints' => [
                     new PositiveOrZero(['message' => 'Le nombre de likes doit être un entier positif ou zéro']),

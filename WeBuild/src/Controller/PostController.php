@@ -183,6 +183,38 @@ public function showPost(int $postId, PostRepository $postRepo, CommentaireRepos
             'post'=>$post,
         ]); 
     }
+  /*1
+   #[Route('/searchPost', name: 'searchPost')]
+    public function searchPost(Request $request, PostRepository $postRepository): Response
+    {
+        $keyword = $request->query->get('keyword');
+
+        // Utilisez la méthode findBy du repository pour rechercher les posts par titre
+        $post = $postRepository->findBy(['titre' => $keyword]);
+
+        return $this->render('post/showPost.html.twig', [
+            'post' => $post,
+            
+        ]);
+    }*/
+    #[Route('/searchPost', name: 'searchPost')]
+public function searchPost(Request $request, PostRepository $postRepository): Response
+{
+    $keyword = $request->query->get('keyword');
+
+    // Requête pour rechercher les posts contenant exactement le mot-clé dans le titre
+    $post = $postRepository->createQueryBuilder('p')
+        ->andWhere('p.titre LIKE :keyword')
+        ->setParameter('keyword', '%'.$keyword.'%')
+        ->orderBy('p.date', 'DESC')
+        ->getQuery()
+        ->getResult();
+        
+
+    return $this->render('post/showPost.html.twig', [
+        'post' => $post,
+    ]);
+}
 
     
     #[Route('/updatetPostBack{id}', name: 'updatePostBack')]
