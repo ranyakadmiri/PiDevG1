@@ -9,6 +9,7 @@ use App\Repository\DemandeRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -71,6 +72,18 @@ class DemandeController extends AbstractController
         return $this->render('demande/edit.html.twig', [
             "formdemande" => $form->createView(),
         ]);
+    }
+
+    #[Route('/approve/{id}', name: 'approve')]
+    public function approveDemande(DemandeRepository $repository, $id): Response
+    {
+        $demande = $repository->find($id);
+        $demande->setStatus(true);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->flush();
+
+        return $this->render('demande/detail.html.twig', ['dem' => $demande]);
     }
 
 

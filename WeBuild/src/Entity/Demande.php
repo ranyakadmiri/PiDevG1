@@ -32,6 +32,9 @@ class Demande
     #[ORM\Column(type: Types::TEXT)]
     private ?string $commentaire = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $status = null;
+
     public function getidD(): ?int
     {
         return $this->idD;
@@ -105,6 +108,18 @@ class Demande
     public function setCommentaire(string $commentaire): static
     {
         $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    public function isStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?bool $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }
