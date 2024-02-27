@@ -6,6 +6,7 @@ use App\Entity\Assurance;
 use App\Entity\Demande;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,7 +20,8 @@ class DemandeType extends AbstractType
             ->add('dateDebut')
             ->add('dateFin')
             ->add('commentaire')
-            ->add('Assurance', EntityType::class, ['class' => Assurance::class, 'choice_label' => 'Nom', 'multiple' => false, 'expanded' => false]);;
+            ->add('Assurance', EntityType::class, ['class' => Assurance::class, 'choice_label' => 'Nom', 'multiple' => false, 'expanded' => false])
+            ->add('Ajouter', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

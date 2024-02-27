@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Demande;
 use App\Form\DemandeType;
+use App\Repository\AssuranceRepository;
 use App\Repository\DemandeRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,7 +40,7 @@ class DemandeController extends AbstractController
         $Demande = new Demande();
         $em = $d->getManager();
         $form = $this->createForm(DemandeType::class, $Demande);
-        $form->add('ajouter', SubmitType::class, ['attr' => ['class' => 'btn btn-outline-success m-2']]);
+
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             $assurance = $Demande->getAssurance();
@@ -90,5 +91,37 @@ class DemandeController extends AbstractController
         $em->remove($demande);
         $em->flush();
         return $this->redirectToRoute('list_Demande');
+    }
+
+
+    #[Route('/depodem/{id}', name: 'depodem')]
+    public function depodem($id, AssuranceRepository $repository, ManagerRegistry $d, Request $request): Response
+    {
+
+        $Demande = new Demande();
+        $assurance = $repository->find($id);
+        $Demande->setAssurance($assurance);
+        $em = $d->getManager();
+        $form = $this->createForm(DemandeType::class,  $Demande);
+
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+
+
+
+            $em->persist($Demande);
+            $em->persist($assurance);
+            $em->flush();
+            return $this->redirectToRoute('displaydem');
+        }
+        return $this->render('demande/depodem.html.twig', ['formdemande' => $form->createView()]);
+    }
+    #[Route('/displaydem', name: 'displaydem')]
+    public function displaydem(ManagerRegistry $doctrine): Response
+    {
+        $DemRepo = $doctrine->getRepository(Demande::class);
+        $demandes = $DemRepo->findAll();
+        return $this->render('demande/displaydem.html.twig', ['demandes' => $demandes]);
     }
 }

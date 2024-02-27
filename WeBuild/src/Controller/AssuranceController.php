@@ -81,4 +81,13 @@ class AssuranceController extends AbstractController
             "form" => $form->createView(),
         ]);
     }
+
+
+    #[Route('/assurance/display', name: 'display')]
+    public function display(ManagerRegistry $doctrine): Response
+    {
+        $AssRepo = $doctrine->getRepository(Assurance::class);
+        $Assurances = $AssRepo->findAll(Assurance::class);
+        return $this->render('assurance/display.html.twig', ['assurances' => $Assurances]);
+    }
 }
