@@ -39,25 +39,30 @@
 {% endblock %}
 
 {% block body %}
-   <h2 style="color: #333; margin-bottom: 20px;">Catalogue Assurances</h2>
+   <h1 style="color: #333; margin-bottom: 20px;">Devis: demande de couverture "{{demande.Assurance.nom}}" </h1>
+   <h2 style="color: #333; margin-bottom: 20px;">Client:XXXXXXXX </h2>
+     <h2 style="color: #333; margin-bottom: 20px;">Cin:XXXXXXXX</h2>
    <table>
        <thead>
            <tr>
                <th scope="col">#</th>
                <th scope="col">Assurance</th>
-               <th scope="col">Description</th>
-               <th scope="col">Franchise</th>
+               <th scope="col">Montant approuvé:</th>
+               <th scope="col">Date de début de la couverture:</th>
+               <th scope="col">Date fin de la couverture:</th>
            </tr>
        </thead>
        <tbody>
-           {% for assurance in assurances %}
+          
                <tr>
-                   <th scope="row" style="color: #666;">{{ assurance.id }}</th>
-                   <td style="color: #333; font-weight: bold;">{{ assurance.nom }}</td>
-                   <td>{{ assurance.description }}</td>
-                   <td style="color: #007bff;">{{ assurance.franchise }}</td>
+                <th scope="row" style="color: #666;">{{demande.idD}}</th>
+                   <th scope="row" style="color: #666;">{{demande.Assurance.nom}}</th>
+                   <td style="color: #333; font-weight: bold;">{{demande.Montant}}</td>
+                   <td style="color: #007bff;">{{ demande.dateDebut | date('d-m-Y')}}</td>
+                   <td style="color: #007bff;">{{ demande.dateFin | date('d-m-Y')}}</td>
                </tr>
-           {% endfor %}
+         
        </tbody>
    </table>
+    <h2 style="color: #333; margin-bottom: 20px;">Signature du gérant: </h2>
 {% endblock %}

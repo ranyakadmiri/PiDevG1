@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Assurance;
+use App\Repository\DemandeRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,12 +14,12 @@ use Dompdf\Options;
 
 class PdfGeneratorController extends AbstractController
 {
-    #[Route('/pdf/generator', name: 'app_pdf_generator')]
-    public function index(ManagerRegistry $doctrine): Response
+    #[Route('/pdf/generator/{id}', name: 'app_pdf_generator')]
+    public function index($id, DemandeRepository $repo): Response
     {
         // Get some data to populate the PDF (replace this with your own data retrieval logic)
-        $AssRepo = $doctrine->getRepository(Assurance::class);
-        $Assurances = $AssRepo->findAll(Assurance::class);
+
+        $Dem = $repo->find($id);
 
         // Configure Dompdf
         $options = new Options();
@@ -28,7 +29,7 @@ class PdfGeneratorController extends AbstractController
         $dompdf = new Dompdf($options);
 
         // Load HTML content
-        $html = $this->renderView('pdf_generator/index.html.twig', ['assurances' => $Assurances]);
+        $html = $this->renderView('pdf_generator/index.html.twig', ['demande' => $Dem]);
         $dompdf->loadHtml($html);
 
         // Set paper size and orientation
