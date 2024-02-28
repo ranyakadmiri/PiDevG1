@@ -220,6 +220,8 @@ background:#ddd;
         </div>
     </div>
 </div>#}
+
+    
 <div class="d-grid gap-2">
     <a href="addPost" class="btn btn-primary" role="button">ADD NEW POST</a>
   </div>
@@ -232,7 +234,9 @@ background:#ddd;
         <a  href="{{ path ('showPost') }}" class="btn btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Detail">
             <i class="fa fa-backward" aria-hidden="true"></i>
         </a>
-    
+        <a  href="{{ path ('list_post') }}" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Detail">
+            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+        </a>
     </form>
     
 </div>
@@ -290,8 +294,11 @@ background:#ddd;
                         <a href="addCommentaire"><i class="fa fa-edit"></i></a>  
                     </span>
                 </div>
+
+        
+                
         </center>
-          
+        
         </div>
         {% endfor %}
     </div>

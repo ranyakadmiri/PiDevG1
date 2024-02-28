@@ -17,6 +17,10 @@ use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Validator\Constraints\PositiveOrZero;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+
 
 class CommentaireType extends AbstractType
 {
@@ -74,6 +78,13 @@ class CommentaireType extends AbstractType
                     new NotBlank(['message' => 'Le nombre de dislikes ne peut pas être vide']),
                 ],
             ])
+            ->add('rate', HiddenType::class, [
+                'required' => false, // Le champ est caché mais toujours soumis
+                'attr' => [
+                    'class' => 'hidden-rate-field', // Classe CSS pour identifier le champ dans le JavaScript
+                ],
+            ])
+    
             ->add('Post', TypeEntityType::class, [
                 // looks for choices from this entity
                 'class' => Post::class ,  'choice_label' => 'titre',

@@ -102,6 +102,9 @@
 }
 .post .post-footer .comments-list .comment > .comments-list {
   margin-left: 50px;
+}
+.hover {
+  color: orange;
 }</style>
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 <div class="container bootstrap snippets bootdey">
@@ -155,6 +158,17 @@
                         <td><a class="btn btn-sm btn-primary" href="{{ path('deleteCommentaire',{'id': c.Id}) }}">Delete</a></td>
 
                     </li>
+                    <span>rate: {{ c.rate }}</span>
+                            <span class="rating" data-rating="{{ c.rate }}">
+                                {% for i in 1..5 %}
+                                    {% if i <= c.rate %}
+                                        <i class="star" data-checked="true">&#9733;</i>
+                                    {% else %}
+                                        <i class="star" data-checked="false">&#9734;</i>
+                                    {% endif %}
+                                {% endfor %}
+                            </span>
+                  <br />
                 </ul>
                 
                 {% endfor %}

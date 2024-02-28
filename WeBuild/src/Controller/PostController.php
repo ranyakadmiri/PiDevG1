@@ -15,6 +15,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\CommentaireType as FormCommentaireType;
 use Doctrine\Persistence\ManagerRegistry;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use Symfony\Component\BrowserKit\Response as BrowserKitResponse;
 
 class PostController extends AbstractController
 {
@@ -25,7 +28,33 @@ class PostController extends AbstractController
             'controller_name' => 'PostController',
         ]);
     }
+    #[Route('/listpost', name: 'list_post')]
+    public function index1(PostRepository $repo): Response
+    {
+        $pdfOptions = new Options();
 
+        $pdfOptions-> set('defaultFont','Arial');
+
+        $dompdf= new Dompdf($pdfOptions);
+        $post=$repo->findAll();
+       
+        $html= $this->renderView('post/listPost.html.twig', [
+            'post'=>$post,
+            
+    ]);
+
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4');
+    $dompdf->render();
+    return new Response($dompdf->output(), 200, [
+        'Content-Type' => 'application/pdf',
+        'Content-Disposition' => 'inline; filename="sample.pdf"',
+    ]);
+  
+    }
+
+
+    
     #[Route('/showPost/{id}', name: 'detailPost')]
 public function detail(ManagerRegistry $doctrine,$id): Response
 {
@@ -197,6 +226,7 @@ public function showPost(int $postId, PostRepository $postRepo, CommentaireRepos
             
         ]);
     }*/
+    
     #[Route('/searchPost', name: 'searchPost')]
 public function searchPost(Request $request, PostRepository $postRepository): Response
 {

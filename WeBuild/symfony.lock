@@ -38,7 +38,9 @@
             "./migrations/.gitignore"
         ]
     },
-    
+    "endroid/qr-code-bundle": {
+        "version": "5.0.1"
+    },
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {
@@ -51,6 +53,18 @@
             "./.env.test",
             "./phpunit.xml.dist",
             "./tests/bootstrap.php"
+        ]
+    },
+    "sensiolabs/security-checker": {
+        "version": "6.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "4.0",
+            "ref": "160c9b600564faa1224e8f387d49ef13ceb8b793"
+        },
+        "files": [
+            "./config/packages/security_checker.yaml"
         ]
     },
     "symfony/console": {

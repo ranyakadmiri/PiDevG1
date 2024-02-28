@@ -54,6 +54,9 @@ class Commentaire
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?float $rate = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -127,6 +130,18 @@ class Commentaire
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getRate(): ?float
+    {
+        return $this->rate;
+    }
+
+    public function setRate(?float $rate): static
+    {
+        $this->rate = $rate;
 
         return $this;
     }
