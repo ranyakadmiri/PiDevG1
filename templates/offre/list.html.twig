@@ -1,40 +1,67 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}WeBuild {% endblock %}
-
-
+{% block title %}WeBuild{% endblock %}
 
 {% block body %}
-
-  <div class="container mt-5">
-  <h1 class="text-center mb-4">Nos Offres d'emploi </h1>
-  <div class="row row-gap-2">
-                           
-                                <tbody>
-                                    <tr>
-                                     {% for offre in offres %}
-                                    
-                                      <div class="col-md-4">
-                                      <div class="card border-radius: 10px shadow-sm h-100">
-                                     
-                                      <div class="card-body p-4">
-                                     <h5 class="card-title text-center mb-3">{{ offre.title}}</h5>
-                                      <p class="card-text text-center">{{ offre.description| slice(0, 60) }}</p>
-                                      <p class="card-text text-center mb-3">Salary:{{ offre.salary }} DT</p>
-                                      <div class="text-center">
-                                      <td><button type="button" class="btn btn-outline-success m-2" onclick="window.location.href='{{  path('app_AddCan')}}'" >Postuler</button> 
-                  </div>                       
-          </div>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Nos Offres d'emploi</h1>
+   {# Button to navigate to the map page #}
+    <div class="text-center mb-4">
+        <a href="{{ path('show_map') }}" class="btn btn-primary">Voir la carte</a>
+    </div>
+    {# Search form #}
+    <form action="{{ path('app_show') }}" method="get" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Rechercher par titre...">
+            <button type="submit" class="btn btn-primary">Rechercher</button>
         </div>
-      </div>
-                                    {% endfor %}
-                                   
-                                </tbody>
-                        </div>
-                 
-                
+    </form>
+     {# Salary filter form #}
+    <form action="{{ path('app_show') }}" method="get" class="mb-3">
+        <div class="row">
+            <div class="col">
+                <input type="number" name="min_salary" class="form-control" placeholder="Min Salary">
+            </div>
+            <div class="col">
+                <input type="number" name="max_salary" class="form-control" placeholder="Max Salary">
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </div>
+    </form>
 
+    <div class="row row-gap-2">
+        {% for offre in offres %}
+        <div class="col-md-4">
+            <div class="card border-radius: 10px shadow-sm h-100">
+                <div class="card-body p-4">
+                    <h5 class="card-title text-center mb-3">{{ offre.title }}</h5>
+                    <p class="card-text text-center">{{ offre.description | slice(0, 60) }}</p>
+                    <p class="card-text text-center mb-3">Salary: {{ offre.salary }} DT</p>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-outline-success m-2" onclick="window.location.href='{{ path('app_AddCan') }}'">Postuler</button>
+                    </div>
+                    <div id="map{{ loop.index }}" style="height: 200px;"></div> {# Map container #}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
+{# Include OpenStreetMap script #}
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
 
-
+{# JavaScript code to initialize maps for each offer #}
+{% for offre in offres %}
+<script>
+    var map{{ loop.index }} = L.map('map{{ loop.index }}').setView([{{ offre.latitude }}, {{ offre.longtitude }}], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map{{ loop.index }});
+    L.marker([{{ offre.latitude }}, {{ offre.longtitude }}]).addTo(map{{ loop.index }});
+</script>
+{% endfor %}
 {% endblock %}

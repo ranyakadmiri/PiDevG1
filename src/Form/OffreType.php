@@ -7,37 +7,51 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Regex;
-use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\PositiveOrZero;
-
+use Symfony\Component\Validator\Constraints\Range;
 
 class OffreType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title',null, [
+            ->add('title', null, [
                 'constraints' => [
                     new NotBlank(['message' => 'Le nom ne peut pas être vide']),
-                    new Regex([
-                        'pattern' => '/^\pL+$/u',
-                        'message' => 'Le nom ne peut contenir que des lettres'
-                    ])
                 ]
             ])
-            ->add('description',null,['constraints' => [
-                new Length([
-                    'min' => 14,
-                    'minMessage' => 'Le titre doit dépasser {{ limit }} caractères',
-                ])]
-                ])
-            ->add('salary',null, ['constraints' => [
-                    new PositiveOrZero(['message' => 'Le nombre de likes doit être un entier positif ou zéro']),
-                    new NotBlank(['message' => 'Le nombre de likes ne peut pas être vide']),
+            ->add('description', null, [
+                'constraints' => [
+                    new NotBlank(['message' => 'La description ne peut pas être vide']),
+                ]
+            ])
+            ->add('salary', null, [
+                'constraints' => [
+                    new PositiveOrZero(['message' => 'Le salaire doit être un nombre positif ou zéro']),
+                    new NotBlank(['message' => 'Le salaire ne peut pas être vide']),
+                ]
+            ])
+            ->add('latitude', null, [
+                'constraints' => [
+                    new NotBlank(['message' => 'La latitude ne peut pas être vide']),
+                  
                 ],
             ])
-        ;
+            ->add('longtitude', null, [
+                'constraints' => [
+                    new NotBlank(['message' => 'La longitude ne peut pas être vide']),
+                ],
+                ])
+                 // Add salary range filter fields
+            ->add('minSalary', null, [
+                'mapped' => false,
+                'label' => 'Salaire minimum',
+            ])
+            ->add('maxSalary', null, [
+                'mapped' => false,
+                'label' => 'Salaire maximum',
+            ]);
+           
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -46,6 +60,5 @@ class OffreType extends AbstractType
             'data_class' => Offre::class,
         ]);
     }
-
-    
 }
+

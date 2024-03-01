@@ -43,6 +43,12 @@ class Offre
     #[ORM\OneToMany(targetEntity:Candidature::class, mappedBy:"offre" ,  )]
     private Collection $candidatures;
 
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 6)]
+    private ?string $latitude = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 6)]
+    private ?string $longtitude = null;
+
     public function __construct()
     {
         $this->candidatures = new ArrayCollection();
@@ -106,6 +112,30 @@ class Offre
                 $candidature->setOffre(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLatitude(): ?string
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(string $latitude): static
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getLongtitude(): ?string
+    {
+        return $this->longtitude;
+    }
+
+    public function setLongtitude(string $longtitude): static
+    {
+        $this->longtitude = $longtitude;
 
         return $this;
     }

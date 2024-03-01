@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Offre;
 use App\Form\OffreType;
-use App\Repository\OffreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Repository\OffreRepository;
 
 class OffreController extends AbstractController
 {
@@ -24,11 +24,30 @@ class OffreController extends AbstractController
     }
     //-------------------------------FRONT---------------------------------------
     #[Route('/offre/list', name: 'app_show')]
-    public function show(ManagerRegistry $doctrine): Response
-    {
-        $OffRepo = $doctrine->getRepository(Offre::class);
+    public function show(Request $request, OffreRepository $offreRepository,ManagerRegistry $doctrine): Response
+    { /*  $OffRepo = $doctrine->getRepository(Offre::class);
         $Offres = $OffRepo->findAll(Offre::class);
-        return $this->render('offre/list.html.twig', ['offres' => $Offres]);
+        return $this->render('offre/list.html.twig', ['offres' => $Offres]);*/
+
+        $minSalary = $request->query->get('min_salary');
+        $maxSalary = $request->query->get('max_salary');
+    
+        // Retrieve offers filtered by salary range
+        $offres = $offreRepository->findBySalaryRange($minSalary, $maxSalary);
+    
+        //search
+        $searchQuery = $request->query->get('search');
+
+        if ($searchQuery) {
+            $offres = $doctrine->getRepository(Offre::class)->findByTitle($searchQuery);
+        } else {
+            $offres = $doctrine->getRepository(Offre::class)->findAll();
+        }
+
+        return $this->render('offre/list.html.twig', [
+            'offres' => $offres,
+        ]);
+
     }
     #[Route('/AddOffre', name: 'app_AddOffre')]
 
@@ -153,4 +172,19 @@ class OffreController extends AbstractController
 
         return $this->redirectToRoute("app_showOffreBack");
     }
+
+    //showing per map
+    #[Route('/offers/map', name: 'show_map')]
+    public function showOffersMap(): Response
+    {
+        // Retrieve offer data from the database, including latitude and longitude
+        $offres = $this->getDoctrine()->getRepository(Offre::class)->findAll();
+
+        return $this->render('offre/map.html.twig', [
+            'offres' => $offres,
+        ]);
+    }
+
+   
+    
 }

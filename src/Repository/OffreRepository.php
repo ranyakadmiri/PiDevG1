@@ -21,28 +21,28 @@ class OffreRepository extends ServiceEntityRepository
         parent::__construct($registry, Offre::class);
     }
 
-//    /**
-//     * @return Offre[] Returns an array of Offre objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('o.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findByTitle(string $title)
+    {
+        return $this->createQueryBuilder('o')
+            ->where('o.title LIKE :title')
+            ->setParameter('title', '%' . $title . '%')
+            ->getQuery()
+            ->getResult();
+    }
+public function findBySalaryRange($minSalary, $maxSalary)
+{
+    $qb = $this->createQueryBuilder('o');
 
-//    public function findOneBySomeField($value): ?Offre
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    if ($minSalary !== null) {
+        $qb->andWhere('o.salary >= :minSalary')
+           ->setParameter('minSalary', $minSalary);
+    }
+
+    if ($maxSalary !== null) {
+        $qb->andWhere('o.salary <= :maxSalary')
+           ->setParameter('maxSalary', $maxSalary);
+    }
+
+    return $qb->getQuery()->getResult();
+}
 }
