@@ -4,34 +4,32 @@
 
 {% block body %}
 <div class="container-fluid pt-4 px-4">
-  <div class="row g-4">
-    <div class="col-12 text-center mb-4">
-      <h6 class="mb-2">Locations</h6>
-      <table class="table table-bordered table-striped table-sm">
-        <thead>
-          <tr>
-            <th scope="col" class="text-center">ID Location</th>
-            <th scope="col" class="text-center">ID User</th>
-            <th scope="col" class="text-center">Libelle Pack</th>
-            <th scope="col" class="text-center">Date Début</th>
-            <th scope="col" class="text-center">Date Fin</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for Locations in ll %}
-            <tr>
-              <td class="text-center">{{ Locations.idL }}</td>
-              <td class="text-center">{{ Locations.idUser }}</td>
-              <td class="text-center">{{ Locations.PackMateriel.libelle }}</td>
-              <td class="text-center">{{ Locations.dateD | date('d-m-Y') }}</td>
-              <td class="text-center">{{ Locations.dateF | date('d-m-Y') }}</td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+    <div class="row g-4">
+        <div class="bg-secondary rounded h-100 p-4">
+            <h6 class="mb-4">Locations</h6>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#Id Location</th>
+                        <th scope="col">#Id User</th>
+                        <th scope="col">Libelle Pack</th>
+                        <th scope="col">Date debut</th>
+                        <th scope="col">Date fin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for Locations in ll %}
+                    <tr>
+                        <th scope="row">{{ Locations.idL }}</th>
+                        <td>{{ Locations.idUser }}</td>
+                        <td>{{ Locations.PackMateriel.libelle }}</td>
+                        <td>{{ Locations.dateD | date('d-m-Y') }}</td>
+                        <td>{{ Locations.dateF | date('d-m-Y') }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-  </div>
 </div>
-                 
-
 {% endblock %}

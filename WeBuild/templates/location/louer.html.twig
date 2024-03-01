@@ -7,7 +7,7 @@
   <div class="col-md-8 col-lg-6 border rounded p-4 shadow-sm bg-light">
     <h2 class="mb-4 text-center">Louer le pack</h2>
     <form method="POST" class="row g-3">
-
+      {{ form_row(form._token) }}
       <div class="col-md-12 mb-3">
         {{ form_label(form.idUser, 'ID utilisateur:') }}
         {{ form_widget(form.idUser, {'attr': {'class': 'form-control'}}) }}
@@ -24,9 +24,13 @@
       </div>
 
       <div class="col-12 text-center">
-        <button type="submit" class="btn btn-primary">Valider</button>
+        <button href="checkout" type="submit" class="btn btn-primary">Valider</button>
       </div>
+      {{ form_rest(form) }}
     </form>
   </div>
 </div>
+
 {% endblock %}
+
+

@@ -17,9 +17,9 @@ class PackMaterielController extends AbstractController
     public function index(): Response
     {
 
-        $PackMateriels = $this->getDoctrine()->getManager()->getRepository(PackMateriel::class)->findAll();
+        $PackMateriel = $this->getDoctrine()->getManager()->getRepository(PackMateriel::class)->findAll();
         
-        return $this->render('materiel/index.html.twig', ['pm'=>$PackMateriels]);
+        return $this->render('materiel/index.html.twig', ['pm'=>$PackMateriel]);
     }
 
     #[Route('/ajoutermateriel', name: 'ajouterMateriel')]

@@ -26,8 +26,9 @@ class PackMateriel
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
+    
 
-    #[ORM\OneToMany(targetEntity: Location::class, mappedBy: 'locations')]
+    #[ORM\OneToMany(targetEntity: Location::class, mappedBy: 'PackMateriel')]
     private Collection $locations;
 
     public function __construct()

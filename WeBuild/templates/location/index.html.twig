@@ -3,22 +3,40 @@
 {% block title %}Location de matériel{% endblock %}
 
 {% block body %}
-<div class="container mt-5">
-  <h1 class="text-center mb-4">Packs matériels disponibles</h1>
-  <div class="row row-gap-2">
-    {% for PackMateriel in PackMateriels %}
-      <div class="col-md-4">
-        <div class="card border-radius: 10px shadow-sm h-100">
-          <img src="{{ asset(PackMateriel.image) }}" class="card-img-top aspect-ratio-16/9" alt="{{ PackMateriel.libelle }}">
-          <div class="card-body p-4">
-            <h5 class="card-title text-center mb-3">{{ PackMateriel.libelle }}</h5>
-            <p class="card-text text-center">{{ PackMateriel.description | slice(0, 60) }}</p>
-            <p class="card-text text-center mb-3">Prix: {{ PackMateriel.prix }} DT</p>
-            <a href="{{ path('louer_materiel', {'id': PackMateriel.id}) }}" class="btn btn-primary w-100">Louer</a>
-          </div>
+
+  <div class="container mt-3">
+    <form action="{{ path('searchPack') }}" method="GET" class="form-inline">
+        <div class="input-group">
+            <input type="text" name="keyword" class="form-control" placeholder="Search for packs...">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
         </div>
-      </div>
-    {% endfor %}
-  </div>
+    </form>
 </div>
+
+<div class="container mt-3">
+    <div class="row">
+        {% if PackMateriel is empty %}
+            <p class="text-danger">No packs found!</p>
+        {% else %}
+            {% for pack in PackMateriel %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="{{ asset(pack.image) }}" class="card-img-top" alt="{{ pack.libelle }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ pack.libelle }}</h5>
+                            <p class="card-text">{{ pack.description }}</p>
+                            <p class="card-text">Price: {{ pack.prix }} DT</p>
+                            <a href="{{ path('louer_materiel', {'id': pack.id}) }}" class="btn btn-primary">Rent</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+
 {% endblock %}
+
