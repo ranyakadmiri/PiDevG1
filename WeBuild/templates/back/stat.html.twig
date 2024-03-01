@@ -1,0 +1,18 @@
+
+{% extends 'base_back.html.twig' %}
+
+{% block body %}
+
+<div class="stats-container">
+    <div class="stat">
+        <div class="circle" data-percentage="{{ totalPosts > 0 ? (totalPosts / (totalPosts + totalcommentaire)) * 100 : 0 }}"></div>
+        <span>Total des posts: {{ totalPosts }}</span>
+    </div>
+    <div class="stat">
+        <div class="circle" data-percentage="{{ totalcommentaire > 0 ? (totalcommentaire / (totalPosts + totalcommentaire)) * 100 : 0 }}"></div>
+        <span>Total des commentaires: {{ totalcommentaire }}</span>
+    </div>
+</div>
+  <script src="{{ asset('back/lib/chart/chart.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}

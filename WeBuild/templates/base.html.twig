@@ -212,6 +212,28 @@
         {% endblock %}
         
         {% block javascripts %}
+        
+
+<script>
+    function getpost()
+{   
+    $.ajax({
+        url: "SearchController.php",
+        type: "POST",
+        data: { data: YOUR_DATA  },
+        success: function(data){
+
+            console.log(data);
+            console.log("succes");
+        },
+        error: function(xhr, status, error) {
+                console.log(error);
+        }
+    })
+
+} 
+</script>
+
             <script>
                 function openLoginModal() {
                     document.getElementById('loginModal').style.display = 'block';
@@ -331,6 +353,7 @@ star.addEventListener('click', function() {
             <script src="{{ asset('front/lib/owlcarousel/owl.carousel.min.js') }}"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
             <!-- Template Javascript -->
             <script src="{{ asset('front/js/main.js') }}"></script>
             {#  {{ encore_entry_script_tags('app') }}#}

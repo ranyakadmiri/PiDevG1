@@ -1,6 +1,7 @@
 {% extends 'base_back.html.twig' %}
 
 {% block body %}
+
               {#list commentaire#}  
               {% for c in commentaires %}
                 <ul class="comments-list">
@@ -20,4 +21,6 @@
                     </li>
                 </ul>
                 {% endfor %}
+
+              
 {% endblock %}
