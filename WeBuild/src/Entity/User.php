@@ -7,11 +7,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['cin'], message: 'This CIN is already in use.')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -31,6 +34,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'le nom doit être renseingé ')]
+    #[Assert\Length(min:3, max:8, minMessage:"le nom doit être minimum 3 ",maxMessage:" le nom est trés long")]
+    #[Assert\Regex(pattern: '/^[a-zA-Z]+$/' , message: 'le nom ne peut contenir que des lettres')]
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'le prenom doit être renseingé ')]
+    #[Assert\Length(min:3, max:8, minMessage:"le prénom doit être minimum 3 ",maxMessage:" le prénom est trés long")]
+    #[Assert\Regex(pattern: '/^[a-zA-Z]+$/' , message: 'le prénom ne peut contenir que des lettres')]
+    private ?string $prenom = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $telephone = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'le CIN doit être renseingé ')]
+    #[Assert\Regex(pattern: '/^[0-9]+$/', message:' le CIN doit contenir que des chiffres')]
+    #[Assert\Length(min:8, max:8, minMessage:"le cin est égale à 8 ",maxMessage:" le cin est égale à 8")]
+    private ?string $cin = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'la fonction doit être renseingée ')]
+    private ?string $fonction = null;
 
     public function getId(): ?int
     {
@@ -132,4 +160,65 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): static
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): static
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(string $telephone): static
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getCin(): ?string
+    {
+        return $this->cin;
+    }
+
+    public function setCin(string $cin): static
+    {
+        $this->cin = $cin;
+
+        return $this;
+    }
+
+    public function getFonction(): ?string
+    {
+        return $this->fonction;
+    }
+
+    public function setFonction(string $fonction): static
+    {
+        $this->fonction = $fonction;
+
+        return $this;
+    }
+    
 }
