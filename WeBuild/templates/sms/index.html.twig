@@ -14,17 +14,14 @@
                     </div>
                     <div class="card-body">
                         <form method="post" action="{{path('send_sms')}}">
-                            <div class="form-group">
-                                <label for="number">Numéro de téléphone :</label>
-                                <input type="text" name="number" id="number" class="form-control" required>
-                            </div>
+                            
 
                             <div class="form-group" id="form-name">
                                 <label for="name">Nom de l'expéditeur :</label>
                                 <input type="text" name="name" id="name" class="form-control" required>
                             </div>
                             <div class="form-group" id="form-message">
-                                <label for="text">Text :</label>
+                                <label for="text">message specifique :</label>
                                 <textarea name="text" id="text" class="form-control" required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block" id="btn">Envoyer le SMS</button>

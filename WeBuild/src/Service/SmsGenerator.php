@@ -15,7 +15,7 @@ class SmsGenerator
         $fromNumber = $_ENV['twilio_from_number']; // Numéro de test d'envoie sms offert par twilio
 
         $toNumber = $_ENV['twilio_to_number']; // Le numéro de la personne qui reçoit le message
-        $message = '' . $name . ' vous a envoyé le message suivant:' . ' ' . $text . ''; //Contruction du sms
+        $message = '' . $name . ' votre demande a été validée avec succes:' . ' ' . $text . ''; //Contruction du sms
 
         //Client Twilio pour la création et l'envoie du sms
         $client = new Client($accountSid, $authToken);

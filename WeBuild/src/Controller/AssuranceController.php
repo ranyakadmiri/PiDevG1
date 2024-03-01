@@ -90,4 +90,33 @@ class AssuranceController extends AbstractController
         $Assurances = $AssRepo->findAll(Assurance::class);
         return $this->render('assurance/display.html.twig', ['assurances' => $Assurances]);
     }
+
+    #[Route('/assurance/tri', name: 'tri')]
+    public function trierParfranchise()
+    {
+        $repository = $this->getDoctrine()->getRepository(Assurance::class);
+
+        // Récupérer toutes les assurances triées par prix ascendant
+        $assurances = $repository->findBy([], ['franchise' => 'ASC']);
+
+        // Faites quelque chose avec les assurances triées
+        // Par exemple, passer les données à une vue pour l'affichage
+        return $this->render('assurance/tri.html.twig', [
+            'assurances' => $assurances,
+        ]);
+    }
+    #[Route('/assurance/tridesc', name: 'tridesc')]
+    public function trierParfranchisedesc()
+    {
+        $repository = $this->getDoctrine()->getRepository(Assurance::class);
+
+        // Récupérer toutes les assurances triées par prix ascendant
+        $assurances = $repository->findBy([], ['franchise' => 'DESC']);
+
+        // Faites quelque chose avec les assurances triées
+        // Par exemple, passer les données à une vue pour l'affichage
+        return $this->render('assurance/tridesc.html.twig', [
+            'assurances' => $assurances,
+        ]);
+    }
 }

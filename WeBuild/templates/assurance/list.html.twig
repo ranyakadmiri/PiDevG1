@@ -7,6 +7,22 @@
 {% block body %}
 
 
+<li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <!-- <div class="profile-pic">
+                                         <img src="img/admin-22.jpg" alt="Profile Picture">
+                                     </div>-->
+
+                                    <i class="ffas fa-cog fa-fw"></i>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                   
+                                    <li><a class="dropdown-item" href="{{ path('tri') }}" onclick="window.location.href='{{ path('tridesc') }}'"><i class="fas fa-sliders-h fa-fw"></i> franchise descendante</a></li>
+                                    <li><a class="dropdown-item" href="{{ path('tri') }}" onclick="window.location.href='{{ path('tri') }}'"><i class="fas fa-sliders-h fa-fw"></i> franchise ascendante</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{{ path('display') }}"><i class="fas fa-sign-out-alt fa-fw"></i> Assurance</a></li>
+                                </ul>
+                            </li> 
 
 
   <div class="container-fluid pt-4 px-4">

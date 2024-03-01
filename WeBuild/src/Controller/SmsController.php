@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Demande;
+use App\Repository\DemandeRepository;
 use App\Service\SmsGenerator;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +25,6 @@ class SmsController extends AbstractController
     public function sendSms(Request $request, SmsGenerator $smsGenerator): Response
     {
 
-        $number = $request->request->get('number');
 
         $name = $request->request->get('name');
 
