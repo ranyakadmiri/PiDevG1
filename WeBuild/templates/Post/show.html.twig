@@ -1,0 +1,45 @@
+
+<div class="inner-sidebar-header justify-content-center">
+    <a href="addPost">
+
+    <button class="btn btn-primary has-icon btn-block" type="button" data-toggle="modal" data-target="#threadModal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"fill="none"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-item nav-link">
+        </svg> ADD POST
+    </button>
+</a>
+</div>  
+        {% for p in post  %}
+        <div class="inner-sidebar-header justify-content-center">
+            <a href="{{ path('editPost',{'id': p.Id}) }}">
+        
+            <button class="btn btn-primary has-icon btn-block" type="button" data-toggle="modal" data-target="#threadModal">
+                </svg> update
+            </button>
+        </a>
+        </div>
+        <div class="inner-sidebar-header justify-content-center">
+            <a href="{{ path('deletePost',{'id': p.Id}) }}">
+        
+            <button class="btn btn-primary has-icon btn-block" type="button" data-toggle="modal" data-target="#threadModal">
+                </svg> delete
+            </button>
+        </a>
+        </div>
+        <div class="inner-sidebar-header justify-content-center">
+            <a  href="{{ path ('detailPost',{'id':p.Id}) }}">
+        
+            <button class="btn btn-primary has-icon btn-block" type="button" data-toggle="modal" data-target="#threadModal">
+                </svg> show
+            </button>
+        </a>
+        </div>
+               
+                <div class="testimonial-main col-md-7">
+                    <h4 class="media-heading">{{p.titre}}</h4>
+                    <p class="testimony-body">{{p.Date |date('Y-M-D') }}</p>
+                    <p class="testimony-body">{{p.Auteur}}</p>
+                    <p class="testimony-body">{{p.description}}</p>
+                </div>
+    
+        {% endfor %}
+    

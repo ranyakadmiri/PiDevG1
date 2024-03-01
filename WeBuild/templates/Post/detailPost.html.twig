@@ -1,0 +1,10 @@
+{% block body %}
+
+    <h4 class="media-heading">{{post.titre}}</h4>
+    <p class="testimony-body">{{post.Date |date('Y-M-D') }}</p>
+    <p class="testimony-body">{{post.Auteur}}</p>
+    <p class="testimony-body">{{post.description}}</p>
+    {% for c in commentaires %}
+    <h1>{{ c.content }}</h1>
+{% endfor %}
+{% endblock %}
