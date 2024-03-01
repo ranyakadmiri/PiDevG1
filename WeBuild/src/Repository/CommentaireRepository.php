@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\Commentaire;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-
+use Doctrine\ORM\Query\Expr;
 /**
  * @extends ServiceEntityRepository<Commentaire>
  *
@@ -21,6 +21,27 @@ class CommentaireRepository extends ServiceEntityRepository
         parent::__construct($registry, Commentaire::class);
     }
 
+
+
+
+
+
+    public function findByBadWords(array $badWords): array
+    {
+        $qb = $this->createQueryBuilder('c');
+
+        $expr = new Expr();
+        $orX = $expr->orX();
+
+        foreach ($badWords as $badWord) {
+            $orX->add($qb->expr()->like('c.contenu', $qb->expr()->literal('%' . $badWord . '%')));
+        }
+
+        return $qb
+            ->andWhere($orX)
+            ->getQuery()
+            ->getResult();
+    }
 //    /**
 //     * @return Commentaire[] Returns an array of Commentaire objects
 //     */

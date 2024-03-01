@@ -1,0 +1,47 @@
+{% extends 'base_back.html.twig' %}
+{% block title %}WeBuild - Assurance{% endblock %}
+
+
+
+{% block body %}
+
+<div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                   
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Assurances</h6>
+                            <table class="table">
+                                <thead>
+                               
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Montant</th>
+                                        <th scope="col">type assurance</th>
+                                        <th scope="col">commentaire </th>
+                                         <th scope="col">status </th>
+                                      
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    
+                                        <th scope="row">{{dem.idD}}</th>
+                                        <td>{{dem.Montant}}</td>
+                                        <td>{{dem.Assurance.nom}} </td>
+                                        <td>{{dem.commentaire}} </td>
+                                        <td>{{dem.status}} </td>
+                                         <td><button type="button" class="btn btn-outline-success m-2" onclick="window.location.href='{{ path('app_home') }}'">Notifier Client</button> </td>   
+                                
+                                
+                                    </tr>
+                                   
+                                   
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn btn-outline-success m-2" onclick="window.location.href='{{ path('addDemande') }}'">Ajouter</button> 
+                        </div>
+                 
+                
+
+
+{% endblock %}

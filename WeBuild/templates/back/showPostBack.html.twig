@@ -1,0 +1,44 @@
+{% extends 'base_back.html.twig' %}
+
+{% block body %}
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary rounded h-100 p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-4">Recent Posts</h6>
+            <div class="d-grid gap-2">
+                <a href="addPostBack" class="btn btn-primary" role="button">ADD NEW POST</a>
+              
+            </div>
+         </div>
+
+         </div>   
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Titre</th>
+        <th scope="col">Description</th>
+        <th scope="col">Auteur</th>
+        <th scope="col">Date</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+        {% for p in post  %}
+      <tr>
+        <td>{{p.id}}</td>
+        <td>{{p.titre}}</td>
+        <td>{{p.description}}</td>
+        <td>{{p.Auteur}}</td>
+        <td>{{p.Date |date('Y-M-D') }}</td>
+        
+        <td><a class="btn btn-outline-warning m-" href="{{ path ('detailPostBack',{'id':p.Id}) }}">Comments</a>
+        <a class="btn btn-outline-success m-2" href="{{ path('updatePostBack',{'id': p.Id}) }}">Update</a>
+        <a class="btn btn-outline-danger m-2" href="{{ path('deletePostback',{'id': p.Id}) }}">Delete</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+ </div> 
+{% endblock %}

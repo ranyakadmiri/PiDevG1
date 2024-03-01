@@ -3,8 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\PostRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
@@ -14,20 +17,65 @@ class Post
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+   
+    #[Assert\NotBlank(message: 'Le titre ne peut pas être vide')]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Le titre doit avoir au moins 3 caractères'
+    )]
+    #[Assert\Regex(
+        pattern: '/\d/',
+        match: false,
+        message: 'Le titre ne peut pas contenir de numéros'
+    )]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $titre = null;
 
-    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'La description ne peut pas être vide')]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'La description doit avoir au moins 3 caractères'
+    )]
+    #[Assert\Regex(
+        pattern: '/\d/',
+        match: false,
+        message: 'La description ne peut pas contenir de numéros'
+    )]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
+
+    #[Assert\NotBlank(message: "L'auteur ne peut pas être vide")]
+    #[Assert\Length(
+        min: 3,
+        minMessage: "L'auteur doit avoir au moins 3 caractères"
+    )]
+    #[Assert\Regex(
+        pattern: '/\d/',
+        match: false,
+        message: "L'auteur ne peut pas contenir de numéros"
+    )]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $auteur = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\NotBlank(message: 'La date ne peut pas être vide')]
+    #[Assert\Range(
+        min: 'today',
+        minMessage: 'La date ne peut pas être dans le passé',
+        max: 'today',
+        maxMessage: 'La date ne peut pas être dans le futur'
+    )]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+   
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\ManyToOne]
-    private ?Commentaire $Comments = null;
+    #[ORM\OneToMany(targetEntity: Commentaire::class, mappedBy: 'Post')]
+    private Collection $commentaires;
+
+    public function __construct()
+    {
+        $this->commentaires = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -39,7 +87,7 @@ class Post
         return $this->titre;
     }
 
-    public function setTitre(string $titre): static
+    public function setTitre(?string $titre): static
     {
         $this->titre = $titre;
 
@@ -51,7 +99,7 @@ class Post
         return $this->description;
     }
 
-    public function setDescription(string $description): static
+    public function setDescription(?string $description): static
     {
         $this->description = $description;
 
@@ -63,7 +111,7 @@ class Post
         return $this->auteur;
     }
 
-    public function setAuteur(string $auteur): static
+    public function setAuteur(?string $auteur): static
     {
         $this->auteur = $auteur;
 
@@ -75,22 +123,42 @@ class Post
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): static
+    public function setDate(?\DateTimeInterface $date): static
     {
         $this->date = $date;
 
         return $this;
     }
 
-    public function getComments(): ?Commentaire
+    /**
+     * @return Collection<int, Commentaire>
+     */
+    public function getCommentaires(): Collection
     {
-        return $this->Comments;
+        return $this->commentaires;
     }
 
-    public function setComments(?Commentaire $Comments): static
+    public function addCommentaire(Commentaire $commentaire): static
     {
-        $this->Comments = $Comments;
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires->add($commentaire);
+            $commentaire->setPost($this);
+        }
 
         return $this;
     }
+
+    public function removeCommentaire(Commentaire $commentaire): static
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getPost() === $this) {
+                $commentaire->setPost(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

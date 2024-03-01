@@ -1,0 +1,56 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Hello MaterielController!{% endblock %}
+
+{% block body %}
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Ajouter un Pack Materiel</h6>
+
+                {{ form_start(f) }}
+                
+                {# libelle field with JavaScript input control for uppercase, lowercase alphabet, and numbers #}
+                {{ form_row(f.libelle, { 'attr': {'class': 'form-control mb-3', 'pattern': '^[a-zA-Z0-9]+$'} }) }}
+
+                {# description field without specific input control #}
+                {{ form_row(f.description, { 'attr': {'class': 'form-control mb-3'} }) }}
+
+                {# prix field with JavaScript input control for numbers, ',' and '.' #}
+                {{ form_row(f.prix, { 'attr': {'class': 'form-control mb-3', 'pattern': '^[0-9]+([,.][0-9]+)?$'} }) }}
+
+                {# image field without specific input control #}
+                {{ form_row(f.image, { 'attr': {'class': 'form-control mb-3'} }) }}
+
+                <button type="submit" class="btn btn-outline-success m-2">Submit</button>
+                
+                {{ form_end(f) }}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript code to enhance input controls
+        document.addEventListener('DOMContentLoaded', function () {
+            // Function to restrict libelle to uppercase, lowercase alphabet, and numbers
+            function restrictLibelleInput() {
+                const libelleInput = document.getElementById('{{ f.libelle.vars.id }}');
+                libelleInput.addEventListener('input', function () {
+                    this.value = this.value.replace(/[^a-zA-Z0-9]/g, '');
+                });
+            }
+
+            // Function to restrict prix to numbers, ',' and '.'
+            function restrictPrixInput() {
+                const prixInput = document.getElementById('{{ f.prix.vars.id }}');
+                prixInput.addEventListener('input', function () {
+                    this.value = this.value.replace(/[^0-9,.]/g, '');
+                });
+            }
+
+            // Call the functions to apply input controls
+            restrictLibelleInput();
+            restrictPrixInput();
+        });
+    </script>
+{% endblock %}

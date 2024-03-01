@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block title %}WeBuild - Demande Assurances {% endblock %}
+{% block body %}
+{% for demande in demandes %}
+        <div class="col-md-4 testimonial">
+            <center>
+            <div class="row">
+                <div class="avatar col-md-5">
+                    <a href="#">
+                      <img class="img-circle" class="center"  src="{{ asset ('front/img/demande.jpg')}}"" alt="Taylor Otwell">
+                    </a>
+                </div>
+               
+                
+                <div class="testimonial-main col-md-7">
+                    <h4 class="media-heading">{{demande.Assurance.nom}}</h4>
+                  
+                    <p class="testimony-body">{{demande.Montant}}</p>
+                    <p class="testimony-body">{{ demande.dateDebut | date('d-m-Y')}}</p>
+                    
+                    <div class="border-top mt-4 pt-3">
+                        {% if demande.status == true %}
+                                <p class="mb-0">Approved</p>
+                                <div> <a href="{{ path('app_pdf_generator', {'id': demande.idD}) }}" class="btn btn-success tooltips" >Imprimer Devis</a> </div>
+                                   {% else %}  
+                                    <p class="mb-0">Pending</p>
+                                   {% endif %}
+                            </div>
+                </div>
+            </div>
+            <div class="post-footer">
+               
+
+        
+                
+        </center>
+        
+        </div>
+        {% endfor %}
+        {% endblock %}
+

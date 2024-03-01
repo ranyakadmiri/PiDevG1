@@ -1,0 +1,55 @@
+
+
+
+{% block stylesheets %}
+    <style>
+        /* Table Styles */
+       
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            color: #444;
+        }
+        th {
+            background-color: #f7f7f7;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        /* Table Body Styles */
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        /* Table Hover Effect */
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+   <h2 style="color: #333; margin-bottom: 20px;">List des posts</h2>
+   <table class="table-danger">
+       <thead>
+           <tr>
+               <th scope="col">ID_Post</th>
+               <th scope="col">Auteur</th>
+               <th scope="col">Date</th>
+               <th scope="col">Titre_Post</th>
+               <th scope="col">Description</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for p in post %}
+               <tr>
+                   <th scope="row" style="color: #666;">{{ p.Id }}</th>
+                   <td style="color: #580606; font-weight: bold;">{{ p.Auteur }}</td>
+                   <td>{{p.Date |date('d-m-Y')}}</td>
+                   <td style="color: #1629da;">{{ p.titre}}</td>
+                   <td> {{p.description}}</td> 
+               </tr>
+           {% endfor %}
+       </tbody>
+   </table>
+{% endblock %}

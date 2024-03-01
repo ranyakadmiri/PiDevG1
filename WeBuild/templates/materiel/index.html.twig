@@ -1,0 +1,43 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Hello MaterielController!{% endblock %}
+
+{% block body %}
+      <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                   
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Packs Materiel</h6>
+                            <table class="table">
+                                <thead>
+                               
+                                    <tr>
+                                        <th scope="col">#Id</th>
+                                        <th scope="col">Libelle</th>
+                                        <th scope="col">description</th>
+                                        <th scope="col">Prix</th>
+					                    <th scope="col">Image</th>    
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                     {% for PackMateriel in pm %}
+                                        <th scope="row">{{PackMateriel.id}}</th>
+                                        <td>{{PackMateriel.libelle}}</td>
+                                        <td>{{PackMateriel.description}} </td>
+                                        <td>{{PackMateriel.prix}} </td>
+					                    <td>{{asset(PackMateriel.image)}} </td>
+                                        <td>
+                                        <button type="button" class="btn btn-outline-danger m-2" onclick="window.location.href= '{{path('supprimermateriel',{'id':PackMateriel.id})}}' ">Supprimer</button>
+                                        <button type="button" class="btn btn-outline-warning m-2" onclick="window.location.href='{{ path('modifierMateriel', {'id': PackMateriel.id}) }}'" >Modifier</button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                   
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn btn-outline-success m-2" onclick="window.location.href='{{ path('ajouterMateriel') }}'">Ajouter</button> 
+                        </div>
+                 
+
+{% endblock %}

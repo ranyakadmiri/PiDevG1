@@ -1,0 +1,35 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Hello MaterielController!{% endblock %}
+
+{% block body %}
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="bg-secondary rounded h-100 p-4">
+            <h6 class="mb-4">Locations</h6>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#Id Location</th>
+                        <th scope="col">#Id User</th>
+                        <th scope="col">Libelle Pack</th>
+                        <th scope="col">Date debut</th>
+                        <th scope="col">Date fin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for Locations in ll %}
+                    <tr>
+                        <th scope="row">{{ Locations.idL }}</th>
+                        <td>{{ Locations.idUser }}</td>
+                        <td>{{ Locations.PackMateriel.libelle }}</td>
+                        <td>{{ Locations.dateD | date('d-m-Y') }}</td>
+                        <td>{{ Locations.dateF | date('d-m-Y') }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

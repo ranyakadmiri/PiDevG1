@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Location de matériel{% endblock %}
+
+{% block body %}
+
+  <div class="container mt-3">
+    <form action="{{ path('searchPack') }}" method="GET" class="form-inline">
+        <div class="input-group">
+            <input type="text" name="keyword" class="form-control" placeholder="Search for packs...">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container mt-3">
+    <div class="row">
+        {% if PackMateriel is empty %}
+            <p class="text-danger">No packs found!</p>
+        {% else %}
+            {% for pack in PackMateriel %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="{{ asset(pack.image) }}" class="card-img-top" alt="{{ pack.libelle }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ pack.libelle }}</h5>
+                            <p class="card-text">{{ pack.description }}</p>
+                            <p class="card-text">Price: {{ pack.prix }} DT</p>
+                            <a href="{{ path('louer_materiel', {'id': pack.id}) }}" class="btn btn-primary">Rent</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}
+
