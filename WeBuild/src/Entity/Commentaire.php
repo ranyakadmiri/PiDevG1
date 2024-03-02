@@ -57,6 +57,9 @@ class Commentaire
     #[ORM\Column(nullable: true)]
     private ?float $rate = null;
 
+    #[ORM\ManyToOne(inversedBy: 'Commentaire')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -142,6 +145,18 @@ class Commentaire
     public function setRate(?float $rate): static
     {
         $this->rate = $rate;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

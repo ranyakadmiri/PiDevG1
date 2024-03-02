@@ -17,8 +17,10 @@ use App\Form\CommentaireType as FormCommentaireType;
 use Doctrine\Persistence\ManagerRegistry;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\BrowserKit\Response as BrowserKitResponse;
 
+#[IsGranted('IS_AUTHENTICATED_FULLY')]
 class PostController extends AbstractController
 {
     #[Route('/post', name: 'app_post')]

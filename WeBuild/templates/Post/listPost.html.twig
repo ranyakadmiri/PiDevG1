@@ -34,7 +34,6 @@
        <thead>
            <tr>
                <th scope="col">ID_Post</th>
-               <th scope="col">Auteur</th>
                <th scope="col">Date</th>
                <th scope="col">Titre_Post</th>
                <th scope="col">Description</th>
@@ -44,7 +43,6 @@
            {% for p in post %}
                <tr>
                    <th scope="row" style="color: #666;">{{ p.Id }}</th>
-                   <td style="color: #580606; font-weight: bold;">{{ p.Auteur }}</td>
                    <td>{{p.Date |date('d-m-Y')}}</td>
                    <td style="color: #1629da;">{{ p.titre}}</td>
                    <td> {{p.description}}</td> 

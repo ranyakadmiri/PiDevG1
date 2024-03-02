@@ -43,20 +43,7 @@ class Post
     )]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
-
-
-    #[Assert\NotBlank(message: "L'auteur ne peut pas être vide")]
-    #[Assert\Length(
-        min: 3,
-        minMessage: "L'auteur doit avoir au moins 3 caractères"
-    )]
-    #[Assert\Regex(
-        pattern: '/\d/',
-        match: false,
-        message: "L'auteur ne peut pas contenir de numéros"
-    )]
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $auteur = null;
+   
 
     #[Assert\NotBlank(message: 'La date ne peut pas être vide')]
     #[Assert\Range(
@@ -71,6 +58,9 @@ class Post
 
     #[ORM\OneToMany(targetEntity: Commentaire::class, mappedBy: 'Post')]
     private Collection $commentaires;
+
+    #[ORM\ManyToOne(inversedBy: 'Post')]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -106,17 +96,7 @@ class Post
         return $this;
     }
 
-    public function getAuteur(): ?string
-    {
-        return $this->auteur;
-    }
-
-    public function setAuteur(?string $auteur): static
-    {
-        $this->auteur = $auteur;
-
-        return $this;
-    }
+   
 
     public function getDate(): ?\DateTimeInterface
     {
@@ -156,6 +136,18 @@ class Post
                 $commentaire->setPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

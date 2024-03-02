@@ -285,7 +285,6 @@ background:#ddd;
                 <div class="testimonial-main col-md-7">
                     <h4 class="media-heading">{{p.titre}}</h4>
                     <p class="testimony-body">{{p.Date |date('Y-M-D') }}</p>
-                    <p class="testimony-body">{{p.Auteur}}</p>
                     <p class="testimony-body">{{p.description}}</p>
                 </div>
             </div>
@@ -313,7 +312,6 @@ background:#ddd;
 <table border="5">
     <tr>
     <th> ID_Post </th>
-    <th > Auteur</th>
     <th > Date</th>
     <th> Titre_Post </th>
     <th > Description</th>
@@ -323,7 +321,6 @@ background:#ddd;
     
    <tr>{% for p in post  %}</tr> 
     <td> {{p.Id}}</td>
-    <td> {{p.Auteur}}</td>  
     <td> {{p.Date |date('d-m-Y') }}</td>  
     <td> {{p.titre}}</td>  
     <td> {{p.description}}</td>  

@@ -122,12 +122,12 @@
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <li><a class="dropdown-item" href="#"><i class="fas fa-sliders-h fa-fw"></i> Account</a></li>
-                                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog fa-fw"></i> Settings</a></li>
+                                            {#<li><a class="dropdown-item" href="{{ path('app_user_edit', {'id': app.user.id}) }}"><i class="fas fa-cog fa-fw"></i> Settings</a></li>#} 
                                             <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item"  onclick="openLoginModal()"><i class="fas fa-sliders-h fa-fw"></i> Login</a></li>
-                                            <li><a class="dropdown-item" href="#" onclick="openRegisterModal()"><i class="fas fa-cog fa-fw"></i> Register</a></li>
+                                            <li><a class="dropdown-item"  href="{{ path('app_login') }}"><i class="fas fa-sliders-h fa-fw"></i> Login</a></li>
+                                            <li><a class="dropdown-item" href="{{ path('app_register') }}"><i class="fas fa-cog fa-fw"></i> Register</a></li>
                                             <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a></li>
+                                            <li><a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a></li>
                                         </ul>
                                     </li>
                                 </ul>
