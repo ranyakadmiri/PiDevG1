@@ -30,7 +30,8 @@
 
         <!-- Customized Bootstrap Stylesheet -->
         <link href="{{ asset('back/css/bootstrap.min.css') }}" rel="stylesheet">
-
+             {# haithem  #}
+        <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
         <!-- Template Stylesheet -->
         <link href="{{ asset('back/css/style.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/stats.css') }}">
@@ -86,7 +87,14 @@
                         <a href="{{path('list_Demande')}}" class="dropdown-item">Demande assurance</a>
                     </div>
                     </div>
-                <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>GestionProjet</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-tasks me-2"></i>Projects</a>
+                    <div class="dropdown-menu bg-transparent border-0">
+                        <a href="{{ path('admin_project_index') }}" class="dropdown-item">Projects</a>
+                        <a href="{{ path('Admin_task_index') }}" class="dropdown-item">Tasks</a>
+
+                    </div>
+                </div>
                   <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Managements</a>
                     <div class="dropdown-menu bg-transparent border-0">
@@ -237,6 +245,13 @@
 </div>
 
     {% block javascripts %}
+
+    <!-- Flashy depends on jQuery -->
+        <script src="//code.jquery.com/jquery.js"></script>
+        <!-- Load Flashy default JavaScript -->
+        <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+        <!-- Include Flashy default partial -->
+        {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

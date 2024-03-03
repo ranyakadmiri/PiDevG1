@@ -19,6 +19,19 @@
             <link href="{{ asset('front/lib/animate/animate.min.css') }}" rel="stylesheet">
             <link href="{{ asset('front/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
+  {# haithem  #}
+        <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+ <!-- Core css -->
+       <!-- <link rel="stylesheet" href="{{ asset('front/css/main1.css') }}"/>-->
+        <link rel="stylesheet" href="{{ asset('front/css/post.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('front/css/theme1.css') }}"/>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+
+        <!-- fullcalendar -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css">
 
             <!-- Customized Bootstrap Stylesheet -->
             <link href="{{ asset('front/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -78,7 +91,13 @@
                                 <a href="/front" class="nav-item nav-link active text-secondary">Home</a>
                                 <a href="about.html" class="nav-item nav-link">About</a>
                                 <a href="service.html" class="nav-item nav-link">Services</a>
-                                <a href="project.html" class="nav-item nav-link">Projects</a>
+                               <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Projects</a>
+                            <div class="dropdown-menu rounded">
+                                <a href="{{ path('chantier_index') }}" class="dropdown-item">Project</a>
+                                <a href="{{ path('Task_index') }}" class="dropdown-item">Task</a>
+                            </div>
+                        </div>
                                  <a href={{ path('app_showOff') }} class="nav-item nav-link" >Job Offers</a>
                         <a href={{ path('app_showCan') }}  class="nav-item nav-link">Mes Candidatures</a>
                                 <a href="{{path('app_location')}}"  class="nav-item nav-link  active text-secondary">Packs Materiel</a>
@@ -360,6 +379,56 @@ star.addEventListener('click', function() {
             <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
             <!-- Template Javascript -->
             <script src="{{ asset('front/js/main.js') }}"></script>
+
+
+        {# haithem #}
+
+        
+    <!-- Template Javascript -->
+    <script src="{{ asset('front/js/main.js') }}"></script>
+
+    <!-- Flashy depends on jQuery -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <!-- Load Flashy default JavaScript -->
+    <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+    <!-- Include Flashy default partial -->
+    {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('myChart');
+            const dataYes = parseInt(ctx.getAttribute('data-yes'));
+            const dataNo = parseInt(ctx.getAttribute('data-no'));
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Task finished', 'Task still doing'],
+                    datasets: [{
+                        label: 'Task Status',
+                        backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)'],
+                        borderColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)'],
+                        data: [dataYes, dataNo],
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js" integrity="sha256-i4vDW9EgtaJmeauDDymtNF2omPZ1fCKpf4w1gBlU1IE=" crossorigin="anonymous"></script>
+
+
+
+
+
             {#  {{ encore_entry_script_tags('app') }}#}
         {% endblock %}
 

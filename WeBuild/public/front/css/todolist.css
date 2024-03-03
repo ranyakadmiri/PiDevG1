@@ -1,0 +1,66 @@
+
+#todo-form> input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+#todo-form> input[type="submit"] {
+    width: 25%;
+    padding: 4px;
+    box-sizing: border-box;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#todo-list > ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#doing-list > ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#done-list > ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#todo-list > li {
+    background-color: #e0e0e0;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#doing-list > li {
+    background-color: #e0e0e0;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#done-list > li {
+    background-color: #e0e0e0;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#todo-list > li:hover {
+    background-color: #c2c0c0;
+}
+
+#doing-list > li:hover {
+    background-color: #c2c0c0;
+}
+
+#done-list > li:hover {
+    background-color: #c2c0c0;
+}

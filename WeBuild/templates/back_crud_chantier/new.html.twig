@@ -1,0 +1,10 @@
+{% extends 'base_back.html.twig' %}
+{% block title %}New Chantier{% endblock %}
+
+{% block body %}
+    <h1>Create new Chantier</h1>
+
+    {{ include('back_crud_chantier/_form.html.twig') }}
+
+    <a href="{{ path('admin_project_index') }}">back to list</a>
+{% endblock %}
