@@ -45,4 +45,23 @@ public function findBySalaryRange($minSalary, $maxSalary)
 
     return $qb->getQuery()->getResult();
 }
+
+public function findByMinSalary($minSalary)
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.salary >= :minSalary')
+            ->setParameter('minSalary', $minSalary)
+            ->getQuery()
+            ->getResult();
+    }
+
+    // Méthode pour récupérer les offres avec un salaire inférieur ou égal à maxSalary
+    public function findByMaxSalary($maxSalary)
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.salary <= :maxSalary')
+            ->setParameter('maxSalary', $maxSalary)
+            ->getQuery()
+            ->getResult();
+    }
 }

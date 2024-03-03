@@ -19,7 +19,8 @@
                                         <th scope="col">Title</th>
                                         <th scope="col">Description</th>
                                         <th scope="col">Salary </th>
-                                      
+                                        <th scope="col">Latitude </th>
+                                        <th scope="col">Longitude </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -29,6 +30,8 @@
                                         <td>{{offre.title}}</td>
                                         <td>{{offre.description}} </td>
                                         <td>{{offre.salary}} </td>
+                                        <td>{{offre.latitude}} </td>
+                                        <td>{{offre.longtitude}} </td>
                                   
                                         <td><button type="button" class="btn btn-outline-danger m-2" onclick="window.location.href='{{  path('app_deleteOffreBack', {'id': offre.id}) }}'">Supprimer</button> </td>
                                         <td><button type="button" class="btn btn-outline-warning m-2" onclick="window.location.href='{{ path('app_EditOffreBack', {'id': offre.id}) }}'">Modifier</button> </td>

@@ -1,17 +1,55 @@
- {% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Adding Offer!{% endblock %}
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    /* Add your custom CSS here */
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
 </style>
 
-<div class="example-wrapper">
-    <h6  class="mb-4">Ajouter un offre</h6> 
-    {{ form(form) }}
-
- 
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4" style="font-size: 24px;">Ajouter un Offre</h2>
+                    {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_label(form.title) }}
+                        {{ form_widget(form.title) }}
+                        {{ form_errors(form.title) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.description) }}
+                        {{ form_widget(form.description) }}
+                        {{ form_errors(form.description) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.salary) }}
+                        {{ form_widget(form.salary) }}
+                        {{ form_errors(form.salary) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.latitude) }}
+                        {{ form_widget(form.latitude) }}
+                        {{ form_errors(form.latitude) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.longtitude) }}
+                        {{ form_widget(form.longtitude) }}
+                        {{ form_errors(form.longtitude) }}
+                    </div>
+                 
+                    <div class="text-center">
+                       <button type="submit" class="btn btn-primary" style="color: white; border-color: white; background-color: transparent;">Ajouter</button>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

@@ -1,7 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Offers Map{% endblock %}
+{% block styles %}
+<style>
+    .custom-btn {
+        padding: 0.25rem 0.5rem;
+        background-color: transparent;
+        border: 1px solid transparent;
+        color: black;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
 
+    .custom-btn:hover {
+        background-color: yellow;
+    }
+</style>
+{% endblock %}
 {% block body %}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <style>
@@ -19,7 +34,8 @@
 
         {% for offre in offres %}
             L.marker([{{ offre.latitude }}, {{ offre.longtitude }}]).addTo(map)
-                .bindPopup(`<b>{{ offre.title }}</b><br>Salary: {{ offre.salary }}DT</b>`);
+                .bindPopup(`<b>{{ offre.title }}</b><br>Salary: {{ offre.salary }}DT</b>
+                <b><a href="{{ path('app_AddCan') }}" class="btn btn-sm custom-btn">Postuler</a></b>`);
         {% endfor %}
     </script>
 {% endblock %}

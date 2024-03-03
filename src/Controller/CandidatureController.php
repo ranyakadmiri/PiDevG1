@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Candidature;
+use App\Entity\Offre;
 use App\Form\CandidatureType;
 use App\Repository\CandidatureRepository;
 use App\Repository\CandidatureRepositoryRepository;
@@ -16,7 +17,9 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Dompdf\Dompdf;
-
+use Dompdf\Options;
+use Knp\Snappy\Pdf;
+use pdf_parser;
 
 class CandidatureController extends AbstractController
 {
@@ -41,7 +44,7 @@ class CandidatureController extends AbstractController
     {
         $Candidature=new Candidature();
         $form =$this->CreateForm(CandidatureType::class,$Candidature);
-        $form->add('Ajouter',SubmitType::class);
+       // $form->add('Ajouter',SubmitType::class);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid())
@@ -51,16 +54,7 @@ class CandidatureController extends AbstractController
             $em=$this->getDoctrine()->getManager();
             $em->persist($Candidature);
             $em->flush(); 
-            //emailing
-            $candidateEmail = $Candidature->getEmail(); // Assuming email is a property of Candidature entity
-            $email = (new Email())
-                ->from('malekmiri02@gmail.com') // Update with your email address
-                ->to($candidateEmail)
-                ->subject('Confirmation de candidature')
-                ->html($this->renderView('email/confirmation.html.twig')
-                );
-            
-            $mailer->send($email);
+           
             return $this->redirectToRoute('app_showCan');
         } 
         return $this->render('candidature/Add.html.twig',['f'=>$form->createView()]);
@@ -116,7 +110,7 @@ class CandidatureController extends AbstractController
         $Candidature=new Candidature();
         $form =$this->CreateForm(CandidatureType::class,$Candidature);
        
-      $form->add('Ajouter',SubmitType::class);
+      //  $form->add('Ajouter',SubmitType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
@@ -136,20 +130,20 @@ class CandidatureController extends AbstractController
     {
         $Candidature = $repository->find($id);
         $form = $this->createForm(CandidatureType::class, $Candidature);
-        $form->add('Edit', SubmitType::class);
+        //$form->add('Edit', SubmitType::class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->flush(); // Correction : Utilisez la méthode flush() sur l'EntityManager pour enregistrer les modifications en base de données.
-            return $this->redirectToRoute("app_showCanBack");
+            return $this->redirectToRoute('app_showCanBack');
         }
 
         return $this->render('back/editCan.html.twig', [
             'f' => $form->createView(),
         ]);
     }
-    #[Route('/delete/candidature/{id}', name: 'app_deleteCanBack')]
+    #[Route('back/delete/candidature/{id}', name: 'app_deleteCanBack')]
     public function deleteBack($id, CandidatureRepository $repository)
     {
         $Candidature= $repository->find($id);
@@ -162,41 +156,7 @@ class CandidatureController extends AbstractController
         $em->remove($Candidature);
         $em->flush();
 
-        
         return $this->redirectToRoute('app_showCanBack');
     }
-   
-    //pdf
-    #[Route('/candidature/{id}/pdf', name: 'app_export_candidature_pdf')]
-    public function exportCandidaturePdf(Candidature $candidature): Response
-    {
-        // Render the PDF template with the candidature data
-        $html = $this->renderView('candidature/pdf.html.twig', [
-            'candidature' => $candidature,
-        ]);
-    
-        // Create a new Dompdf instance
-        $dompdf = new Dompdf();
-    
-        // Load HTML content into Dompdf
-        $dompdf->loadHtml($html);
-    
-        // (Optional) Set paper size and orientation
-        $dompdf->setPaper('A4', 'portrait');
-    
-        // Render the PDF
-        $dompdf->render();
-    
-        // Generate PDF file content
-        $pdfContent = $dompdf->output();
-    
-        // Create a Symfony Response object with PDF content
-        $response = new Response($pdfContent);
-    
-        // Set response headers to indicate PDF content type and attachment
-        $response->headers->set('Content-Type', 'application/pdf');
-        $response->headers->set('Content-Disposition', 'attachment; filename="candidature.pdf"');
-    
-        return $response;
-    }
+
 }

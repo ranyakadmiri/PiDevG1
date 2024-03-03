@@ -2,5 +2,5 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 export_candidature_pdf:
-    path: '/candidature/export/pdf/{id}'
-    controller: 'App\Controller\CandidatureController::exportPdf'
+    path: '/candidature/{id}/export/pdf'
+    controller: App\Controller\CandidatureController\exportCandidaturePdf

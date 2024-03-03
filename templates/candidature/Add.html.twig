@@ -1,36 +1,54 @@
- {% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Adding Candidature{% endblock %}
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    /* Add your custom CSS here */
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
 </style>
 
-<style>
-  /* Center the content vertically and horizontally */
-  .center-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Ensure full viewport height */
-  }
-  
-
-
-</style>
-
-
-<div class="center-content">
-  <div class="container-fluid py-5 px-4">
-    <div class="col-md-8 col-lg-6 border rounded p-4 shadow-sm bg-light">
-      <h2 class="mb-4 text-center">Ajouter Votre Candidature</h2>
-  
-      <div class="col-md-12 mb-3">
-        {{ form(f) }}
-      </div>
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Ajouter Votre Candidature</h2>
+                    {{ form_start(f) }}
+                     <div class="form-group">
+                    {{ form_label(f.id_client, 'ID Client') }}
+                   {{ form_widget(f.id_client, { 'attr': {'class': 'form-control', 'placeholder': 'ID Client...'} }) }}
+                   {{ form_errors(f.id_client) }}
+          </div>
+                    <div class="form-group">
+                        {{ form_label(f.Description) }}
+                        {{ form_widget(f.Description) }}
+                        {{ form_errors(f.Description) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(f.Competences) }}
+                        {{ form_widget(f.Competences) }}
+                        {{ form_errors(f.Competences) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(f.email) }}
+                        {{ form_widget(f.email) }}
+                        {{ form_errors(f.email) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(f.offre) }}
+                        {{ form_widget(f.offre) }}
+                        {{ form_errors(f.offre) }}
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                    {{ form_end(f) }}
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 {% endblock %}

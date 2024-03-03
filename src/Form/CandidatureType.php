@@ -21,30 +21,43 @@ class CandidatureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('id_client')
-            ->add('Description',null,['constraints' => [
-                new Length([
-                    'min' => 14,
-                    'minMessage' => 'La description doit dépasser {{ limit }} caractères',
-                    
-                ])]
-                ])
-            ->add('Competences', TextType::class, [
+             ->add('id_client', null, [
+            'label' => 'ID Client',
+            'attr' => ['class' => 'form-control', 'placeholder' => 'ID Client...'],
+           
+        ])    
+             ->add('Description', null, [
+                'label' => 'Description',
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Description...', 'rows' => 4],
                 'constraints' => [
-                    new Length([
-                        'max' => 255,
-                        'maxMessage' => 'Les competences  ne peuvent pas dépasser {{ limit }} caractères',
-                    ]),
-                    new NotBlank(['message' => 'Les competences ne peuvent pas être vide']),
-                   
+                    new Length(['min' => 14, 'minMessage' => 'La description doit dépasser {{ limit }} caractères']),
                 ],
             ])
-            ->add('email')
-            ->add('offre',EntityType::class, [
-                // looks for choices from this entity
-                'class' => Offre::class ,  'choice_label' => 'title' ,'placeholder' => 'Choose an Offre','mapped' => false,       
+            ->add('Competences', TextType::class, [
+                'label' => 'Compétences',
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Compétences...'],
+                'constraints' => [
+                    new Length(['max' => 255, 'maxMessage' => 'Les compétences ne peuvent pas dépasser {{ limit }} caractères']),
+                    new NotBlank(['message' => 'Les compétences ne peuvent pas être vide']),
+                ],
             ])
-        ;
+            ->add('email', EmailType::class, [
+                'label' => 'Email',
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Email...'],
+                'constraints' => [
+                    new NotBlank(['message' => 'L\'email ne peut pas être vide']),
+                    new Email(['message' => 'L\'email "{{ value }}" n\'est pas valide.']),
+                ],
+            ])
+            ->add('offre', EntityType::class, [
+                'class' => Offre::class,
+                'choice_label' => 'title',
+                'placeholder' => 'Choisir une offre',
+                'attr' => ['class' => 'form-control'],
+                'constraints' => [
+                    new NotBlank(['message' => 'Vous devez choisir une offre']),
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

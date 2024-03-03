@@ -12,47 +12,55 @@ use Symfony\Component\Validator\Constraints\Range;
 
 class OffreType extends AbstractType
 {
+   
     public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
-        $builder
-            ->add('title', null, [
-                'constraints' => [
-                    new NotBlank(['message' => 'Le nom ne peut pas être vide']),
-                ]
-            ])
-            ->add('description', null, [
-                'constraints' => [
-                    new NotBlank(['message' => 'La description ne peut pas être vide']),
-                ]
-            ])
-            ->add('salary', null, [
-                'constraints' => [
-                    new PositiveOrZero(['message' => 'Le salaire doit être un nombre positif ou zéro']),
-                    new NotBlank(['message' => 'Le salaire ne peut pas être vide']),
-                ]
-            ])
-            ->add('latitude', null, [
-                'constraints' => [
-                    new NotBlank(['message' => 'La latitude ne peut pas être vide']),
-                  
-                ],
-            ])
-            ->add('longtitude', null, [
-                'constraints' => [
-                    new NotBlank(['message' => 'La longitude ne peut pas être vide']),
-                ],
-                ])
-                 // Add salary range filter fields
-            ->add('minSalary', null, [
-                'mapped' => false,
-                'label' => 'Salaire minimum',
-            ])
-            ->add('maxSalary', null, [
-                'mapped' => false,
-                'label' => 'Salaire maximum',
-            ]);
-           
-    }
+{
+    $fieldAttributes = [
+        'class' => 'form-control',
+        'placeholder' => 'Placeholder...',
+        'style' => 'border-color: white;', // Add white border color
+    ];
+
+    $builder
+       
+        ->add('title', null, [
+            'label' => 'Title',
+            'attr' => $fieldAttributes,
+            'constraints' => [
+                new NotBlank(['message' => 'Le titre ne peut pas être vide']),
+            ],
+        ])
+        ->add('description', null, [
+            'label' => 'Description',
+            'attr' => $fieldAttributes,
+            'constraints' => [
+                new NotBlank(['message' => 'La description ne peut pas être vide']),
+            ],
+        ])
+        ->add('salary', null, [
+            'label' => 'Salaire',
+            'attr' => $fieldAttributes,
+            'constraints' => [
+                new PositiveOrZero(['message' => 'Le salaire doit être un nombre positif ou zéro']),
+                new NotBlank(['message' => 'Le salaire ne peut pas être vide']),
+            ],
+        ])
+        ->add('latitude', null, [
+            'label' => 'Latitude',
+            'attr' => $fieldAttributes,
+            'constraints' => [
+                new NotBlank(['message' => 'La latitude ne peut pas être vide']),
+            ],
+        ])
+        ->add('longtitude', null, [
+            'label' => 'Longtitude',
+            'attr' => $fieldAttributes,
+            'constraints' => [
+                new NotBlank(['message' => 'La longitude ne peut pas être vide']),
+            ],
+        ])
+    ;
+}
 
     public function configureOptions(OptionsResolver $resolver): void
     {
