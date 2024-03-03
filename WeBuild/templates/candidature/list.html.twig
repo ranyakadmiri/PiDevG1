@@ -32,7 +32,7 @@
                                        
                                        <td><button type="button" class="btn btn-outline-danger m-2" onclick="window.location.href='{{  path('app_deleteCan', {'id': candidature.id}) }}'">Supprimer</button> </td>
                                         <td><button type="button" class="btn btn-outline-warning m-2" onclick="window.location.href='{{ path('app_EditCan', {'id': candidature.id}) }}'">Modifier</button> </td>
-<td><a  class="btn btn-primary">Export PDF</a></td>
+                                    <td><a href="{{ path('app_pdf_generatorM', {'id': candidature.id}) }}" class="btn btn-secondary text-white px-5 py-3 rounded-pill" >PDF</a></td>
                                     </tr>
                                     {% endfor %}
                                    

@@ -62,7 +62,8 @@ class CommentaireController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
            // $filteredContenu = $this->filterBadWords($contenu);
            // $commentaire->setContenu($filteredContenu);
-
+           $user=$this->getUser();
+           $commentaire-> setUser($user);
            $contenu = $commentaire->getContenu(); // Récupérer le contenu du commentaire
 
            // Liste de mots inappropriés

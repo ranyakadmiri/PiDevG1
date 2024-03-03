@@ -39,6 +39,8 @@ class LocationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $dateD = $form->get('dateD')->getData();
             $dateF = $form->get('dateF')->getData();
+            $user=$this->getUser();
+            $location-> setUser($user);
 
             if ($dateF < $dateD) {
                 $form->addError(new FormError('La date de fin doit être supérieure à la date de début.'));

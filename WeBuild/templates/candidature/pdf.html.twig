@@ -1,60 +1,74 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>WeBuild - Candidature</title>
+{% block stylesheets %}
     <style>
+        /* Body Styles */
         body {
-            font-family: Arial, sans-serif;
-            font-size: 12px;
+            font-family: 'Montserrat', sans-serif; /* Set font to Montserrat */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            text-align: center; /* Center align text */
+            background-color: #f0f0f0; /* Light grey background color */
         }
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
+
+        /* Title Styles */
+        h1 {
+            margin-top: 40px; /* Add top margin */
+            text-align: center; /* Center align text */
+            color: #007bff; /* Blue text color */
         }
-        .title {
-            font-size: 18px;
-            font-weight: bold;
+
+        /* List Styles */
+        .container {
+            height: 100vh; /* Set container height to full viewport height */
+            display: flex; /* Use flexbox */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
         }
-        .content {
-            margin-bottom: 20px;
+
+        .candidature-list {
+            list-style-type: none; /* Remove list bullet points */
+            padding: 0; /* Remove default padding */
+            text-align: left; /* Left align text */
+            margin-top: 50px; /* Add top margin */
+            margin-left: 50px; /* Add top margin */
         }
-        .content table {
-            width: 100%;
-            border-collapse: collapse;
+
+        .candidature-list li {
+            margin-bottom: 10px; /* Add spacing between list items */
         }
-        .content th, .content td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
+
+        /* Signature Styles */
+        .signature {
+            margin-top: 20px; /* Add top margin */
+            text-align: right; /* Right align text */
+            font-size: 14px; /* Smaller font size */
+            margin-right: 30px; /* Add top margin */
+        }
+
+        /* Date Styles */
+        .date {
+            position: absolute; /* Position relative to the viewport */
+            top: 20px; /* Add top margin */
+            right: 20px; /* Add right margin */
+            color: #007bff; /* Blue text color */
         }
     </style>
-</head>
-<body>
-    <div class="header">
-        <div class="title">WeBuild - Candidature</div>
-        <div>{{ "now"|date("d/m/Y H:i") }}</div> {# Date et heure actuelles #}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+   
+        <h1>WeBuild: Ma Candidature</h1> <!-- Centered title -->
+
+        <ul class="candidature-list">
+  
+            <li><strong>ID Offre:</strong> {{ candidature.offre.id }}</li>
+            <li><strong>Description:</strong> {{ candidature.Description }}</li>
+            <li><strong>Compétences:</strong> {{ candidature.Competences }}</li>
+            <li><strong>Email:</strong> {{ candidature.email }}</li>
+        </ul>
+
+        <h2 class="signature">Signature du chef chantier</h2> <!-- Smaller signature -->
+
+        <div class="date">{{ "now"|date("d/m/Y") }}</div> <!-- Date at top right -->
     </div>
-    <div class="content">
-        <table>
-            
-            <tr>
-                <th>Description</th>
-                <td>{{ candidature.description }}</td>
-            </tr>
-            <tr>
-                <th>Compétences</th>
-                <td>{{ candidature.competences }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ candidature.email }}</td>
-            </tr>
-            <tr>
-                <th>Offre</th>
-                <td>{{ candidature.offre_id }}</td> 
-            </tr>
-        </table>
-    </div>
-</body>
-</html>
+{% endblock %}

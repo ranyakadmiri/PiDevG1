@@ -2,12 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\PackMateriel;
+use App\Repository\PackMaterielRepository;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
 class PaymentController extends AbstractController
 {
@@ -22,10 +25,15 @@ class PaymentController extends AbstractController
 
 
     #[Route('/checkout', name: 'checkout')]
-    public function checkout($stripeSK): Response
+    public function checkout($stripeSK ,ManagerRegistry $doctrine): Response
     {
         Stripe::setApiKey($stripeSK);
+       
+    /* $packMateriel = $entityManager->getRepository(PackMateriel::class)->findOneBy(/* Add your criteria here );
 
+        // Get the price from the PackMateriel entity
+        //$prix = $packMateriel->getPrix(); */
+        
         $session = Session::create([
             'payment_method_types' => ['card'],
             'line_items'           => [
