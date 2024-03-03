@@ -158,5 +158,35 @@ class CandidatureController extends AbstractController
 
         return $this->redirectToRoute('app_showCanBack');
     }
+//pdf
+    #[Route('/pdf/generator/{id}', name: 'app_pdf_generator')]
+    public function generatePdf($id, CandidatureRepository $repo): Response
+    {
+        // Fetch candidature details based on $id
+        $Candidature = $repo->find($id);
+
+        // Configure Dompdf
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+
+        // Instantiate Dompdf with options
+        $dompdf = new Dompdf($options);
+
+        // Load HTML content
+        $html = $this->renderView('candidature/pdf.html.twig', ['candidature' => $Candidature]);
+        $dompdf->loadHtml($html);
+
+        // Set paper size and orientation
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF (inline)
+        return new Response($dompdf->output(), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="candidature_details.pdf"',
+        ]);
+    }
 
 }
