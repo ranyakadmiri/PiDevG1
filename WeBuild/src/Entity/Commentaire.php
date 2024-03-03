@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CommentaireRepository::class)]
+#[ORM\HasLifecycleCallbacks()]
 class Commentaire
 {
     #[ORM\Id]
@@ -160,5 +161,7 @@ class Commentaire
 
         return $this;
     }
+ 
 
+     
 }

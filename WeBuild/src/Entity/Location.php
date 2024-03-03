@@ -23,8 +23,10 @@ class Location
     #[ORM\ManyToOne(inversedBy: 'locations')]
     private ?PackMateriel $PackMateriel = null;
 
-    #[ORM\Column]
-    private ?int $idUser = null;
+    #[ORM\ManyToOne(inversedBy: 'Location')]
+    private ?User $user = null;
+
+   
 
     public function getIdL(): ?int
     {
@@ -67,15 +69,17 @@ class Location
         return $this;
     }
 
-    public function getIdUser(): ?int
+    public function getUser(): ?User
     {
-        return $this->idUser;
+        return $this->user;
     }
 
-    public function setIdUser(int $idUser): static
+    public function setUser(?User $user): static
     {
-        $this->idUser = $idUser;
+        $this->user = $user;
 
         return $this;
     }
+
+   
 }

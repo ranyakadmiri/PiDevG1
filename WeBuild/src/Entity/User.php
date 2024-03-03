@@ -81,10 +81,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Commentaire::class, mappedBy: 'user')]
     private Collection $Commentaire;
 
+    #[ORM\OneToMany(targetEntity: Demande::class, mappedBy: 'user')]
+    private Collection $Demande;
+
+    #[ORM\OneToMany(targetEntity: Location::class, mappedBy: 'user')]
+    private Collection $Location;
+
     public function __construct()
     {
         $this->Post = new ArrayCollection();
         $this->Commentaire = new ArrayCollection();
+        $this->Demande = new ArrayCollection();
+        $this->Location = new ArrayCollection();
     }
 
 
@@ -351,6 +359,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($commentaire->getUser() === $this) {
                 $commentaire->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Demande>
+     */
+    public function getDemande(): Collection
+    {
+        return $this->Demande;
+    }
+
+    public function addDemande(Demande $demande): static
+    {
+        if (!$this->Demande->contains($demande)) {
+            $this->Demande->add($demande);
+            $demande->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDemande(Demande $demande): static
+    {
+        if ($this->Demande->removeElement($demande)) {
+            // set the owning side to null (unless already changed)
+            if ($demande->getUser() === $this) {
+                $demande->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Location>
+     */
+    public function getLocation(): Collection
+    {
+        return $this->Location;
+    }
+
+    public function addLocation(Location $location): static
+    {
+        if (!$this->Location->contains($location)) {
+            $this->Location->add($location);
+            $location->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLocation(Location $location): static
+    {
+        if ($this->Location->removeElement($location)) {
+            // set the owning side to null (unless already changed)
+            if ($location->getUser() === $this) {
+                $location->setUser(null);
             }
         }
 

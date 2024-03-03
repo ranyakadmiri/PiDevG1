@@ -13,7 +13,7 @@ class LocationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('idUser')
+      
         ->add('dateD', DateType::class, [
             'widget' => 'single_text',
             'format' => 'yyyy-MM-dd',

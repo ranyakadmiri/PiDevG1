@@ -16,7 +16,7 @@ class DemandeType extends AbstractType
     {
         $builder
             ->add('Montant')
-            ->add('user')
+          
             ->add('dateDebut')
             ->add('dateFin')
             ->add('commentaire')

@@ -8,10 +8,7 @@
     <h2 class="mb-4 text-center">Louer le pack</h2>
     <form method="POST" class="row g-3">
       {{ form_row(form._token) }}
-      <div class="col-md-12 mb-3">
-        {{ form_label(form.idUser, 'ID utilisateur:') }}
-        {{ form_widget(form.idUser, {'attr': {'class': 'form-control'}}) }}
-      </div>
+     
 
       <div class="col-md-12 mb-3">
         {{ form_label(form.dateD, 'Date début:') }}

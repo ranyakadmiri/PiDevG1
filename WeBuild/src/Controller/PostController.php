@@ -19,6 +19,7 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\BrowserKit\Response as BrowserKitResponse;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 #[IsGranted('IS_AUTHENTICATED_FULLY')]
 class PostController extends AbstractController
@@ -58,7 +59,7 @@ class PostController extends AbstractController
 
     
     #[Route('/showPost/{id}', name: 'detailPost')]
-public function detail(ManagerRegistry $doctrine,$id): Response
+public function detail(ManagerRegistry $doctrine,$id,): Response
 {
     // Récupérer le post spécifique par son ID
     $repo=$doctrine->getRepository(Post::class);
@@ -149,6 +150,8 @@ public function showPost(int $postId, PostRepository $postRepo, CommentaireRepos
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this-> getUser();
+            $post -> setUser($user);
             $em->persist($post);
             $em->flush();
             return $this->redirectToRoute('showPost');  
@@ -160,8 +163,12 @@ public function showPost(int $postId, PostRepository $postRepo, CommentaireRepos
     }
 
     #[Route('/editPost{id}', name: 'editPost')]
-    public function editPost($id,PostRepository $repo, EntityManagerInterface $em,HttpFoundationRequest $request)
+    public function editPost($id,PostRepository $repo, EntityManagerInterface $em,HttpFoundationRequest $request, Post $post)
     {
+        // Check if the current user is the owner of the post
+    if ($this->getUser() !== $post->getUser()) {
+        throw new AccessDeniedException('You are not allowed to edit this post.');
+    }
         $post =$repo->find($id);
         $form = $this->createForm(PostType::class, $post);
         $form->add('modifier',SubmitType::class);
@@ -188,7 +195,10 @@ public function showPost(int $postId, PostRepository $postRepo, CommentaireRepos
         // Handle the case where Post is not found
         // You can throw an exception, return a response, etc.
     }
-
+    // Check if the currently authenticated user is the owner of the post
+    if ($this->getUser() !== $post->getUser()) {
+        throw new AccessDeniedException('You are not allowed to delete this post.');
+    }
     // Retrieve all comments associated with the post
     $comments = $post->getCommentaires();
 

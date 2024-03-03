@@ -20,8 +20,7 @@ class Demande
     #[ORM\Column]
     private ?float $Montant = null;
 
-    #[ORM\Column]
-    private ?int $user = null;
+   
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateDebut = null;
@@ -34,6 +33,9 @@ class Demande
 
     #[ORM\Column(nullable: true)]
     private ?bool $status = null;
+
+    #[ORM\ManyToOne(inversedBy: 'Demande')]
+    private ?User $user = null;
 
     public function getidD(): ?int
     {
@@ -64,18 +66,7 @@ class Demande
         return $this;
     }
 
-    public function getUser(): ?int
-    {
-        return $this->user;
-    }
-
-    public function setUser(int $user): static
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
+  
     public function getDateDebut(): ?\DateTimeInterface
     {
         return $this->dateDebut;
@@ -120,6 +111,18 @@ class Demande
     public function setStatus(?bool $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
