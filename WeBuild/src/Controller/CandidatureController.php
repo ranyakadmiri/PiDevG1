@@ -49,6 +49,8 @@ class CandidatureController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid())
         {
+            $user=$this->getUser();
+            $Candidature-> setUser($user);
              $selectedOffre = $form->get('offre')->getData();
              $Candidature->setOffre($selectedOffre);
             $em=$this->getDoctrine()->getManager();
@@ -114,7 +116,10 @@ class CandidatureController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
-             
+            
+           /*  $user=$this->getUser();
+            $Candidature-> setUser($user); */
+
              $selectedOffre = $form->get('offre')->getData();
              $Candidature->setOffre($selectedOffre);
             $em=$this->getDoctrine()->getManager();

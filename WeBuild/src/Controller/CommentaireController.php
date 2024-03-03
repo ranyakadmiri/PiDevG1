@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Post;
-use App\Repository\PostRepository;
+
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 use SensioLabs\Security\SecurityChecker;
 use Symfony\Component\Mailer\Mailer ;
@@ -22,6 +22,13 @@ use Symfony\Component\Mime\Email;
 
 class CommentaireController extends AbstractController
 {
+
+    private $securityChecker;
+
+    public function __construct(SecurityChecker $securityChecker)
+    {
+        $this->securityChecker = $securityChecker;
+    }
 
     #[Route('/commentaire', name: 'app_commentaire')]
     public function index(): Response
@@ -51,7 +58,7 @@ class CommentaireController extends AbstractController
         return $content;
     }
     #[Route('/addCommentaire', name: 'addCommentaire')]
-    public function addCommentaire(PostRepository $postRepository, EntityManagerInterface $em,HttpFoundationRequest $request)
+    public function addCommentaire(CommentaireRepository $repo, EntityManagerInterface $em,HttpFoundationRequest $request)
     {
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
@@ -62,8 +69,7 @@ class CommentaireController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
            // $filteredContenu = $this->filterBadWords($contenu);
            // $commentaire->setContenu($filteredContenu);
-           $user=$this->getUser();
-           $commentaire-> setUser($user);
+
            $contenu = $commentaire->getContenu(); // Récupérer le contenu du commentaire
 
            // Liste de mots inappropriés

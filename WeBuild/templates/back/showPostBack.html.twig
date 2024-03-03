@@ -1,7 +1,22 @@
 {% extends 'base_back.html.twig' %}
 
 {% block body %}
-
+  <div class="input-group">
+ <input id="search-input" type="text" name="search" class="form-control" placeholder="Rechercher par titre...">
+<button id="search-button" type="submit" class="btn btn-primary">Rechercher</button>
+ </div>
+<title>AJAX Search Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#search-input").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("table tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 <div class="container-fluid pt-4 px-4">
     <div class="bg-secondary rounded h-100 p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
@@ -19,7 +34,7 @@
         <th scope="col">ID</th>
         <th scope="col">Titre</th>
         <th scope="col">Description</th>
-        <th scope="col">Auteur</th>
+        
         <th scope="col">Date</th>
         
       </tr>
@@ -30,7 +45,7 @@
         <td>{{p.id}}</td>
         <td>{{p.titre}}</td>
         <td>{{p.description}}</td>
-        <td>{{p.Auteur}}</td>
+     
         <td>{{p.Date |date('Y-M-D') }}</td>
         
         <td><a class="btn btn-outline-warning m-" href="{{ path ('detailPostBack',{'id':p.Id}) }}">Comments</a>

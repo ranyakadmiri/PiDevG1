@@ -83,15 +83,14 @@ class CommentaireType extends AbstractType
                 'attr' => [
                     'class' => 'hidden-rate-field', // Classe CSS pour identifier le champ dans le JavaScript
                 ],
-            ]);
-            
+            ])
     
-            /* ->add('Post', TypeEntityType::class, [
+            ->add('Post', TypeEntityType::class, [
                 // looks for choices from this entity
                 'class' => Post::class ,  'choice_label' => 'titre',
                 'constraints' => [
                     new NotBlank(['message' => 'Le post doit être sélectionné']) ]       
-            ]); */
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -1,4 +1,3 @@
-
 {% extends 'base.html.twig' %}
 
 {% block body %}
@@ -41,7 +40,7 @@ body{
 }
 
 .avatar img {
-    max-width: 60%;
+    max-width: 100%;
 }
 
 .img-circle {
@@ -277,7 +276,7 @@ background:#ddd;
                         <i class="fa fa-close"></i>
                     </a>
 
-                    <a  href="{{ path ('detailPost',{'id':p.Id}) }}" class="btn btn-warning tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Detail">
+                    <a  href="{{ path ('detailPost',{'id': p.Id}) }}" class="btn btn-warning tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Detail">
                         <i class="fa fa-comments-o" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -285,6 +284,7 @@ background:#ddd;
                 <div class="testimonial-main col-md-7">
                     <h4 class="media-heading">{{p.titre}}</h4>
                     <p class="testimony-body">{{p.Date |date('Y-M-D') }}</p>
+                   
                     <p class="testimony-body">{{p.description}}</p>
                 </div>
             </div>
@@ -312,6 +312,7 @@ background:#ddd;
 <table border="5">
     <tr>
     <th> ID_Post </th>
+    <th > Auteur</th>
     <th > Date</th>
     <th> Titre_Post </th>
     <th > Description</th>
@@ -321,6 +322,7 @@ background:#ddd;
     
    <tr>{% for p in post  %}</tr> 
     <td> {{p.Id}}</td>
+    <td> {{p.Auteur}}</td>  
     <td> {{p.Date |date('d-m-Y') }}</td>  
     <td> {{p.titre}}</td>  
     <td> {{p.description}}</td>  
