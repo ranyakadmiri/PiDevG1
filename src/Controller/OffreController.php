@@ -54,7 +54,23 @@ class OffreController extends AbstractController
             'offres' => $offres,
         ]);
     }
-    
+    #[Route('/AddOffre', name: 'app_AddOffre')]
+
+    public function  AddOffre (Request  $request)
+    {
+        $offre=new Offre();
+        $form =$this->CreateForm(OffreType::class,$offre);
+     // $form->add('Ajouter',SubmitType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($offre);
+            $em->flush();
+            return $this->redirectToRoute('app_show');
+        }
+        return $this->render('offre/Add.html.twig',['form'=>$form->createView()]);
+    }
 
     #[Route('/edit/{id}', name: 'app_EditOffre')]
     public function edit(OffreRepository$repository, $id, Request $request)
@@ -105,6 +121,7 @@ class OffreController extends AbstractController
         $Offres = $OffRepo->findAll(Offre::class);
         return $this->render('back/listOffre.html.twig', ['offres' => $Offres]);
     }
+
     #[Route('/AddOffreBack', name: 'app_AddOffreBack')]
 
     public function  AddBack (Request  $request)
