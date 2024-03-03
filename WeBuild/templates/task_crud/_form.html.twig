@@ -1,0 +1,73 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+<div class="section-body mt-3">
+    <div class="container-fluid">
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="todo-list" role="tabpanel">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive todo_list">
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label">Todo Name <span class="text-danger">*</span></label>
+                                <div class="col-md-7">
+                                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(form.name) }}
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label">Priority <span class="text-danger">*</span></label>
+                                <div class="col-md-7">
+                                    {{ form_widget(form.Priority, {'attr': {'class': 'form-control show-tick'}}) }}
+                                    {{ form_errors(form.Priority) }}
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label">Status <span class="text-danger">*</span></label>
+                                <div class="col-md-7">
+                                    <div class="custom-control custom-checkbox">
+                                        {{ form_widget(form.Status, {'attr': {'class': 'custom-control-input', 'id': 'status-checkbox'}}) }}
+                                        <label class="custom-control-label" for="status-checkbox">Checked</label>
+                                    </div>
+                                    {{ form_errors(form.Status) }}
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label">Select Chantier <span class="text-danger">*</span></label>
+                                <div class="col-md-7">
+                                    {{ form_widget(form.id_chantier, {'attr': {'class': 'form-control show-tick'}}) }}
+                                    {{ form_errors(form.id_chantier) }}
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label">Description <span class="text-danger">*</span></label>
+                                <div class="col-md-7">
+                                    {{ form_widget(form.Description, {'attr': {'class': 'form-control no-resize', 'rows': 4, 'placeholder': 'Please type what you want...'}}) }}
+                                    {{ form_errors(form.Description) }}
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label">Due <span class="text-danger">*</span></label>
+                                <div class="col-md-7">
+                                    <div class="input-daterange input-group" data-provide="datepicker">
+                                        {{ form_widget(form.Due, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_errors(form.Due) }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <br>
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label"></label>
+                                <div class="col-md-7">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-outline-secondary">Cancel</button>
+                                </div>
+                            </div>
+                        </div></div></div></div></div></div></div>
+{{ form_end(form) }}

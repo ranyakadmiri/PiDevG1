@@ -1,0 +1,46 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Task{% endblock %}
+
+{% block body %}
+    <h1>Task</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ task.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ task.name }}</td>
+            </tr>
+            <tr>
+                <th>Priority</th>
+                <td>{{ task.Priority }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ task.Status ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ task.Description }}</td>
+            </tr>
+            <tr>
+                <th>Due</th>
+                <td>{{ task.Due ? task.Due|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>REf_chantier</th>
+                <td>{{ task.getIdChantier() }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('Admin_task_index') }}">back to list</a>
+
+    <a href="{{ path('Admin_Update_Task', {'id': task.id}) }}">edit</a>
+
+    {{ include('back_crud_task/_delete_form.html.twig') }}
+{% endblock %}
