@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WeBuild - Candidature</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .content {
+            margin-bottom: 20px;
+        }
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .content th, .content td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="title">WeBuild - Candidature</div>
+        <div>{{ "now"|date("d/m/Y H:i") }}</div> {# Date et heure actuelles #}
+    </div>
+    <div class="content">
+        <table>
+            
+            <tr>
+                <th>Description</th>
+                <td>{{ candidature.description }}</td>
+            </tr>
+            <tr>
+                <th>Compétences</th>
+                <td>{{ candidature.competences }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ candidature.email }}</td>
+            </tr>
+            <tr>
+                <th>Offre</th>
+                <td>{{ candidature.offre_id }}</td> 
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

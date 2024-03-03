@@ -1,0 +1,87 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Modifier votre candidature!{% endblock %}
+
+{% block body %}
+<style>
+    /* Custom CSS */
+    .form-container {
+        background-color: #13232e; /* Dark background color */
+        padding: 20px; /* Add padding for spacing */
+        border-radius: 10px; /* Add border radius for rounded corners */
+    }
+
+    .form-title {
+        color: white; /* White text color */
+        font-size: 24px; /* Font size */
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group input[type="email"],
+    .form-group textarea {
+        background-color: #f0f0f0; /* Light grey background for input fields */
+        border-color: white; /* White border color */
+        color: black; /* Black text color */
+        border-radius: 5px; /* Add border radius for rounded corners */
+    }
+
+    .form-group input[type="text"]:focus,
+    .form-group input[type="number"]:focus,
+    .form-group input[type="email"]:focus,
+    .form-group textarea:focus {
+        border-color: #007bff; /* Blue border color when input is focused */
+    }
+
+    .btn-primary {
+        color: white; /* White text color */
+        border-color: white; /* White border color */
+        background-color: transparent; /* Transparent background */
+        border-radius: 5px; /* Add border radius for rounded corners */
+    }
+
+    .btn-primary:hover {
+        background-color: #dc3545; /* Red background color on hover */
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card form-container"> <!-- Apply custom class -->
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4 form-title">Modifier votre candidature</h2> <!-- Apply custom class -->
+                    {{ form_start(f) }}
+                   
+                    <div class="form-group">
+                        {{ form_label(f.Description) }}
+                        {{ form_widget(f.Description, { 'attr': {'class': 'form-control'} }) }}
+                        {{ form_errors(f.Description) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(f.Competences) }}
+                        {{ form_widget(f.Competences, { 'attr': {'class': 'form-control'} }) }}
+                        {{ form_errors(f.Competences) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(f.email) }}
+                        {{ form_widget(f.email, { 'attr': {'class': 'form-control'} }) }}
+                        {{ form_errors(f.email) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(f.offre) }}
+                        {{ form_widget(f.offre, { 'attr': {'class': 'form-control'} }) }}
+                        {{ form_errors(f.offre) }}
+                    </div>
+                    <div class="text-center">
+                    <br>
+                        <button type="submit" class="btn btn-primary">Modifier</button>
+                  </br>
+                    </div>
+                    {{ form_end(f) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -87,12 +87,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Location::class, mappedBy: 'user')]
     private Collection $Location;
 
+    #[ORM\OneToMany(targetEntity: Candidature::class, mappedBy: 'user')]
+    private Collection $Candidature;
+
     public function __construct()
     {
         $this->Post = new ArrayCollection();
         $this->Commentaire = new ArrayCollection();
         $this->Demande = new ArrayCollection();
         $this->Location = new ArrayCollection();
+        $this->Candidature = new ArrayCollection();
     }
 
 
@@ -419,6 +423,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($location->getUser() === $this) {
                 $location->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Candidature>
+     */
+    public function getCandidature(): Collection
+    {
+        return $this->Candidature;
+    }
+
+    public function addCandidature(Candidature $candidature): static
+    {
+        if (!$this->Candidature->contains($candidature)) {
+            $this->Candidature->add($candidature);
+            $candidature->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidature(Candidature $candidature): static
+    {
+        if ($this->Candidature->removeElement($candidature)) {
+            // set the owning side to null (unless already changed)
+            if ($candidature->getUser() === $this) {
+                $candidature->setUser(null);
             }
         }
 

@@ -1,0 +1,91 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Adding Offer!{% endblock %}
+
+{% block body %}
+<style>
+    /* Custom CSS */
+    .form-container {
+        background-color: #13232e; /* Grey background color */
+        padding: 20px; /* Add padding for spacing */
+        border-radius: 10px; /* Add border radius for rounded corners */
+    }
+
+    .form-title {
+        color: white; /* White text color */
+        font-size: 24px; /* Font size */
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group input[type="email"],
+    .form-group textarea {
+        background-color: white; /* White background color for input fields */
+        color: black; /* Black text color */
+        border-radius: 5px; /* Add border radius for rounded corners */
+    }
+
+    .form-group input[type="text"]:focus,
+    .form-group input[type="number"]:focus,
+    .form-group input[type="email"]:focus,
+    .form-group textarea:focus {
+        border-color: #007bff; /* Blue border color when input is focused */
+    }
+
+    .btn-primary {
+        color: white; /* White text color */
+        border-color: white; /* White border color */
+        background-color: transparent; /* Transparent background */
+        border-radius: 5px; /* Add border radius for rounded corners */
+    }
+
+    .btn-primary:hover {
+        background-color: #dc3545; /* Red background color on hover */
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card form-container"> <!-- Apply custom class -->
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4 form-title">Ajouter un Offre</h2> <!-- Apply custom class -->
+                    {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_label(form.title) }}
+                        {{ form_widget(form.title) }}
+                        {{ form_errors(form.title) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.description) }}
+                        {{ form_widget(form.description) }}
+                        {{ form_errors(form.description) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.salary) }}
+                        {{ form_widget(form.salary) }}
+                        {{ form_errors(form.salary) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.latitude) }}
+                        {{ form_widget(form.latitude) }}
+                        {{ form_errors(form.latitude) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.longtitude) }}
+                        {{ form_widget(form.longtitude) }}
+                        {{ form_errors(form.longtitude) }}
+                    </div>
+                 
+                    <div class="text-center">
+                    <br>
+                       <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </br>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
