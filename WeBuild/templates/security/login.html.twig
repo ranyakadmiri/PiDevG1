@@ -9,9 +9,11 @@
     {% endif %}
 
     {% if app.user %}
+    
         <div class="mb-3">
             You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
+    
     {% endif %}
 
     <h1 class="h3 mb-3 font-weight-normal">Please sign in or <a href="{{ path('app_register')}}">Register</a></h1>
@@ -25,7 +27,7 @@
         </div>
     </div>
     <div class="mb-3">
-        <a href="{{ path('app_forgot_password_request') }}">forgot password ?</a>
+        <a href="{{ path('app_forgot_password_request') }}">forgot password ? </a>
     </div>
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"

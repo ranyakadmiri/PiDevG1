@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_back.html.twig' %}
 
 {% block title %}Hello AccountController!{% endblock %}
 
@@ -51,49 +51,10 @@
             </div>
             <div class="col-lg-6">
                 <div class="about-avatar" style="padding: 10px;">
-                    <img src="{{ asset('back/img/testimonial-1.jpg') }}" title="" alt="" style="max-width: 500px; height: 450px;">
+                    <img src="{{ asset('back/img/hadil.jpg') }}" title="" alt="" style="max-width: 500px; height: 450px;">
                 </div>
             </div>
         </div>
-        <div class="counter">
-            <div class="row">
-                <div class="col-6 col-lg-3">
-                    <div class="count-data text-left">
-                        <h6 class="count h2" data-to="500" data-speed="500">500</h6>
-                        <p class="m-0px font-w-600">
-    <a href="{{ path('chantier_index') }}">Projects</a>
-</p>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3">
-                    <div class="count-data text-left">
-                        <h6 class="count h2" data-to="150" data-speed="150">150</h6>
-                        <p class="m-0px font-w-600">
-    <a href={{ path('app_showOff') }}>Job Offers</a>
-</p>
-                        
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3">
-                    <div class="count-data text-left">
-                        <h6 class="count h2" data-to="850" data-speed="850">850</h6>
-                         <p class="m-0px font-w-600">
-    <a  href="{{path('app_location')}}" >Matériel</a>
-</p>
-                        
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3">
-                    <div class="count-data text-left">
-                        <h6 class="count h2" data-to="190" data-speed="190">190</h6>
-                        <p class="m-0px font-w-600">
-    <a  href="{{path('display')}}" >Assurance</a>
-</p>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        
 </section>
 {% endblock %}

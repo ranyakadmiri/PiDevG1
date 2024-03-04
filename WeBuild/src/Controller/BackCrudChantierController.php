@@ -33,6 +33,8 @@ class BackCrudChantierController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($chantier);
+            $user=$this->getUser();
+            $chantier-> setUser($user);
             $entityManager->flush();
             $flashy->success('Chantier Created Successfully!');
             return $this->redirectToRoute('admin_project_index', [], Response::HTTP_SEE_OTHER);

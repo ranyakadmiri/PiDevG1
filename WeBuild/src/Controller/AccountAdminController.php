@@ -6,14 +6,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-#[IsGranted ('ROLE_ADMIN')]
-class BackController extends AbstractController
+#[IsGranted('ROLE_ADMIN')]
+class AccountAdminController extends AbstractController
 {
-    #[Route('/back', name: 'app_back')]
+    #[Route('/account/admin', name: 'app_account_admin')]
     public function index(): Response
     {
-        return $this->render('back/index.html.twig', [
-            'controller_name' => 'BackController',
+        return $this->render('account_admin/index.html.twig', [
+            'controller_name' => 'AccountAdminController',
         ]);
     }
 }

@@ -80,22 +80,25 @@
             <div class="container-fluid bg-primary">
                 <div class="container">
                     <nav class="navbar navbar-dark navbar-expand-lg py-0 ">
-                        <a href="index.html" class="navbar-brand">
+                        <a  class="navbar-brand" href="{{ path('app_front') }}" >
                             <h1 class="text-white fw-bold d-block">We<span class="text-secondary">Build</span></h1>
                         </a>
                         <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                             <span class="navbar-toggler-icon"></span>
                         </button>
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
                             <div class="navbar-nav ms-auto mx-xl-auto p-0">
                                 <a href="/front" class="nav-item nav-link active text-secondary">Home</a>
-                               <div class="nav-item dropdown">
+                                
+                        <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Projects</a>
                             <div class="dropdown-menu rounded">
                                 <a href="{{ path('chantier_index') }}" class="dropdown-item">Project</a>
                                 <a href="{{ path('Task_index') }}" class="dropdown-item">Task</a>
                             </div>
                         </div>
+                    
                                  <a href={{ path('app_showOff') }} class="nav-item nav-link" >Job Offers</a>
                         <a href={{ path('app_showCan') }}  class="nav-item nav-link">Mes Candidatures</a>
                                 <a href="{{path('app_location')}}"  class="nav-item nav-link  active text-secondary">Packs Materiel</a>
@@ -112,6 +115,7 @@
                                 </div> 
                             </div>
                         </div>
+                        {% endif %}
                         <div class="d-none d-xl-flex flex-shirink-0">
                             <div id="phone-tada" class="d-flex align-items-center justify-content-center me-4">
                                 <a href="" class="position-relative animated tada infinite">
@@ -133,21 +137,27 @@
                                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 profile-menu">
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <!-- <div class="profile-pic">
-                                                 <img src="img/admin-22.jpg" alt="Profile Picture">
-                                             </div>-->
+                                            
 
                                             <i class="fas fa-user"></i>
                                         </a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="#"><i class="fas fa-sliders-h fa-fw"></i> Account</a></li>
-                                            {#<li><a class="dropdown-item" href="{{ path('app_user_edit', {'id': app.user.id}) }}"><i class="fas fa-cog fa-fw"></i> Settings</a></li>#} 
-                                            <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item"  href="{{ path('app_login') }}"><i class="fas fa-sliders-h fa-fw"></i> Login</a></li>
-                                            <li><a class="dropdown-item" href="{{ path('app_register') }}"><i class="fas fa-cog fa-fw"></i> Register</a></li>
-                                            <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a></li>
-                                        </ul>
+                                                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                    <li><a class="dropdown-item" href="{{ path('app_account') }}"><i class="fas fa-sliders-h fa-fw"></i> Account</a></li>
+                                    {# <li><a class="dropdown-item" href="{{ path('app_user_edit', {'id': app.user.id}) }}"><i class="fas fa-cog fa-fw"></i> Settings</a></li> #}
+                                    <li><hr class="dropdown-divider"></li>
+                                {% endif %}
+                                {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item"  href="{{ path('app_login') }}"><i class="fas fa-sliders-h fa-fw"></i> Login</a></li>
+                                    <li><a class="dropdown-item" href="{{ path('app_register') }}"><i class="fas fa-cog fa-fw"></i> Register</a></li>
+                                {% endif %}
+                                <li><hr class="dropdown-divider"></li>
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                    <li><a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a></li>
+                                {% endif %}
+                            </ul>
+
                                     </li>
                                 </ul>
                             </div>

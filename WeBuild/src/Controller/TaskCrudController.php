@@ -75,6 +75,8 @@ class TaskCrudController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($task);
+            $user=$this->getUser();
+            $task-> setUser($user);
             $entityManager->flush();
             $flashy->success('Task Created Successfully!');
             return $this->redirectToRoute('Task_index', [], Response::HTTP_SEE_OTHER);

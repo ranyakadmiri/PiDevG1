@@ -44,6 +44,9 @@ class Chantier
     #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'id_chantier', orphanRemoval: true)]
     private Collection $tasks;
 
+    #[ORM\ManyToOne(inversedBy: 'Chantier')]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
@@ -134,6 +137,18 @@ class Chantier
                 $task->setIdChantier(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

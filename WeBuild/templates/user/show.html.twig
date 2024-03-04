@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_back.html.twig' %}
 
 {% block title %}User{% endblock %}
 
@@ -16,10 +16,10 @@
                 <td>{{ user.email }}</td>
             </tr>
            
-            <tr>
+            {# <tr>
                 <th>Password</th>
                 <td>{{ user.password }}</td>
-            </tr>
+            </tr> #}
             <tr>
                 <th>IsVerified</th>
                 <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
@@ -62,10 +62,14 @@
             </tr>
         </tbody>
     </table>
+   
+   
+
 
     <a href="{{ path('app_user_index') }}">back to list</a>
 
     <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+    
 
     {{ include('user/_delete_form.html.twig') }}
 {% endblock %}

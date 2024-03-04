@@ -52,6 +52,9 @@ class Task
     #[ORM\JoinColumn(nullable: false)]
     private ?Chantier $id_chantier = null;
 
+    #[ORM\ManyToOne(inversedBy: 'Task')]
+    private ?User $user = null;
+
 
 
     public function getId(): ?int
@@ -127,6 +130,18 @@ class Task
     public function setIdChantier(?Chantier $id_chantier): static
     {
         $this->id_chantier = $id_chantier;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

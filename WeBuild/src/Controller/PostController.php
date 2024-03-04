@@ -147,6 +147,9 @@ public function showPost(int $postId, PostRepository $postRepo, CommentaireRepos
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()) {
+            $user=$this->getUser();
+            $post-> setUser($user);
+
             $em->persist($post);
             $em->flush();
             return $this->redirectToRoute('showPost');  

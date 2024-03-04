@@ -90,6 +90,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Candidature::class, mappedBy: 'user')]
     private Collection $Candidature;
 
+    #[ORM\OneToMany(targetEntity: Chantier::class, mappedBy: 'user')]
+    private Collection $Chantier;
+
+    #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'user')]
+    private Collection $Task;
+
     public function __construct()
     {
         $this->Post = new ArrayCollection();
@@ -97,6 +103,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->Demande = new ArrayCollection();
         $this->Location = new ArrayCollection();
         $this->Candidature = new ArrayCollection();
+        $this->Chantier = new ArrayCollection();
+        $this->Task = new ArrayCollection();
     }
 
 
@@ -453,6 +461,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($candidature->getUser() === $this) {
                 $candidature->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Chantier>
+     */
+    public function getChantier(): Collection
+    {
+        return $this->Chantier;
+    }
+
+    public function addChantier(Chantier $chantier): static
+    {
+        if (!$this->Chantier->contains($chantier)) {
+            $this->Chantier->add($chantier);
+            $chantier->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChantier(Chantier $chantier): static
+    {
+        if ($this->Chantier->removeElement($chantier)) {
+            // set the owning side to null (unless already changed)
+            if ($chantier->getUser() === $this) {
+                $chantier->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Task>
+     */
+    public function getTask(): Collection
+    {
+        return $this->Task;
+    }
+
+    public function addTask(Task $task): static
+    {
+        if (!$this->Task->contains($task)) {
+            $this->Task->add($task);
+            $task->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTask(Task $task): static
+    {
+        if ($this->Task->removeElement($task)) {
+            // set the owning side to null (unless already changed)
+            if ($task->getUser() === $this) {
+                $task->setUser(null);
             }
         }
 

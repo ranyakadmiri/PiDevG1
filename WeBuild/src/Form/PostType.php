@@ -40,19 +40,7 @@ class PostType extends AbstractType
                 ]),
             ],
         ])
-          /*  ->add('auteur')*/
-          ->add('auteur', TextType::class, [
-            'constraints' => [
-                new Length([
-                    'min' => 2,
-                    'minMessage' => 'L\'auteur doit contenir au moins {{ limit }} lettres',
-                ]),
-                new Regex([
-                    'pattern' => '/^[a-zA-Z\s]+$/',
-                    'message' => 'L\'auteur doit contenir uniquement des lettres',
-                ]),
-            ],
-        ])
+          
             
            /* ->add('date')*/
            ->add('date', DateType::class, [
