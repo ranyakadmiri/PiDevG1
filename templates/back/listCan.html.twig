@@ -11,6 +11,22 @@
                    
                         <div class="bg-secondary rounded h-100 p-4">
                             <h6 class="mb-4">Mes Candidatures</h6>
+                            <div class="input-group">
+                            <input id="search-input" type="text" name="search" class="form-control" placeholder="Rechercher par titre...">
+                            <button id="search-button" type="submit" class="btn btn-primary">Rechercher</button>
+                        </div>
+                         <title>AJAX Search Example</title>
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script>
+                                $(document).ready(function() {
+                                    $("#search-input").on("keyup", function() {
+                                        var value = $(this).val().toLowerCase();
+                                        $("table tr").filter(function() {
+                                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                        });
+                                    });
+                                });
+                            </script>
                             <table class="table">
                                 <thead>
                                
