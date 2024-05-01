@@ -7,16 +7,23 @@
         "php": ">=7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "doctrine/annotations": "^2.0",
+        "doctrine/annotations": "*",
+        "doctrine/common": "^3.4",
         "doctrine/dbal": "3.8",
         "doctrine/doctrine-bundle": "^2.11",
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^3.0",
+        "dompdf/dompdf": "*",
+        "endroid/qr-code": "^5.0",
+        "endroid/qr-code-bundle": "^5.0",
+        "mercuryseries/flashy-bundle": "*",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.25",
-        "sensio/framework-extra-bundle": "^6.2",
+        "sensio/framework-extra-bundle": "*",
+        "sensiolabs/security-checker": "*",
+        "stripe/stripe-php": "*",
         "symfony/asset": "5.4.*",
-        "symfony/asset-mapper": "6.3.12",
+        "symfony/asset-mapper": "^6.3.12",
         "symfony/console": "5.4.*",
         "symfony/doctrine-messenger": "5.4.*",
         "symfony/dotenv": "5.4.*",
@@ -40,19 +47,24 @@
         "symfony/string": "5.4.*",
         "symfony/translation": "5.4.*",
         "symfony/twig-bundle": "5.4.*",
+        "symfony/twilio-notifier": "5.4.*",
         "symfony/ux-turbo": "^2.14",
         "symfony/validator": "5.4.*",
         "symfony/web-link": "5.4.*",
         "symfony/yaml": "5.4.*",
+        "symfonycasts/reset-password-bundle": "*",
+        "symfonycasts/verify-email-bundle": "*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "twilio/sdk": "*"
     },
     "config": {
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "php-http/discovery": true,
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "endroid/installer": true
         },
         "optimize-autoloader": true,
         "preferred-install": {
@@ -78,7 +90,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "security-checker security:check": "script"
         },
         "post-install-cmd": [
             "@auto-scripts"
@@ -101,7 +114,7 @@
         "symfony/browser-kit": "5.4.*",
         "symfony/css-selector": "5.4.*",
         "symfony/debug-bundle": "5.4.*",
-        "symfony/maker-bundle": "^1.50",
+        "symfony/maker-bundle": "*",
         "symfony/phpunit-bridge": "^7.0",
         "symfony/stopwatch": "5.4.*",
         "symfony/web-profiler-bundle": "5.4.*"

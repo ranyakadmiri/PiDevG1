@@ -1,0 +1,38 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Chantier{% endblock %}
+
+{% block body %}
+    <h1>Chantier</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ chantier.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ chantier.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ chantier.Description }}</td>
+            </tr>
+            <tr>
+                <th>Remuneration</th>
+                <td>{{ chantier.remuneration }}</td>
+            </tr>
+            <tr>
+                <th>Start_date</th>
+                <td>{{ chantier.StartDate ? chantier.StartDate|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_project_index') }}">back to list</a>
+
+    <a href="{{ path('Admin_Update_Chantier', {'id': chantier.id}) }}">edit</a>
+
+    {{ include('back_crud_chantier/_delete_form.html.twig') }}
+{% endblock %}

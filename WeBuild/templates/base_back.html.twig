@@ -30,9 +30,11 @@
 
         <!-- Customized Bootstrap Stylesheet -->
         <link href="{{ asset('back/css/bootstrap.min.css') }}" rel="stylesheet">
-
+             {# haithem  #}
+        <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
         <!-- Template Stylesheet -->
         <link href="{{ asset('back/css/style.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/stats.css') }}">
         {#  {{ encore_entry_link_tags('app') }}  #}
     {% endblock %}
 
@@ -58,36 +60,54 @@
             </a>
             <div class="d-flex align-items-center ms-4 mb-4">
                 <div class="position-relative">
-                    <img class="rounded-circle" src="{{ asset('back/img/hadil.jpg') }}" alt="" style="width: 40px; height: 40px;">
+                    <img class="rounded-circle" src="{{ asset('back/img/testimonial-1.jpg') }}" alt="" style="width: 40px; height: 40px;">
                     <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                 </div>
                 <div class="ms-3">
-                    <h6 class="mb-0">Miladi Hadil</h6>
+                    <h6 class="mb-0">{{app.user.nom}} {{app.user.prenom}}</h6>
                     <span>Admin</span>
                 </div>
             </div>
             <div class="navbar-nav w-100">
-                <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                <a href="back" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
                     <div class="dropdown-menu bg-transparent border-0">
-                        <a href="button.html" class="dropdown-item">Buttons</a>
-                        <a href="typography.html" class="dropdown-item">Typography</a>
-                        <a href="element.html" class="dropdown-item">Other Elements</a>
+                        <a href="{{ path ('stat') }} " class="dropdown-item">activite forum</a>
+                      
+                    
                     </div>
                 </div>
-                <a href="{{ path('app_utilisateur_index')}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Utilisateurs</a>
-                <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
-                <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
-                <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
-                <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
+                <a href="{{path('app_user_index')}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>GestionUser</a>
+                <a href="{{ path ('showPostBack') }} "class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>GestionForum</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Gestion Assurance</a>
                     <div class="dropdown-menu bg-transparent border-0">
-                        <a href="signin.html" class="dropdown-item">Sign In</a>
-                        <a href="signup.html" class="dropdown-item">Sign Up</a>
-                        <a href="404.html" class="dropdown-item">404 Error</a>
-                        <a href="blank.html" class="dropdown-item">Blank Page</a>
+                        <a href="{{path('app_show')}}" class="dropdown-item">Assurance</a>
+                        <a href="{{path('list_Demande')}}" class="dropdown-item">Demande assurance</a>
+                    </div>
+                    </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-tasks me-2"></i>Projects</a>
+                    <div class="dropdown-menu bg-transparent border-0">
+                        <a href="{{ path('admin_project_index') }}" class="dropdown-item">Projects</a>
+                        <a href="{{ path('Admin_task_index') }}" class="dropdown-item">Tasks</a>
+
+                    </div>
+                </div>
+                  <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Managements</a>
+                    <div class="dropdown-menu bg-transparent border-0">
+                        <a href={{ path('app_showOffreBack') }} class="dropdown-item">Gestion Offres</a>
+                        <a href={{ path('app_showCanBack') }} class="dropdown-item">Gestion Candidatures </a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Gestion Materiel</a>
+                    <div class="dropdown-menu bg-transparent border-0">
+                        <a href="{{path('app_materiel')}}" class="dropdown-item">Afficher Packs</a>
+                        <a href="{{path('ajouterMateriel')}}" class="dropdown-item">Ajouter Pack</a>
+                        <a href="{{path('locations')}}" class="dropdown-item">Location Logs</a>
                     </div>
                 </div>
             </div>
@@ -119,7 +139,7 @@
                     <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                         <a href="#" class="dropdown-item">
                             <div class="d-flex align-items-center">
-                                <img class="rounded-circle" src="{{ asset('back/img/lemsi.jpg') }}" alt="" style="width: 40px; height: 40px;">
+                                <img class="rounded-circle" src="{{ asset('back/img/mimi.jpg') }}" alt="" style="width: 40px; height: 40px;">
                                 <div class="ms-2">
                                     <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                     <small>15 minutes ago</small>
@@ -129,7 +149,7 @@
                         <hr class="dropdown-divider">
                         <a href="#" class="dropdown-item">
                             <div class="d-flex align-items-center">
-                                <img class="rounded-circle" src="{{ asset('back/img/hadil.jpg') }}" alt="" style="width: 40px; height: 40px;">
+                                <img class="rounded-circle" src="{{ asset('back/img/mimi.jpg') }}" alt="" style="width: 40px; height: 40px;">
                                 <div class="ms-2">
                                     <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                     <small>15 minutes ago</small>
@@ -139,7 +159,7 @@
                         <hr class="dropdown-divider">
                         <a href="#" class="dropdown-item">
                             <div class="d-flex align-items-center">
-                                <img class="rounded-circle" src="{{ asset('back/img/lemsi.jpg') }}" alt="" style="width: 40px; height: 40px;">
+                                <img class="rounded-circle" src="{{ asset('back/img/mimi.jpg') }}" alt="" style="width: 40px; height: 40px;">
                                 <div class="ms-2">
                                     <h6 class="fw-normal mb-0">Jhon send you a message</h6>
                                     <small>15 minutes ago</small>
@@ -176,13 +196,13 @@
                 </div>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <img class="rounded-circle me-lg-2" src="{{ asset('back/img/hadil.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                        <span class="d-none d-lg-inline-flex">Miladi Hadil</span>
+                        <img class="rounded-circle me-lg-2" src="{{ asset('back/img/testimonial-1.jpg') }}" alt="" style="width: 40px; height: 40px;">
+                        <span class="d-none d-lg-inline-flex">{{app.user.nom}} {{app.user.prenom}}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                        <a href="#" class="dropdown-item">My Profile</a>
-                        <a href="#" class="dropdown-item">Settings</a>
-                        <a href="#" class="dropdown-item">Log Out</a>
+                        <a href="{{ path('app_account_admin') }}" class="dropdown-item">My Profile</a>
+                        <a href= "{{ path('app_user_show', {'id': app.user.id}) }}"  class="dropdown-item">Settings</a>
+                        <a href="{{ path('app_logout') }}" class="dropdown-item">Log Out</a>
                     </div>
                 </div>
             </div>
@@ -205,7 +225,7 @@
                         &copy; <a href="#">WeBuild</a>, All Right Reserved.
                     </div>
                     <div class="col-12 col-sm-6 text-center text-sm-end">
-                        Designed By Lemsi & co
+                         
 
                     </div>
                 </div>
@@ -225,6 +245,13 @@
 </div>
 
     {% block javascripts %}
+
+    <!-- Flashy depends on jQuery -->
+        <script src="//code.jquery.com/jquery.js"></script>
+        <!-- Load Flashy default JavaScript -->
+        <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+        <!-- Include Flashy default partial -->
+        {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,0 +1,58 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %} AddPost {% endblock %}
+
+{% block body %}
+<style>
+
+  .hover {
+  color: orange;
+}
+</style>
+<div class="inner-sidebar-header justify-content-center">
+    <a href="{{path('showPost')}}">
+
+    <button class="btn btn-primary has-icon btn-block" type="button" data-toggle="modal" data-target="#threadModal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"fill="none"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-item nav-link">
+        </svg> RETOUR
+    </button>
+</a>
+<br>
+
+
+
+<div style="border: 1px black solid">
+  <span>
+    rate
+  </span>
+  <span class="rating" data-rating="0">
+    <i class="star" data-checked="false" data-rate="1">&#9733;</i>
+    <i class="star" data-checked="false" data-rate="2">&#9733;</i>
+    <i class="star" data-checked="false" data-rate="3">&#9733;</i>
+    <i class="star" data-checked="false" data-rate="4">&#9733;</i>
+    <i class="star" data-checked="false" data-rate="5">&#9733;</i>
+  </span>
+  <span>
+    <i class="rate">rate: 0</i>
+  </span>
+</div>
+
+<br />
+
+
+
+    <br>
+
+   
+{{ form(f, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }} 
+
+
+
+
+
+    
+{% endblock %}
+
+
+

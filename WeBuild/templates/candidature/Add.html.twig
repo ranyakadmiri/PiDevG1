@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Adding Candidature{% endblock %}
+
+{% block body %}
+<style>
+    /* Add your custom CSS here */
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Ajouter Votre Candidature</h2>
+                    {{ form_start(f) }}
+                   
+                    <div class="form-group">
+                        {{ form_label(f.Description) }}
+                        {{ form_widget(f.Description) }}
+                        {{ form_errors(f.Description) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(f.Competences) }}
+                        {{ form_widget(f.Competences) }}
+                        {{ form_errors(f.Competences) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(f.email) }}
+                        {{ form_widget(f.email) }}
+                        {{ form_errors(f.email) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(f.offre) }}
+                        {{ form_widget(f.offre) }}
+                        {{ form_errors(f.offre) }}
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                    {{ form_end(f) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

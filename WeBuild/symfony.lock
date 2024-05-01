@@ -17,7 +17,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "2.4",
-            "ref": "cc62b7e9470998c640ee99d284a013a676f1fc5e"
+            "ref": "191046a1fdd1a58fcca48d8bf2f58c45a93b1d00"
         },
         "files": [
             "./config/packages/doctrine.yaml",
@@ -37,6 +37,12 @@
             "./config/packages/doctrine_migrations.yaml",
             "./migrations/.gitignore"
         ]
+    },
+    "endroid/qr-code-bundle": {
+        "version": "5.0.1"
+    },
+    "mercuryseries/flashy-bundle": {
+        "version": "v5.1.0"
     },
     "phpunit/phpunit": {
         "version": "9.6",
@@ -62,6 +68,18 @@
         },
         "files": [
             "./config/packages/sensio_framework_extra.yaml"
+        ]
+    },
+    "sensiolabs/security-checker": {
+        "version": "6.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "4.0",
+            "ref": "160c9b600564faa1224e8f387d49ef13ceb8b793"
+        },
+        "files": [
+            "./config/packages/security_checker.yaml"
         ]
     },
     "symfony/console": {
@@ -256,8 +274,17 @@
             "./templates/base.html.twig"
         ]
     },
+    "symfony/twilio-notifier": {
+        "version": "5.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.0",
+            "ref": "10af129fcac6d00ffc9bb23d039d997dee35e657"
+        }
+    },
     "symfony/ux-turbo": {
-        "version": "v2.14.2"
+        "version": "v2.14.0"
     },
     "symfony/validator": {
         "version": "5.4",
@@ -284,17 +311,20 @@
             "./config/routes/web_profiler.yaml"
         ]
     },
-    "symfony/webapp-pack": {
-        "version": "1.3",
+    "symfonycasts/reset-password-bundle": {
+        "version": "1.20",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "1.0",
-            "ref": "aece95c8a188f6e6d04f01ccb8678d1764fd2642"
+            "ref": "97c1627c0384534997ae1047b93be517ca16de43"
         },
         "files": [
-            "./config/packages/messenger.yaml"
+            "./config/packages/reset_password.yaml"
         ]
+    },
+    "symfonycasts/verify-email-bundle": {
+        "version": "v1.16.2"
     },
     "twig/extra-bundle": {
         "version": "v3.8.0"

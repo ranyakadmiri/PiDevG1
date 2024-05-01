@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Adding Offer!{% endblock %}
+
+{% block body %}
+<style>
+    /* Add your custom CSS here */
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4" style="font-size: 24px;">Ajouter un Offre</h2>
+                    {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_label(form.title) }}
+                        {{ form_widget(form.title) }}
+                        {{ form_errors(form.title) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.description) }}
+                        {{ form_widget(form.description) }}
+                        {{ form_errors(form.description) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.salary) }}
+                        {{ form_widget(form.salary) }}
+                        {{ form_errors(form.salary) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.latitude) }}
+                        {{ form_widget(form.latitude) }}
+                        {{ form_errors(form.latitude) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.longtitude) }}
+                        {{ form_widget(form.longtitude) }}
+                        {{ form_errors(form.longtitude) }}
+                    </div>
+                 
+                   <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

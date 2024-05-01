@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+{% block title %}WeBuild - Assurance{% endblock %}
+
+
+
+{% block body %}
+
+<li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <!-- <div class="profile-pic">
+                                         <img src="img/admin-22.jpg" alt="Profile Picture">
+                                     </div>-->
+
+                                    <i class="fas fa-sliders-h fa-fw"></i>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                   
+                                    <li><a class="dropdown-item" href="{{ path('tri') }}" onclick="window.location.href='{{ path('tridesc') }}'"><i class="fas fa-sliders-h fa-fw"></i> franchise descendante</a></li>
+                                    <li><a class="dropdown-item" href="{{ path('tri') }}" onclick="window.location.href='{{ path('tri') }}'"><i class="fas fa-sliders-h fa-fw"></i> franchise ascendante</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{{ path('display') }}"><i class="fas fa-sign-out-alt fa-fw"></i> Assurance</a></li>
+                                </ul>
+                            </li> 
+                
+<!-- Services Start -->
+    <div class="container-fluid services py-5 mb-5">
+        <div class="container">
+            <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
+                <h5 class="text-primary">Nos assurance</h5>
+                <h1>Assurances adaptée à vos attentes</h1>
+            </div>
+            <div class="row g-5 services-inner">
+             {% for assurance in assurances %}
+                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s">
+                    <div class="services-item bg-light">
+                        <div class="p-4 text-center services-content">
+                            <div class="services-content-icon">
+                                <!-- <i class="fa fa-code fa-7x mb-4 text-primary"></i>-->
+                                 <img src="{{ asset ('front/img/project-1.jpg')}}" class="img-fluid w-100 rounded" alt="">
+                                <h4 class="mb-3">{{assurance.nom}}</h4>
+                                <h4 class="mb-3">{{assurance.franchise}}</h4>
+                                <p class="mb-4">{{assurance.description}}</p>
+                                <button type="button" class="btn btn-outline-warning m-2" onclick="window.location.href='{{ path('depodem', {'id': assurance.id}) }}'" >Deposer une demande</button> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 {% endfor %}
+             
+                
+               
+                
+         </div>
+           
+        </div>
+    </div>
+    <!-- Services End -->
+
+
+
+{% endblock %}

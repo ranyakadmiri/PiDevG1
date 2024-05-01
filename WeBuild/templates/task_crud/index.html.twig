@@ -1,0 +1,300 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Task index{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ asset('front/css/main.css') }}"/>
+    <h1>Task index</h1>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendarEl = document.getElementById('calendar')
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                timeZone: 'Europ/Paris',
+                headerToolbar: {
+                    start : 'prev,next today',
+                    center: 'title',
+                    end: 'dayGridMonth, timeGridWeek'
+                },
+                events:{{ data_x | raw }}
+            })
+            calendar.render()
+        })
+
+    </script>
+    <a href="{{ path('Task_add') }}" class="btn btn-outline-secondary">add task</a>
+
+
+    <br>
+
+
+    <!-- form End -->
+
+
+
+    <!-- to do list -->
+    <div class="section-body mt-3">
+        <div class="container-fluid">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="todo-list" role="tabpanel">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive todo_list">
+                                <table class="table table-hover table-striped table-vcenter mb-0 text-nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th>name</th>
+
+                                        <th class="w150 text-right">Description</th>
+                                        <th class="w100">Due</th>
+                                        <th class="w100">Priority</th>
+                                        <th class="w80">Empl</th>
+                                        <th>actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for task in tasks %}
+                                        <tr>
+                                            <td>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" {% if task.Status == 'yes' %} checked {% endif %}>
+                                                    <span class="custom-control-label">{{ task.name }}</span>
+                                                </label>
+                                            </td>
+
+                                            <td>
+
+
+                                                <span class="custom-control-label">{{ task.Description }}</span>
+                                                </label>
+                                            </td>
+                                            <td class="text-right">{{ task.Due ? task.Due|date('Y-m-d') : '' }}</td>
+                                            <td><span class="riskSpan" id="riskSpan_{{ loop.index }}">{{ task.Priority }}</span></td>
+
+                                            <td>
+                                                <span class="avatar avatar-pink"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name">HL</span>
+                                            </td>
+                                            <td>
+                                                <a href="{{ path('Task_Show', {'id': task.id}) }}">show</a>
+                                                <a href="{{ path('Task_Update', {'id': task.id}) }}">edit</a>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="7">no records found</td>
+                                        </tr>
+                                    {% endfor %}
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- calender -->
+
+    <br>
+    <!-- calender -->
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+    <div class="example-wrapper">
+        <canvas id="myChart" data-yes="{{ dataYes }}" data-no="{{ dataNo }}"></canvas>
+    </div>
+    <div class="example-wrapper">
+    <div id='calendar'></div>
+    </div>
+    <!-- to do ajout -->
+    <div class="section-body mt-3">
+        <div class="container-fluid">
+            <div class="tab-content">
+                <div class="tab-pane fade" id="todo-list" role="tabpanel">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive todo_list">
+                                <table class="table table-hover table-striped table-vcenter mb-0 text-nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="w150 text-right">Due</th>
+                                        <th class="w100">Priority</th>
+                                        <th class="w80"><i class="icon-user"></i></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked="">
+                                                <span class="custom-control-label">Report Panel Usag</span>
+                                            </label>
+                                        </td>
+                                        <td class="text-right">Feb 12-2019</td>
+                                        <td><span class="tag tag-danger ml-0 mr-0">HIGH</span></td>
+                                        <td>
+                                            <span class="avatar avatar-pink" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name">NG</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
+                                                <span class="custom-control-label">Report Panel Usag</span>
+                                            </label>
+                                        </td>
+                                        <td class="text-right">Feb 18-2019</td>
+                                        <td><span class="tag tag-warning ml-0 mr-0">MED</span></td>
+                                        <td>
+                                            <img src="assets/images/xs/avatar1.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="avatar" data-original-title="Avatar Name">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked="">
+                                                <span class="custom-control-label">New logo design for Angular Admin</span>
+                                            </label>
+                                        </td>
+                                        <td class="text-right">March 02-2019</td>
+                                        <td><span class="tag tag-success ml-0 mr-0">High</span></td>
+                                        <td>
+                                            <img src="assets/images/xs/avatar2.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="avatar" data-original-title="Avatar Name">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked="">
+                                                <span class="custom-control-label">Report Panel Usag</span>
+                                            </label>
+                                        </td>
+                                        <td class="text-right">Feb 12-2019</td>
+                                        <td><span class="tag tag-danger ml-0 mr-0">HIGH</span></td>
+                                        <td>
+                                            <span class="avatar avatar-pink" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name">NG</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
+                                                <span class="custom-control-label">Report Panel Usag</span>
+                                            </label>
+                                        </td>
+                                        <td class="text-right">Feb 18-2019</td>
+                                        <td><span class="tag tag-warning ml-0 mr-0">MED</span></td>
+                                        <td>
+                                            <img src="assets/images/xs/avatar3.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="avatar" data-original-title="Avatar Name">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked="">
+                                                <span class="custom-control-label">New logo design for Angular Admin</span>
+                                            </label>
+                                        </td>
+                                        <td class="text-right">March 02-2019</td>
+                                        <td><span class="tag tag-success ml-0 mr-0">High</span></td>
+                                        <td>
+                                            <span class="avatar avatar-blue" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name">NG</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
+                                                <span class="custom-control-label">Design PSD files for Angular Admin</span>
+                                            </label>
+                                        </td>
+                                        <td class="text-right">March 20-2019</td>
+                                        <td><span class="tag tag-warning ml-0 mr-0">MED</span></td>
+                                        <td>
+                                            <img src="assets/images/xs/avatar4.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="avatar" data-original-title="Avatar Name">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
+                                                <span class="custom-control-label">Design PSD files for Angular Admin</span>
+                                            </label>
+                                        </td>
+                                        <td class="text-right">March 20-2019</td>
+                                        <td><span class="tag tag-warning ml-0 mr-0">MED</span></td>
+                                        <td>
+                                            <img src="assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="avatar" data-original-title="Avatar Name">
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+        <!-- calander -->
+
+
+       {#  <div id="calendar-holder"></div>#}
+
+
+
+
+
+
+        <!-- todo list End -->
+
+        <!-- <input id="taskInput" placeholder="Place your task here"><br>
+         <input id="taskPriority" placeholder="Place task priority (1-10)"><br>
+         <button id="addTaskButton">Add task</button>
+
+         <ul id="taskList">
+
+         </ul>
+
+         <button id="removeFinishedTasksButton">Remove finished tasks</button>
+     -->
+
+        {% for task in tasks %}
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    let riskLevel = "{{ task.Priority|upper }}"; // Fetch the risk level from PHP and convert to uppercase
+                    let spanElement = document.querySelector('#riskSpan_{{ loop.index }}');
+
+                    if (spanElement) {
+                        spanElement.classList.remove('tag', 'tag-danger', 'tag-warning', 'tag-success');
+
+                        if (riskLevel === "LOW") {
+                            spanElement.classList.add('tag', 'tag-danger', 'ml-0', 'mr-0');
+                        } else if (riskLevel === "MED") {
+                            spanElement.classList.add('tag', 'tag-warning', 'ml-0', 'mr-0');
+                        } else if (riskLevel === "HIGH") {
+                            spanElement.classList.add('tag', 'tag-success', 'ml-0', 'mr-0');
+                        }
+                    }
+                });
+            </script>
+        {% endfor %}
+
+    </div>
+{% endblock %}

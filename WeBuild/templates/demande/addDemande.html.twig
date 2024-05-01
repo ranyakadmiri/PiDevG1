@@ -1,0 +1,58 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Hello DemandeController!{% endblock %}
+
+{% block body %}
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Ajout Demande</h6>
+
+                {{ form_start(formdemande) }}
+                
+                {# libelle field with JavaScript input control for uppercase, lowercase alphabet, and numbers #}
+                {{ form_row(formdemande.Montant, { 'attr': {'class': 'form-control mb-3', 'pattern': '^[a-zA-Z0-9]+$'} }) }}
+
+                {# description field without specific input control #}
+                {{ form_row(formdemande.commentaire, { 'attr': {'class': 'form-control mb-3'} }) }}
+
+                {# prix field with JavaScript input control for numbers, ',' and '.' #}
+              
+
+                {# image field without specific input control #}
+                {{ form_row(formdemande.dateDebut, { 'attr': {'class': 'form-control mb-3'} }) }}
+                {{ form_row(formdemande.dateFin, { 'attr': {'class': 'form-control mb-3'} }) }}
+                  {{ form_row(formdemande.Assurance)}}
+                   {{ form_row(formdemande.Ajouter)}}
+               
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript code to enhance input controls
+        document.addEventListener('DOMContentLoaded', function () {
+            // Function to restrict libelle to uppercase, lowercase alphabet, and numbers
+            function restrictCommentaireInput() {
+                const libelleInput = document.getElementById('{{ formdemande.commentaire.vars.id }}');
+                libelleInput.addEventListener('input', function () {
+                    this.value = this.value.replace(/[^a-zA-Z0-9]/g, '');
+                });
+            }
+
+            // Function to restrict prix to numbers, ',' and '.'
+            function restrictMontantInput() {
+                const prixInput = document.getElementById('{{ formdemande.Montant.vars.id }}');
+                prixInput.addEventListener('input', function () {
+                    this.value = this.value.replace(/[^0-9,.]/g, '');
+                });
+            }
+          
+    
+            // Call the functions to apply input controls
+            restrictCommentaireInput();
+           restrictMontantInput();
+          
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+    
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in or <a href="{{ path('app_register')}}">Register</a></h1>
+    <label for="inputEmail">Email</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    <label for="inputPassword">Password</label>
+    <div class="input-group">
+        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        <div class="input-group-append">
+            <button type="button" id="togglePassword" class="btn btn-outline-secondary"><i id="eyeIcon" class="fa fa-eye-slash" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <div class="mb-3">
+        <a href="{{ path('app_forgot_password_request') }}">forgot password ? </a>
+    </div>
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" name="_remember_me"> Remember me
+        </label>
+    </div>
+
+    
+    <button class="btn btn-lg btn-primary" type="submit" >
+   Sign in
+</button>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const passwordInput = document.getElementById('inputPassword');
+        const toggleButton = document.getElementById('togglePassword');
+        const eyeIcon = document.getElementById('eyeIcon');
+
+        toggleButton.addEventListener('click', function () {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            }
+        });
+    });
+</script>
+{% endblock %}

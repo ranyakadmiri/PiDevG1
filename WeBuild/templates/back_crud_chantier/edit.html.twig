@@ -1,0 +1,13 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Edit Chantier{% endblock %}
+
+{% block body %}
+    <h1>Edit Chantier</h1>
+
+    {{ include('back_crud_chantier/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('admin_project_index') }}">back to list</a>
+
+    {{ include('back_crud_chantier/_delete_form.html.twig') }}
+{% endblock %}

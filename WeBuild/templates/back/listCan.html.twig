@@ -1,0 +1,50 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}WeBuild {% endblock %}
+
+
+
+{% block body %}
+
+  <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                   
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Mes Candidatures</h6>
+                            <table class="table">
+                                <thead>
+                               
+                                    <tr>
+                                      
+                                        <th scope="col">Offer Title</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Competences </th>
+                                      
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                     {% for candidature in candidatures %}
+                                        
+                                        <td>{{candidature.offre.title}}</td>
+                                        <td>{{candidature.description}} </td>
+                                        <td>{{candidature.competences}} </td>
+                                            
+                                       <td><button type="button" class="btn btn-outline-danger m-2" onclick="window.location.href='{{  path('app_deleteCanBack', {'id': candidature.id}) }}'">Supprimer</button> </td>
+                                        <td><button type="button" class="btn btn-outline-warning m-2" onclick="window.location.href='{{ path('app_EditCanBack', {'id': candidature.id}) }}'">Modifier</button> </td>
+                                           
+                             
+                                    </tr>
+                                    {% endfor %}
+                                   <button type="button" class="btn btn-outline-success m-2" onclick="window.location.href='{{  path('app_AddCanBack')}}'" >Ajouter</button> 
+                                </tbody>
+                            </table>
+ <td><button type="button" class="btn btn-outline-success m-2" onclick="window.location.href='{{  path('app_showOffreBack')}}'">Consulter les offres</button>                      
+    </div>
+                 
+                
+
+
+
+
+{% endblock %}

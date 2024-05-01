@@ -1,0 +1,26 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Hello MaterielController!{% endblock %}
+
+{% block body %}
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Modifier un Pack Materiel</h6>
+
+                {{ form_start(f) }}
+                
+                {{ form_row(f.libelle, { 'attr': {'class': 'form-control mb-3'} }) }}
+                {{ form_row(f.description, { 'attr': {'class': 'form-control mb-3'} }) }}
+                {{ form_row(f.prix, { 'attr': {'class': 'form-control mb-3'} }) }}
+                {{ form_row(f.image, { 'attr': {'class': 'form-control mb-3'} }) }}
+
+                <button type="submit" class="btn btn-outline-success m-2">Submit</button>
+                
+                {{ form_end(f) }}
+
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}

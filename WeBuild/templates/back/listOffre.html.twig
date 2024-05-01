@@ -1,0 +1,74 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}WeBuild {% endblock %}
+
+
+
+{% block body %}
+
+  <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                   
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Offres</h6>
+                            <form id="search-form" action="{{ path('app_show') }}" method="get" class="mb-3">
+                        <div class="input-group">
+                            <input id="search-input" type="text" name="search" class="form-control" placeholder="Rechercher par titre...">
+                            <button id="search-button" type="submit" class="btn btn-primary">Rechercher</button>
+                        </div>
+                    </form>
+                        <title>AJAX Search Example</title>
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script>
+                                $(document).ready(function() {
+                                    $("#search-input").on("keyup", function() {
+                                        var value = $(this).val().toLowerCase();
+                                        $("table tr").filter(function() {
+                                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                        });
+                                    });
+                                });
+                            </script>
+                            <table class="table">
+                                <thead>
+                               
+                                    <tr>
+                                      
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Salary </th>
+                                        <th scope="col">Latitude </th>
+                                        <th scope="col">Longitude </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                     {% for offre in offres %}
+                                        
+                                        <td>{{offre.title}}</td>
+                                        <td>{{offre.description}} </td>
+                                        <td>{{offre.salary}} </td>
+                                        <td>{{offre.latitude}} </td>
+                                        <td>{{offre.longtitude}} </td>
+                                  
+                                  
+                                  
+                                        <td><button type="button" class="btn btn-outline-danger m-2" onclick="window.location.href='{{  path('app_deleteOffreBack', {'id': offre.id}) }}'">Supprimer</button> </td>
+                                        <td><button type="button" class="btn btn-outline-warning m-2" onclick="window.location.href='{{ path('app_EditOffreBack', {'id': offre.id}) }}'">Modifier</button> </td>
+                                        
+                                    </tr>
+                                      
+                                    {% endfor %}
+                                    <button type="button" class="btn btn-outline-success m-2" onclick="window.location.href='{{ path('app_AddOffreBack') }}'">Ajouter</button> 
+                                   
+                                </tbody>
+                            </table>
+                          
+                        </div>
+                 
+                
+
+
+
+
+{% endblock %}

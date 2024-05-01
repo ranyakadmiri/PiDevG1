@@ -1,0 +1,46 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Task index{% endblock %}
+
+{% block body %}
+    <h1>Task index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Description</th>
+                <th>Due</th>
+                <th>REf_chantier</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.name }}</td>
+                <td>{{ task.Priority }}</td>
+                <td>{{ task.Status ? 'Yes' : 'No' }}</td>
+                <td>{{ task.Description }}</td>
+                <td>{{ task.Due ? task.Due|date('Y-m-d') : '' }}</td>
+                <td>{{ task.getIdChantier() }}</td>
+
+                <td>
+                    <a href="{{ path('Admin_Task_Show', {'id': task.id}) }}">show</a>
+                    <a href="{{ path('Admin_Update_Task', {'id': task.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('Admin_New_Task') }}">Create new</a>
+{% endblock %}

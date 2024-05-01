@@ -1,0 +1,49 @@
+{% extends 'base_back.html.twig' %}
+{% block title %}WeBuild - Assurance{% endblock %}
+
+
+
+{% block body %}
+
+<div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                   
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Assurances</h6>
+                            <table class="table">
+                                <thead>
+                               
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Montant</th>
+                                        <th scope="col">type assurance</th>
+                                        <th scope="col">commentaire </th>
+                                         <th scope="col">status </th>
+                                      
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                     {% for demande in demandes %}
+                                        <th scope="row">{{demande.idD}}</th>
+                                        <td>{{demande.Montant}}</td>
+                                        <td>{{demande.Assurance.nom}} </td>
+                                        <td>{{demande.commentaire}} </td>
+                                        <td>{{demande.status}} </td>
+                                        <td><button type="button" class="btn btn-outline-danger m-2" onclick="window.location.href= '{{path('del_Demande',{'id':demande.idD})}}'">Supprimer</button> </td>
+                                        <td><button type="button" class="btn btn-outline-warning m-2" onclick="window.location.href='{{ path('edit_Demande', {'id': demande.idD}) }}'">Modifier</button> </td>
+                                        <td><button type="button" class="btn btn-outline-success m-2" onclick="window.location.href='{{ path('approve', {'id': demande.idD}) }}'">valider</button> </td>
+                                        
+                                
+                                    </tr>
+                                    {% endfor %}
+                                   
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn btn-outline-success m-2" onclick="window.location.href='{{ path('addDemande') }}'">Ajouter</button> 
+                        </div>
+                 
+                
+
+
+{% endblock %}
