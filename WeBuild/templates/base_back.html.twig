@@ -74,8 +74,8 @@
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
                     <div class="dropdown-menu bg-transparent border-0">
                         <a href="{{ path ('stat') }} " class="dropdown-item">activite forum</a>
-                        <a href="typography.html" class="dropdown-item">Typography</a>
-                        <a href="element.html" class="dropdown-item">Other Elements</a>
+                      
+                    
                     </div>
                 </div>
                 <a href="{{path('app_user_index')}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>GestionUser</a>
@@ -201,7 +201,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                         <a href="{{ path('app_account_admin') }}" class="dropdown-item">My Profile</a>
-                        <a href={# "{{ path('app_') }}" #} class="dropdown-item">Settings</a>
+                        <a href= "{{ path('app_user_show', {'id': app.user.id}) }}"  class="dropdown-item">Settings</a>
                         <a href="{{ path('app_logout') }}" class="dropdown-item">Log Out</a>
                     </div>
                 </div>

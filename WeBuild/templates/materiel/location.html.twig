@@ -21,7 +21,7 @@
                     {% for Locations in ll %}
                     <tr>
                         <th scope="row">{{ Locations.idL }}</th>
-                        <td>{{ Locations.idUser }}</td>
+                        <td>{{ app.User.id }}</td>
                         <td>{{ Locations.PackMateriel.libelle }}</td>
                         <td>{{ Locations.dateD | date('d-m-Y') }}</td>
                         <td>{{ Locations.dateF | date('d-m-Y') }}</td>
