@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 #[IsGranted('IS_AUTHENTICATED_FULLY')]
 class DemandeController extends AbstractController
 {
@@ -46,8 +47,8 @@ class DemandeController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             $assurance = $Demande->getAssurance();
-            $user=$this->getUser();
-            $Demande-> setUser($user);
+            $user = $this->getUser();
+            $Demande->setUser($user);
 
 
             $em->persist($Demande);
@@ -123,8 +124,8 @@ class DemandeController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
-            $user=$this->getUser();
-            $Demande-> setUser($user);
+            $user = $this->getUser();
+            $Demande->setUser($user);
 
 
             $em->persist($Demande);
@@ -137,8 +138,9 @@ class DemandeController extends AbstractController
     #[Route('/displaydem', name: 'displaydem')]
     public function displaydem(ManagerRegistry $doctrine): Response
     {
+        $user = $this->getUser();
         $DemRepo = $doctrine->getRepository(Demande::class);
-        $demandes = $DemRepo->findAll();
+        $demandes = $DemRepo->findBy(['user' => $user]);
         return $this->render('demande/displaydem.html.twig', ['demandes' => $demandes]);
     }
 }
