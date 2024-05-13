@@ -25,7 +25,7 @@ class Candidature
     )]
     private ?string $Description = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name:"cv", length: 255)]
     private ?string $Competences = null;
 
     #[ORM\ManyToOne(inversedBy: 'candidatures')]

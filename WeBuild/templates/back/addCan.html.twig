@@ -49,7 +49,11 @@
                 <div class="card-body">
                     <h2 class="card-title text-center mb-4 form-title">Ajouter une Candidature</h2> <!-- Apply custom class -->
                     {{ form_start(f) }}
-                  
+                    <div class="form-group">
+                        {{ form_label(f.id_client, 'ID Client') }}
+                        {{ form_widget(f.id_client, { 'attr': {'class': 'form-control', 'placeholder': 'ID Client...'} }) }}
+                        {{ form_errors(f.id_client) }}
+                    </div>
                     <div class="form-group">
                         {{ form_label(f.Description) }}
                         {{ form_widget(f.Description, { 'attr': {'class': 'form-control', 'placeholder': 'Description...'} }) }}
@@ -57,7 +61,7 @@
                     </div>
                     <div class="form-group">
                         {{ form_label(f.Competences) }}
-                        {{ form_widget(f.Competences, { 'attr': {'class': 'form-control', 'placeholder': 'Compétences...'} }) }}
+                        {{ form_widget(f.Competences, { 'attr': {'class': 'form-control-file'}  }) }}
                         {{ form_errors(f.Competences) }}
                     </div>
                     <div class="form-group">

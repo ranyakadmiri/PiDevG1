@@ -15,6 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 
 class CandidatureType extends AbstractType
 {
@@ -29,9 +31,10 @@ class CandidatureType extends AbstractType
                     new Length(['min' => 14, 'minMessage' => 'La description doit dépasser {{ limit }} caractères']),
                 ],
             ])
-            ->add('Competences', TextType::class, [
-                'label' => 'Compétences',
-                'attr' => ['class' => 'form-control', 'placeholder' => 'Compétences...'],
+            ->add('Competences', FileType::class, [
+                'label' => 'Votre CV',
+                'mapped' => false,
+                'required' => false,
                 'constraints' => [
                     new Length(['max' => 255, 'maxMessage' => 'Les compétences ne peuvent pas dépasser {{ limit }} caractères']),
                     new NotBlank(['message' => 'Les compétences ne peuvent pas être vide']),

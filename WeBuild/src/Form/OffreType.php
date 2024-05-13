@@ -52,8 +52,8 @@ class OffreType extends AbstractType
                 new NotBlank(['message' => 'La latitude ne peut pas être vide']),
             ],
         ])
-        ->add('longtitude', null, [
-            'label' => 'Longtitude',
+        ->add('longitude', null, [
+            'label' => 'longitude',
             'attr' => $fieldAttributes,
             'constraints' => [
                 new NotBlank(['message' => 'La longitude ne peut pas être vide']),

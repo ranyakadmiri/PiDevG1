@@ -47,7 +47,7 @@ class Offre
     private ?string $latitude = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 6)]
-    private ?string $longtitude = null;
+    private ?string $longitude = null;
 
     public function __construct()
     {
@@ -128,14 +128,14 @@ class Offre
         return $this;
     }
 
-    public function getLongtitude(): ?string
+    public function getlongitude(): ?string
     {
-        return $this->longtitude;
+        return $this->longitude;
     }
 
-    public function setLongtitude(string $longtitude): static
+    public function setlongitude(string $longitude): static
     {
-        $this->longtitude = $longtitude;
+        $this->longitude = $longitude;
 
         return $this;
     }

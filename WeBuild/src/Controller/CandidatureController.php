@@ -53,6 +53,16 @@ class CandidatureController extends AbstractController
             $Candidature-> setUser($user);
              $selectedOffre = $form->get('offre')->getData();
              $Candidature->setOffre($selectedOffre);
+                       //uploading file
+                       $competencesFile = $form->get('Competences')->getData();
+                       if ($competencesFile) {
+                           $newFilename = uniqid().'.'.$competencesFile->guessExtension();
+                           $competencesFile->move(
+                               $this->getParameter('uploads'),
+                               $newFilename
+                           );
+                           $Candidature->setCompetences($newFilename);
+                       }
             $em=$this->getDoctrine()->getManager();
             $em->persist($Candidature);
             $em->flush(); 

@@ -57,11 +57,11 @@
 {# JavaScript code to initialize maps for each offer #}
 {% for offre in offres %}
 <script>
-    var map{{ loop.index }} = L.map('map{{ loop.index }}').setView([{{ offre.latitude }}, {{ offre.longtitude }}], 13);
+    var map{{ loop.index }} = L.map('map{{ loop.index }}').setView([{{ offre.latitude }}, {{ offre.longitude }}], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map{{ loop.index }});
-    L.marker([{{ offre.latitude }}, {{ offre.longtitude }}]).addTo(map{{ loop.index }});
+    L.marker([{{ offre.latitude }}, {{ offre.longitude }}]).addTo(map{{ loop.index }});
 </script>
 {% endfor %}
 {% endblock %}

@@ -33,7 +33,7 @@
         }).addTo(map);
 
         {% for offre in offres %}
-            L.marker([{{ offre.latitude }}, {{ offre.longtitude }}]).addTo(map)
+            L.marker([{{ offre.latitude }}, {{ offre.longitude }}]).addTo(map)
                 .bindPopup(`<b>{{ offre.title }}</b><br>Salary: {{ offre.salary }}DT</b>
                 <b><a href="{{ path('app_AddCan') }}" class="btn btn-sm custom-btn">Postuler</a></b>`);
         {% endfor %}
